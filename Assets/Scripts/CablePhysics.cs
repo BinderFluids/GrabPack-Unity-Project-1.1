@@ -363,7 +363,7 @@ public class CablePhysics : MonoBehaviour
         Vector3 force = flatDir * excess * stiffness;
         force.y = 0f;
 
-        Vector3 velocityFlat = Vector3.ProjectOnPlane(playerRb.velocity, Vector3.up);
+        Vector3 velocityFlat = Vector3.ProjectOnPlane(playerRb.linearVelocity, Vector3.up);
         Vector3 velocityAlongFlat = Vector3.Project(velocityFlat, flatDir);
 
         force -= velocityAlongFlat * damping;

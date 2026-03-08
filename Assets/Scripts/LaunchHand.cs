@@ -597,7 +597,7 @@ public class LaunchHand : MonoBehaviour
 
                 Vector3 force =
                     dirNormalized * constantPullForce
-                    - rb.velocity * damping;
+                    - rb.linearVelocity * damping;
 
                 rb.AddForce(force, ForceMode.Force);
             }
