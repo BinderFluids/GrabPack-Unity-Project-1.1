@@ -39,6 +39,8 @@ public class BaseHandBehaviour : MonoBehaviour
     [SerializeField] private bool lockRetract = false;
 
     public RotateArms aimOverride;
+    
+    //Interaction
     [SerializeField] private HandInteractable interactable;
     public HandInteractable Interactable => interactable;
     [SerializeField] private Pickupable pickupable;
@@ -47,6 +49,7 @@ public class BaseHandBehaviour : MonoBehaviour
     
     void Start()
     {
+        _transform ??= transform; 
         originalParent = _transform.parent;
         selftransform = gameObject.transform.localScale;
     }
