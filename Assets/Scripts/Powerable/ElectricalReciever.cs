@@ -51,7 +51,7 @@ public class ElectricalReciever : PowerableBehaviour
 
         foreach (BaseHandBehaviour hand in hands)
         {
-            hand.Return();
+            hand.Retract();
         }
     }
     

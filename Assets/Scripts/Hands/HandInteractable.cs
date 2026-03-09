@@ -10,7 +10,8 @@ public class HandInteractable : MonoBehaviour
         Grip,
         None
     }
-    
+
+    [SerializeField] protected Transform _transform;
     
     [SerializeField] private GrabTypeEnum grabType = GrabTypeEnum.Grip;
     public GrabTypeEnum GrabType => grabType;
@@ -34,11 +35,10 @@ public class HandInteractable : MonoBehaviour
 
     public void Retract(BaseHandBehaviour hand)
     {
-        hands.Remove(hand); 
-        
         OnRetract(hand);
         onRetract?.Invoke();
         onRetractUnityEvent?.Invoke();
+        hands.Remove(hand); 
     }
     protected virtual void OnRetract(BaseHandBehaviour hand) { }
 }

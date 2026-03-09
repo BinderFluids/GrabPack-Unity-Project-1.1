@@ -44,7 +44,7 @@ public class JumpPad : PowerableBehaviour
         {
             if (cooldownTimer > 0)
             {
-                rockethand.Return();
+                rockethand.Retract();
                 return;
             }
 
@@ -65,7 +65,7 @@ public class JumpPad : PowerableBehaviour
                 launched = true;
                 cooldownTimer = cooldownTime;
 
-                rockethand.Return();
+                rockethand.Retract();
                 GlobalAudio.PlayOneShot(boostsfx, 1.0f);
             }
         }

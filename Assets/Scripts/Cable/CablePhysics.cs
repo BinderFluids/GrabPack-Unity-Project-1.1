@@ -341,7 +341,7 @@ public class CablePhysics : MonoBehaviour
 
     public void ApplySharedTension(float excess)
     {
-        if (baseHandBehaviour == null || baseHandBehaviour.CanReturn)
+        if (baseHandBehaviour == null || !baseHandBehaviour.Interactable)
             return;
 
         if (playerRb == null)

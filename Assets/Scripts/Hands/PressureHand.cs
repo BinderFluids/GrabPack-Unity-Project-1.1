@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PressureHand : BaseHandBehaviour
 {
@@ -9,6 +10,15 @@ public class PressureHand : BaseHandBehaviour
     
     public GameObject pressurebuild;
     public AudioClip pressureRelease;
+    
+    public bool isPressureHand = false;
+    public float pressure = 0;
+
+    public GameObject SMOKE;
+
+    public GameObject gauge;
+    public Image guageUI;
+    public ParticleSystem impact;
         
     //     if ((leftReleased || rightReleased) && isPressureHand)
     // {

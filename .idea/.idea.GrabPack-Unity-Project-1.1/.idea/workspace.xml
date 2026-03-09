@@ -6,9 +6,18 @@
   <component name="ChangeListManager">
     <list default="true" id="17116273-0ca8-4720-8e20-e14000d3ac2e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GrabPack-Unity-Project-1.1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GrabPack-Unity-Project-1.1/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BurnObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BurnObject.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Cable/CablePhysics.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Cable/CablePhysics.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GreenReciever.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GreenReciever.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Hands/BaseHandBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Hands/BaseHandBehaviour.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Hands/Draggable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Hands/Draggable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Powerable/PowerPole.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Powerable/PowerPole.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Hands/HandInteractable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Hands/HandInteractable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Hands/HandsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Hands/HandsController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Hands/Pickupable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Hands/Pickupable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Hands/PressureHand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Hands/PressureHand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/KeyCard.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/KeyCard.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Powerable/ElectricalReciever.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Powerable/ElectricalReciever.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Powerable/JumpPad.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Powerable/JumpPad.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/freeze.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/freeze.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,7 +25,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="24" />
+    <option name="cachedIndexableFilesCount" value="26" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="Git.Settings">

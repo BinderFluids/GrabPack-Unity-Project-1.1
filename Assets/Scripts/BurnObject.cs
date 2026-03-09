@@ -47,7 +47,7 @@ public class BurnObject : MonoBehaviour
 
                 renderer.enabled = false;
                 collider.enabled = false;
-                launchhand.Return();
+                launchhand.Retract();
                 door.Locked = false;
             }
         }

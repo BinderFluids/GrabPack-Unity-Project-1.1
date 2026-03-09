@@ -51,7 +51,7 @@ public class GreenReciever : MonoBehaviour
                 played = true;
 
 
-                launchhand.Return();
+                launchhand.Retract();
 
                 powered = true;
 

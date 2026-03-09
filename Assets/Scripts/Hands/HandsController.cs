@@ -25,7 +25,7 @@ public class HandsController : MonoBehaviour
         foreach (var data in handContainersData)
         {
             BaseHandBehaviour hand = data.hand;
-            hand.HandleInput(data.mouseIndex, CastRay(), maxRange);
+            hand.HandleInput(data.mouseIndex, CastRay(), maxRange, data.handNormal);
         }
     }
     
@@ -39,6 +39,7 @@ public class HandsController : MonoBehaviour
     public struct ContainerData
     {
         public BaseHandBehaviour hand;
+        public int handNormal; 
         public int mouseIndex;   
     }
 }

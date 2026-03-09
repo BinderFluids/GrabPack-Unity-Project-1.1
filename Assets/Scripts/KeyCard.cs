@@ -44,13 +44,13 @@ public class KeyCard : MonoBehaviour
             if (child1 != null && Input.GetMouseButtonDown(1))
             {
                 PickUp();
-                purpleHandBehaviour.Return();
+                purpleHandBehaviour.Retract();
             }
 
             if (child2 != null && Input.GetMouseButtonDown(1))
             {
                 PickUp();
-                redhand.Return();
+                redhand.Retract();
 
 
             }
@@ -59,21 +59,21 @@ public class KeyCard : MonoBehaviour
 
 
                 PickUp();
-                blueHandBehaviour.Return();
+                blueHandBehaviour.Retract();
 
             }
 
             if (child4 != null && Input.GetMouseButtonDown(1))
             {
                 PickUp();
-                pressureHandBehaviour.Return();
+                pressureHandBehaviour.Retract();
 
 
             }
             if (child5 != null && Input.GetMouseButtonDown(1))
             {
                 PickUp();
-                conductiveHandBehaviour.Return();
+                conductiveHandBehaviour.Retract();
 
 
             }
@@ -91,12 +91,12 @@ public class KeyCard : MonoBehaviour
         PICKED = true;
         if (child1 != null)
         {
-            purpleHandBehaviour.Return();
+            purpleHandBehaviour.Retract();
         }
 
         if (child2 != null)
         {
-            redhand.Return();
+            redhand.Retract();
 
 
         }
@@ -104,16 +104,16 @@ public class KeyCard : MonoBehaviour
         {
 
 
-            blueHandBehaviour.Return();
+            blueHandBehaviour.Retract();
 
         }
         if (child4 != null)
         {
-            pressureHandBehaviour.Return();
+            pressureHandBehaviour.Retract();
         }
         if (child5 != null)
         {
-            conductiveHandBehaviour.Return();
+            conductiveHandBehaviour.Retract();
         }
     }
 }
