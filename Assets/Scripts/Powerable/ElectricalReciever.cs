@@ -5,10 +5,12 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class ElectricalReciever : BasePowerable
+public class ElectricalReciever : PowerableBehaviour
 {
-    public List<BasePowerable> requiredPowerables;
-    private bool allPowered => requiredPowerables.All(p => p.IsPowered); 
+    public List<InterfaceReference<IPowerable>> requiredPowerables;
+    public List<InterfaceReference<IPowerable>> powerablesOnComplete = new();
+    private bool allPowered => 
+        requiredPowerables.All(powerable => powerable.Value.IsPowered);
     
     public AudioSource GlobalAudio;
     public AudioClip puzzlecomplete;
@@ -17,7 +19,7 @@ public class ElectricalReciever : BasePowerable
 
     private void Start()
     {
-        foreach (BasePowerable powerable in requiredPowerables)
+        foreach (PowerableBehaviour powerable in requiredPowerables)
             powerable.onPoweredOn += CheckAllPoweredOn; 
     }
     
@@ -26,7 +28,6 @@ public class ElectricalReciever : BasePowerable
         if (allPowered)
             CompleteCircuit(); 
     }
-    
 
     public void CompleteCircuit()
     {
@@ -35,13 +36,14 @@ public class ElectricalReciever : BasePowerable
             if (hand != null && hand.activeInHierarchy && hand.transform.parent == transform)
             {
                 PowerOn();
+                powerablesOnComplete.
+                    ForEach(powerable => powerable.Value.PowerOn());
                 
                 GlobalAudio.PlayOneShot(puzzlecomplete, 1.0f);
                 ReturnAllHands();
             }
         }
     }
-
 
     void ReturnAllHands()
     {
@@ -55,7 +57,7 @@ public class ElectricalReciever : BasePowerable
     
     private void OnDestroy()
     {
-        foreach (BasePowerable powerable in requiredPowerables)
+        foreach (PowerableBehaviour powerable in requiredPowerables)
             if (powerable != null)
                 powerable.onPoweredOn -= CheckAllPoweredOn;
     }

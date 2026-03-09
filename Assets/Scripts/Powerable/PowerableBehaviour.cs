@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 
-public abstract class BasePowerable : MonoBehaviour, IPowerable
+public abstract class PowerableBehaviour : MonoBehaviour, IPowerable
 {
     public bool IsPowered { get; private set; }
 
@@ -14,7 +14,7 @@ public abstract class BasePowerable : MonoBehaviour, IPowerable
     [SerializeField] private UnityEvent<bool> onSetPoweredUnityEvent;
     
 
-    public virtual void PowerOn()
+    public void PowerOn()
     {
         IsPowered = true; 
         
@@ -28,7 +28,7 @@ public abstract class BasePowerable : MonoBehaviour, IPowerable
         onPoweredOnUnityEvent?.Invoke();
     }
     
-    public virtual void PowerOff()
+    public void PowerOff()
     {
         IsPowered = false;
         

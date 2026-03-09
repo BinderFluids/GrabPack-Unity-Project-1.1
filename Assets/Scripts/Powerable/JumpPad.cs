@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class JumpPad : BasePowerable
+public class JumpPad : PowerableBehaviour
 {
     public Rigidbody Player;
     public float jumpForce = 10f;
