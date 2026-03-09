@@ -5,15 +5,26 @@ using UnityEngine.Events;
 
 public class HandInteractable : MonoBehaviour
 {
+    public enum GrabTypeEnum
+    {
+        Grip,
+        None
+    }
+    
+    
+    [SerializeField] private GrabTypeEnum grabType = GrabTypeEnum.Grip;
+    public GrabTypeEnum GrabType => grabType;
+    
     [SerializeField] protected List<BaseHandBehaviour> hands = new(); 
     [SerializeField] private UnityEvent onGrabUnityEvent;
-    [SerializeField] private UnityEvent onReleaseUnityEvent;
+    [SerializeField] private UnityEvent onRetractUnityEvent;
     public event Action onGrab;
-    public event Action onRelease;
+    public event Action onRetract;
     
     public void Grab(BaseHandBehaviour hand)
     {
         hands.Add(hand); 
+        hand.SetParent(transform);
         
         OnGrab(hand);
         onGrab?.Invoke();
@@ -21,15 +32,15 @@ public class HandInteractable : MonoBehaviour
     }
     protected virtual void OnGrab(BaseHandBehaviour hand) { }
 
-    public void Release(BaseHandBehaviour hand)
+    public void Retract(BaseHandBehaviour hand)
     {
         hands.Remove(hand); 
         
-        OnRelease(hand);
-        onRelease?.Invoke();
-        onReleaseUnityEvent?.Invoke();
+        OnRetract(hand);
+        onRetract?.Invoke();
+        onRetractUnityEvent?.Invoke();
     }
-    protected virtual void OnRelease(BaseHandBehaviour hand) { }
+    protected virtual void OnRetract(BaseHandBehaviour hand) { }
 }
 
 /*

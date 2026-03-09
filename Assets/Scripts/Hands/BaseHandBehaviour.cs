@@ -65,7 +65,11 @@ public class BaseHandBehaviour : MonoBehaviour
     public ParticleSystem impact;
 
     public GameObject Crosshair;
-
+    private HandInteractable interactable;
+    private Pickupable pickupable;
+    
+    public bool MouseButtonHeld { get; private set; }
+    
     void Start()
     {
         //cableRenderer.enabled = false;
@@ -83,21 +87,21 @@ public class BaseHandBehaviour : MonoBehaviour
     public void HandleInput(int mouseIndex, Ray ray, float maxRange)
     {
         if (Input.GetMouseButtonDown(mouseIndex))
-            if (!IsActive) FireHand(ray, maxRange);
-            else Return();
+            if (!IsActive && pickupable == null) FireHand(ray, maxRange);
+            else if (IsActive && pickupable != null) pickupable.Retract(this); 
+            //else if (interactable == null) Return();
 
-        if (Input.GetMouseButton(mouseIndex))
-        {
-            //TODO if holding a draggable object, drag it
-        }
+        // if (Input.GetMouseButton(mouseIndex))
+        // {
+        //     MouseButtonHeld = true;
+        // }
+
+        MouseButtonHeld = Input.GetMouseButton(mouseIndex);
 
         if (Input.GetMouseButtonUp(mouseIndex))
         {
-            if (canDrag)
-            {
-                canDrag = false; 
-                Return();
-            }
+            if (interactable != null)
+                Return(); 
         }
     }
     
@@ -107,7 +111,7 @@ public class BaseHandBehaviour : MonoBehaviour
         if (isActive) return;
         if (!gameObject.activeSelf) return;
         
-        globalAudio.PlayOneShot(firesfx, 0.7f);
+        //globalAudio.PlayOneShot(firesfx, 0.7f);
 
         CableSim.isActive = true;
         float remaining = cableManager.GetRemainingLength();
@@ -154,9 +158,6 @@ public class BaseHandBehaviour : MonoBehaviour
             handgrabbing.SetBool("grabbing", false);
 
             return;
-
-
-
         }
         CanReturn = true;
         if (isActive) return;
@@ -186,65 +187,115 @@ public class BaseHandBehaviour : MonoBehaviour
             handTransform.rotation = Quaternion.LookRotation(projectedForward, hit.normal);
         }
 
-        if (hit.collider != null)
-            if (hit.collider.gameObject.tag == (GrabableLayer))
-            {
-                CanReturn = false;
-
-                hitGameObject = hit.collider.gameObject;
-                if (LayerMask.LayerToName(hitGameObject.layer) == "Battery")
-                {
-                    holdingbattery = true;
-                    handgrabbing.SetBool("grabbing", true);
-                }
-                if (hitGameObject.GetComponent<HandScanner>() == true)
-                {
-                    handgrabbing.SetBool("grabbing", false);
-                }
-                if (hitGameObject.GetComponent<Rigidbody>() != null)
-                {
-                    if (hitGameObject.GetComponent<Barricade>() != null)
-                    {
-                        br = hitGameObject.GetComponent<Barricade>();
-
-                    }
-                    if (!isPressureHand)
-                    {
-                        handgrabbing.SetBool("grabbing", true);
-
-                    }
-
-                    Invoke("EnableDrag", 0.5f);
-
-                }
-                if (LayerMask.LayerToName(hitGameObject.layer) == "Grabanimation" || LayerMask.LayerToName(hitGameObject.layer) == "Minecart" || LayerMask.LayerToName(hitGameObject.layer) == "KeyCard")
-                {
-                    handgrabbing.SetBool("grabbing", true);
-                }
-
-
-                if (Hand == "Right")
-                {
-                    Vector3 projectedForward = Vector3.ProjectOnPlane(transform.forward, -hit.normal);
-                    handTransform.rotation = Quaternion.LookRotation(projectedForward, -hit.normal);
-                }
-                if (Hand == "Left")
-                {
-                    Vector3 projectedForward = Vector3.ProjectOnPlane(transform.forward, hit.normal);
-                    handTransform.rotation = Quaternion.LookRotation(projectedForward, hit.normal);
-                }
-
-            }
+        // if (hit.collider != null)
+        //     if (hit.collider.gameObject.tag == (GrabableLayer))
+        //     {
+        //         CanReturn = false;
+        //
+        //         hitGameObject = hit.collider.gameObject;
+        //         if (LayerMask.LayerToName(hitGameObject.layer) == "Battery")
+        //         {
+        //             holdingbattery = true;
+        //             handgrabbing.SetBool("grabbing", true);
+        //         }
+        //         if (hitGameObject.GetComponent<HandScanner>() == true)
+        //         {
+        //             handgrabbing.SetBool("grabbing", false);
+        //         }
+        //         if (hitGameObject.GetComponent<Rigidbody>() != null)
+        //         {
+        //             if (hitGameObject.GetComponent<Barricade>() != null)
+        //             {
+        //                 br = hitGameObject.GetComponent<Barricade>();
+        //
+        //             }
+        //             if (!isPressureHand)
+        //             {
+        //                 handgrabbing.SetBool("grabbing", true);
+        //
+        //             }
+        //
+        //             Invoke("EnableDrag", 0.5f);
+        //
+        //         }
+        //         if (LayerMask.LayerToName(hitGameObject.layer) == "Grabanimation" || LayerMask.LayerToName(hitGameObject.layer) == "Minecart" || LayerMask.LayerToName(hitGameObject.layer) == "KeyCard")
+        //         {
+        //             handgrabbing.SetBool("grabbing", true);
+        //         }
+        //
+        //
+        //         if (Hand == "Right")
+        //         {
+        //             Vector3 projectedForward = Vector3.ProjectOnPlane(transform.forward, -hit.normal);
+        //             handTransform.rotation = Quaternion.LookRotation(projectedForward, -hit.normal);
+        //         }
+        //         if (Hand == "Left")
+        //         {
+        //             Vector3 projectedForward = Vector3.ProjectOnPlane(transform.forward, hit.normal);
+        //             handTransform.rotation = Quaternion.LookRotation(projectedForward, hit.normal);
+        //         }
+        //
+        //     }
         Vector3 impactPoint = hit.point;
-
+        
+        if (hit.collider != null)
+            if (hit.collider.TryGetComponent(out HandInteractable interactable))
+            {
+                CanReturn = false; 
+                this.interactable = interactable;
+                interactable.Grab(this); 
+                handgrabbing.SetBool("grabbing", interactable.GrabType == HandInteractable.GrabTypeEnum.Grip);
+                HandleInteractable(interactable);
+            }
+        
         StartCoroutine(MoveHand(targetPoint, impactPoint));
     }
+
+    void HandleInteractable(HandInteractable interactable)
+    {
+        if (interactable is Draggable draggable)
+        {
+            HandleDraggable(draggable);
+            return; 
+        }
+        if (interactable is Pickupable pickupable)
+        {
+            HandlePickupable(pickupable);
+            return;
+        }
+    }
+
+    protected virtual void HandleDraggable(Draggable draggable)
+    {
+        
+    }
+    protected virtual void HandlePickupable(Pickupable pickupable)
+    {
+        
+    }
+
+    public void GiveItem(Pickupable pickupable)
+    {
+        this.pickupable ??= pickupable;
+    }
+
+    public void ReleaseItem()
+    {
+        if (pickupable == null) return;
+        
+        pickupable.Retract(this);
+        pickupable = null; 
+    }
+    
     public void Return()
     {
         if (!gameObject.activeSelf) return;
         if (lockReturn || canDrag) return;
 
         CanReturn = true;
+        
+        interactable?.Retract(this);
+        interactable = null; 
         StartCoroutine(ReturnHand());
     }
 
