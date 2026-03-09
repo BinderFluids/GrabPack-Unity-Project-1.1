@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 
-public abstract class PowerableBehaviour : MonoBehaviour, IPowerable
+public class PowerableBehaviour : MonoBehaviour, IPowerable
 {
     public bool IsPowered { get; private set; }
 

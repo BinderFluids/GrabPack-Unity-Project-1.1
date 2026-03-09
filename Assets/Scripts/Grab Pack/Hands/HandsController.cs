@@ -29,12 +29,7 @@ public class HandsController : MonoBehaviour
         foreach (var data in handContainersData)
         {
             BaseHandBehaviour hand = data.hand;
-
-            hand.HandleInput(data.mouseIndex);
-
-            if (Input.GetMouseButtonDown(data.mouseIndex))
-                if (!hand.IsActive) hand.Fire(CastRay(), maxRange);
-                else hand.Return();
+            hand.HandleInput(data.mouseIndex, CastRay(), maxRange);
         }
     }
     
@@ -42,10 +37,6 @@ public class HandsController : MonoBehaviour
     {
         Vector3 center = new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 0f);
         return cam.ScreenPointToRay(center);
-        // if (Physics.Raycast(ray, out RaycastHit hit, maxRange))
-        //     return hit.point; 
-        //
-        // return ray.origin + ray.direction * maxRange;
     }
 
     [Serializable]

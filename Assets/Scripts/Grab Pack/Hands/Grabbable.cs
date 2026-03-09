@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class HandContainer : MonoBehaviour
+public class Grabbable : MonoBehaviour
 {
     [SerializeField] private BaseHandBehaviour hand;
     public BaseHandBehaviour Hand => hand;
@@ -19,5 +19,15 @@ public class HandContainer : MonoBehaviour
         }
 
         hand = null; 
+    }
+
+    public virtual void Pull()
+    {
+        
+    }
+
+    public void Release()
+    {
+        
     }
 }

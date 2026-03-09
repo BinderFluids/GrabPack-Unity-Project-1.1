@@ -32,7 +32,7 @@ public class BaseHandBehaviour : MonoBehaviour
 
     public CablePhysics CableSim;
     
-    public GameObject hitOBJ;
+    public GameObject hitGameObject;
 
     public Vector3 selftransform;
 
@@ -79,51 +79,29 @@ public class BaseHandBehaviour : MonoBehaviour
         canDrag = true;
     }
 
-    public void HandleInput(int mouseIndex)
+    public void HandleInput(int mouseIndex, Ray ray, float maxRange)
     {
-        // if (active) return;
-        //
-        // bool mouseDown = Input.GetMouseButtonDown(mouseIndex);
-        // bool mouseUp = Input.GetMouseButtonUp(mouseIndex);
-        //
-        // if (mouseDown)
-        // {
-        //     if (!active)
-        //     {
-        //         //Fire(); 
-        //         awaitingSecondInput = false;
-        //         return;
-        //     }
-        //
-        //     if (active && !awaitingSecondInput)
-        //     {
-        //         awaitingSecondInput = true;
-        //         return;
-        //     }
-        // }
-        //
-        // if (mouseUp)
-        // {
-        //     if (active && !awaitingSecondInput)
-        //     {
-        //         awaitingSecondInput = true;
-        //         return;
-        //     }
-        //
-        //     if (active && awaitingSecondInput)
-        //     {
-        //         if (!isPressureHand && !canDrag)
-        //         {
-        //             CanReturn = true;
-        //             Return();
-        //         }
-        //
-        //         awaitingSecondInput = false;
-        //     }
-        // }
-    }
+        if (Input.GetMouseButtonDown(mouseIndex))
+            if (!IsActive) FireHand(ray, maxRange);
+            else Return();
 
-    public void Fire(Ray ray, float range)
+        if (Input.GetMouseButton(mouseIndex))
+        {
+            //TODO if holding a draggable object, drag it
+        }
+
+        if (Input.GetMouseButtonUp(mouseIndex))
+        {
+            if (canDrag)
+            {
+                canDrag = false; 
+                Return();
+            }
+        }
+    }
+    
+    
+    public void FireHand(Ray ray, float range)
     {
         if (isActive) return;
         if (!gameObject.activeSelf) return;
@@ -212,21 +190,21 @@ public class BaseHandBehaviour : MonoBehaviour
             {
                 CanReturn = false;
 
-                hitOBJ = hit.collider.gameObject;
-                if (LayerMask.LayerToName(hitOBJ.layer) == "Battery")
+                hitGameObject = hit.collider.gameObject;
+                if (LayerMask.LayerToName(hitGameObject.layer) == "Battery")
                 {
                     holdingbattery = true;
                     handgrabbing.SetBool("grabbing", true);
                 }
-                if (hitOBJ.GetComponent<HandScanner>() == true)
+                if (hitGameObject.GetComponent<HandScanner>() == true)
                 {
                     handgrabbing.SetBool("grabbing", false);
                 }
-                if (hitOBJ.GetComponent<Rigidbody>() != null)
+                if (hitGameObject.GetComponent<Rigidbody>() != null)
                 {
-                    if (hitOBJ.GetComponent<Barricade>() != null)
+                    if (hitGameObject.GetComponent<Barricade>() != null)
                     {
-                        br = hitOBJ.GetComponent<Barricade>();
+                        br = hitGameObject.GetComponent<Barricade>();
 
                     }
                     if (!isPressureHand)
@@ -238,7 +216,7 @@ public class BaseHandBehaviour : MonoBehaviour
                     Invoke("EnableDrag", 0.5f);
 
                 }
-                if (LayerMask.LayerToName(hitOBJ.layer) == "Grabanimation" || LayerMask.LayerToName(hitOBJ.layer) == "Minecart" || LayerMask.LayerToName(hitOBJ.layer) == "KeyCard")
+                if (LayerMask.LayerToName(hitGameObject.layer) == "Grabanimation" || LayerMask.LayerToName(hitGameObject.layer) == "Minecart" || LayerMask.LayerToName(hitGameObject.layer) == "KeyCard")
                 {
                     handgrabbing.SetBool("grabbing", true);
                 }
@@ -286,25 +264,25 @@ public class BaseHandBehaviour : MonoBehaviour
         }
 
         handTransform.position = target;
-        if (hitOBJ != null)
+        if (hitGameObject != null)
         {
             handTransform.position = impactPoint;
-            handTransform.SetParent(hitOBJ.transform, true);
-            if (LayerMask.LayerToName(hitOBJ.layer) == "Battery")
+            handTransform.SetParent(hitGameObject.transform, true);
+            if (LayerMask.LayerToName(hitGameObject.layer) == "Battery")
             {
 
-                if (hitOBJ.GetComponent<gear>() != null)
+                if (hitGameObject.GetComponent<gear>() != null)
                 {
-                    if (hitOBJ.transform.childCount == 2)
+                    if (hitGameObject.transform.childCount == 2)
                     {
-                        battery = hitOBJ;
+                        battery = hitGameObject;
                     }
                 }
                 else
                 {
-                    if (hitOBJ.transform.childCount == 1)
+                    if (hitGameObject.transform.childCount == 1)
                     {
-                        battery = hitOBJ;
+                        battery = hitGameObject;
                     }
                 }
             }
@@ -384,7 +362,7 @@ public class BaseHandBehaviour : MonoBehaviour
 
         isActive = true;
         canDrag = false;
-        hitOBJ = null;
+        hitGameObject = null;
         Vector3 startPosition = handTransform.position;
         Quaternion startRotation = handTransform.rotation;
 
@@ -452,10 +430,12 @@ public class BaseHandBehaviour : MonoBehaviour
             aimOverride.leftActive = false;
         }
     }
+    
+    
 
     void LateUpdate()
     {
-        if (CanReturn || !canDrag || isActive)
+        if (CanReturn || !canDrag)
         {
             dragsounds.SetActive(false);
             return;
@@ -545,7 +525,7 @@ public class BaseHandBehaviour : MonoBehaviour
         CableSim.isActive = false;
         isActive = false;
         canDrag = false;
-        hitOBJ = null;
+        hitGameObject = null;
         handgrabbing.SetBool("grabbing", false);
         CanReturn = true;
         handTransform.parent = originalParent;
