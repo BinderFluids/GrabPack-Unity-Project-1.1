@@ -37,7 +37,7 @@ public class GreenReciever : MonoBehaviour
         {
 
             Conductor conductor = child1.GetComponent<Conductor>();
-            LaunchHand launchhand = child1.GetComponent<LaunchHand>();
+            BaseHandBehaviour launchhand = child1.GetComponent<BaseHandBehaviour>();
 
             if (played == false && conductor.CurrentElement == "green")
             {
@@ -51,7 +51,7 @@ public class GreenReciever : MonoBehaviour
                 played = true;
 
 
-                launchhand.return1();
+                launchhand.Return();
 
                 powered = true;
 

@@ -25,7 +25,7 @@ public class SettingsManager : MonoBehaviour
 
     public bool open = false;
 
-    public LaunchHand[] hands;
+    public BaseHandBehaviour[] hands;
 
     public Animator playerAnimator;
 
@@ -64,7 +64,7 @@ public class SettingsManager : MonoBehaviour
             playerAnimator.enabled = !state;
         }
 
-        foreach (LaunchHand hand in hands)
+        foreach (BaseHandBehaviour hand in hands)
         {
             if (hand != null)
                 hand.enabled = !state;

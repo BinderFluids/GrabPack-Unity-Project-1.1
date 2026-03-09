@@ -7,8 +7,8 @@ using UnityEngine.Events;
 
 public class ElectricalReciever : PowerableBehaviour
 {
-    public List<InterfaceReference<IPowerable>> requiredPowerables;
-    public List<InterfaceReference<IPowerable>> powerablesOnComplete = new();
+    [SerializeField] private List<InterfaceReference<IPowerable>> requiredPowerables;
+    [SerializeField] private List<InterfaceReference<IPowerable>> powerablesOnComplete = new();
     private bool allPowered => 
         requiredPowerables.All(powerable => powerable.Value.IsPowered);
     
@@ -47,11 +47,11 @@ public class ElectricalReciever : PowerableBehaviour
 
     void ReturnAllHands()
     {
-        LaunchHand[] hands = FindObjectsOfType<LaunchHand>();
+        BaseHandBehaviour[] hands = FindObjectsOfType<BaseHandBehaviour>();
 
-        foreach (LaunchHand hand in hands)
+        foreach (BaseHandBehaviour hand in hands)
         {
-            hand.return1();
+            hand.Return();
         }
     }
     

@@ -19,12 +19,12 @@ public class PowerPole : PowerableBehaviour
 
     public void StartGlow()
     {
-        if (source.powering)
-        {
+        //if (source.powering)//
+        //{/
             glow.SetActive(true);
             touchedThisFrame = true;
             glowcounter = 0.1f;
-        }
+        //}//
     }
 
     protected override void OnPoweredOn()

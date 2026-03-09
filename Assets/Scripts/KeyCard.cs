@@ -7,11 +7,11 @@ public class KeyCard : MonoBehaviour
     private MeshRenderer renderer;
     private BoxCollider collider;
 
-    public LaunchHand redhand;
-    public LaunchHand PurpleHand;
-    public LaunchHand BlueHand;
-    public LaunchHand PressureHand;
-    public LaunchHand ConductiveHand;
+    public BaseHandBehaviour redhand;
+    public BaseHandBehaviour purpleHandBehaviour;
+    public BaseHandBehaviour blueHandBehaviour;
+    public BaseHandBehaviour pressureHandBehaviour;
+    public BaseHandBehaviour conductiveHandBehaviour;
 
 
     public Transform child1;
@@ -44,13 +44,13 @@ public class KeyCard : MonoBehaviour
             if (child1 != null && Input.GetMouseButtonDown(1))
             {
                 PickUp();
-                PurpleHand.return1();
+                purpleHandBehaviour.Return();
             }
 
             if (child2 != null && Input.GetMouseButtonDown(1))
             {
                 PickUp();
-                redhand.return1();
+                redhand.Return();
 
 
             }
@@ -59,21 +59,21 @@ public class KeyCard : MonoBehaviour
 
 
                 PickUp();
-                BlueHand.return1();
+                blueHandBehaviour.Return();
 
             }
 
             if (child4 != null && Input.GetMouseButtonDown(1))
             {
                 PickUp();
-                PressureHand.return1();
+                pressureHandBehaviour.Return();
 
 
             }
             if (child5 != null && Input.GetMouseButtonDown(1))
             {
                 PickUp();
-                ConductiveHand.return1();
+                conductiveHandBehaviour.Return();
 
 
             }
@@ -91,12 +91,12 @@ public class KeyCard : MonoBehaviour
         PICKED = true;
         if (child1 != null)
         {
-            PurpleHand.return1();
+            purpleHandBehaviour.Return();
         }
 
         if (child2 != null)
         {
-            redhand.return1();
+            redhand.Return();
 
 
         }
@@ -104,16 +104,16 @@ public class KeyCard : MonoBehaviour
         {
 
 
-            BlueHand.return1();
+            blueHandBehaviour.Return();
 
         }
         if (child4 != null)
         {
-            PressureHand.return1();
+            pressureHandBehaviour.Return();
         }
         if (child5 != null)
         {
-            ConductiveHand.return1();
+            conductiveHandBehaviour.Return();
         }
     }
 }

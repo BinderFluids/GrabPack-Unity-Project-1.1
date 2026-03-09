@@ -7,7 +7,7 @@ public class JumpPad : PowerableBehaviour
 {
     public Rigidbody Player;
     public float jumpForce = 10f;
-    public LaunchHand rockethand;
+    public BaseHandBehaviour rockethand;
 
     public bool launched = false;
     public ElectricalReciever powerSource;
@@ -44,7 +44,7 @@ public class JumpPad : PowerableBehaviour
         {
             if (cooldownTimer > 0)
             {
-                rockethand.return1();
+                rockethand.Return();
                 return;
             }
 
@@ -65,7 +65,7 @@ public class JumpPad : PowerableBehaviour
                 launched = true;
                 cooldownTimer = cooldownTime;
 
-                rockethand.return1();
+                rockethand.Return();
                 GlobalAudio.PlayOneShot(boostsfx, 1.0f);
             }
         }

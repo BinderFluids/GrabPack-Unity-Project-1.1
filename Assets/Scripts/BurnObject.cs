@@ -32,7 +32,7 @@ public class BurnObject : MonoBehaviour
         {
 
             Conductor conductor = child1.GetComponent<Conductor>();
-            LaunchHand launchhand = child1.GetComponent<LaunchHand>();
+            BaseHandBehaviour launchhand = child1.GetComponent<BaseHandBehaviour>();
 
             if (played == false && conductor.CurrentElement == "fire")
             {
@@ -47,7 +47,7 @@ public class BurnObject : MonoBehaviour
 
                 renderer.enabled = false;
                 collider.enabled = false;
-                launchhand.return1();
+                launchhand.Return();
                 door.Locked = false;
             }
         }

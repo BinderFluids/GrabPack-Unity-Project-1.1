@@ -45,8 +45,8 @@ public class RigidboyPlayerController : MonoBehaviour
 
     public string handtoSwitch;
 
-    public LaunchHand purplelauncher;
-    public LaunchHand redLauncher;
+    public BaseHandBehaviour purplelauncher;
+    public BaseHandBehaviour redLauncher;
 
     public float groundCheckRadius;
     public Transform groundCheck;
@@ -61,10 +61,10 @@ public class RigidboyPlayerController : MonoBehaviour
     public CablePhysics pressurecable;
     public CablePhysics conductivecable;
 
-    public LaunchHand redlaunch;
-    public LaunchHand purplelaunch;
-    public LaunchHand pressurelaunch;
-    public LaunchHand conductivelaunch;
+    public BaseHandBehaviour redlaunch;
+    public BaseHandBehaviour purplelaunch;
+    public BaseHandBehaviour pressurelaunch;
+    public BaseHandBehaviour conductivelaunch;
 
     public AudioSource footstepSource;
     public AudioClip[] grassFootsteps;

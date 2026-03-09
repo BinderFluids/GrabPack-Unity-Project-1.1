@@ -38,7 +38,7 @@ public class freeze : MonoBehaviour
         if (conductiveHand != null)
         {
             Conductor conductor = conductiveHand.GetComponent<Conductor>();
-            LaunchHand launchhand = conductiveHand.GetComponent<LaunchHand>();
+            BaseHandBehaviour launchhand = conductiveHand.GetComponent<BaseHandBehaviour>();
 
             if (!played && conductor.CurrentElement == "ice")
             {
@@ -56,7 +56,7 @@ public class freeze : MonoBehaviour
                     frozen = true;
                     breakable.isbreakable = true;
 
-                    launchhand.return1();
+                    launchhand.Return();
                 }
             }
 
@@ -76,7 +76,7 @@ public class freeze : MonoBehaviour
                     frozen = false;
                     breakable.isbreakable = false;
 
-                    launchhand.return1();
+                    launchhand.Return();
                 }
             }
         }
