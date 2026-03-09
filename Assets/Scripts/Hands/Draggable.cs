@@ -23,7 +23,6 @@ public class Draggable : HandInteractable
             Vector3 targetPos = hand.handOrigin.position;
             
             Vector3 direction = targetPos - rb.position;
-            float distance = direction.magnitude;
 
             Vector3 dirNormalized = direction.normalized;
 
@@ -37,6 +36,4 @@ public class Draggable : HandInteractable
             rb.AddForce(force, ForceMode.Force);
         }
     }
-    
-    
 }

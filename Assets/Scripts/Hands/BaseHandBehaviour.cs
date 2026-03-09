@@ -67,6 +67,7 @@ public class BaseHandBehaviour : MonoBehaviour
     public GameObject Crosshair;
     private HandInteractable interactable;
     private Pickupable pickupable;
+    private bool isGrabbing = false; 
     
     public bool MouseButtonHeld { get; private set; }
     
@@ -78,17 +79,12 @@ public class BaseHandBehaviour : MonoBehaviour
 
         selftransform = gameObject.transform.localScale;
     }
-    
-    public void EnableDrag()
-    {
-        canDrag = true;
-    }
 
     public void HandleInput(int mouseIndex, Ray ray, float maxRange)
     {
         if (Input.GetMouseButtonDown(mouseIndex))
             if (!IsActive && pickupable == null) FireHand(ray, maxRange);
-            else if (IsActive && pickupable != null) pickupable.Retract(this); 
+            else if (!IsActive && pickupable != null) pickupable.Retract(this); 
             //else if (interactable == null) Return();
 
         // if (Input.GetMouseButton(mouseIndex))
@@ -100,23 +96,24 @@ public class BaseHandBehaviour : MonoBehaviour
 
         if (Input.GetMouseButtonUp(mouseIndex))
         {
-            if (interactable != null)
+            if (interactable != null && isGrabbing)
                 Return(); 
         }
     }
     
     
+    // Replace your existing FireHand(...) with this:
     public void FireHand(Ray ray, float range)
     {
         if (isActive) return;
         if (!gameObject.activeSelf) return;
-        
-        //globalAudio.PlayOneShot(firesfx, 0.7f);
+
+        globalAudio.PlayOneShot(firesfx, 0.7f);
 
         CableSim.isActive = true;
         float remaining = cableManager.GetRemainingLength();
         maxRange = Mathf.Min(remaining, range);
-        
+
         Physics.Raycast(ray, out RaycastHit hit, maxRange);
         Vector3 targetPoint = hit.collider ? hit.point : ray.origin + ray.direction * maxRange;
 
@@ -142,13 +139,11 @@ public class BaseHandBehaviour : MonoBehaviour
             {
                 batteryRB.AddForce(-transform.up * 800f, ForceMode.Impulse);
                 aimOverride.leftActive = false;
-
             }
             if (Hand == "Right")
             {
                 batteryRB.AddForce(transform.up * 800f, ForceMode.Impulse);
                 aimOverride.rightActive = false;
-
             }
 
             CableSim.isActive = false;
@@ -161,11 +156,10 @@ public class BaseHandBehaviour : MonoBehaviour
         }
         CanReturn = true;
         if (isActive) return;
-        
+
         playeranimations.SetTrigger("shoot");
         handTransform.parent = null;
         isActive = true;
-
 
         if (Hand == "Right")
         {
@@ -187,68 +181,22 @@ public class BaseHandBehaviour : MonoBehaviour
             handTransform.rotation = Quaternion.LookRotation(projectedForward, hit.normal);
         }
 
-        // if (hit.collider != null)
-        //     if (hit.collider.gameObject.tag == (GrabableLayer))
-        //     {
-        //         CanReturn = false;
-        //
-        //         hitGameObject = hit.collider.gameObject;
-        //         if (LayerMask.LayerToName(hitGameObject.layer) == "Battery")
-        //         {
-        //             holdingbattery = true;
-        //             handgrabbing.SetBool("grabbing", true);
-        //         }
-        //         if (hitGameObject.GetComponent<HandScanner>() == true)
-        //         {
-        //             handgrabbing.SetBool("grabbing", false);
-        //         }
-        //         if (hitGameObject.GetComponent<Rigidbody>() != null)
-        //         {
-        //             if (hitGameObject.GetComponent<Barricade>() != null)
-        //             {
-        //                 br = hitGameObject.GetComponent<Barricade>();
-        //
-        //             }
-        //             if (!isPressureHand)
-        //             {
-        //                 handgrabbing.SetBool("grabbing", true);
-        //
-        //             }
-        //
-        //             Invoke("EnableDrag", 0.5f);
-        //
-        //         }
-        //         if (LayerMask.LayerToName(hitGameObject.layer) == "Grabanimation" || LayerMask.LayerToName(hitGameObject.layer) == "Minecart" || LayerMask.LayerToName(hitGameObject.layer) == "KeyCard")
-        //         {
-        //             handgrabbing.SetBool("grabbing", true);
-        //         }
-        //
-        //
-        //         if (Hand == "Right")
-        //         {
-        //             Vector3 projectedForward = Vector3.ProjectOnPlane(transform.forward, -hit.normal);
-        //             handTransform.rotation = Quaternion.LookRotation(projectedForward, -hit.normal);
-        //         }
-        //         if (Hand == "Left")
-        //         {
-        //             Vector3 projectedForward = Vector3.ProjectOnPlane(transform.forward, hit.normal);
-        //             handTransform.rotation = Quaternion.LookRotation(projectedForward, hit.normal);
-        //         }
-        //
-        //     }
-        Vector3 impactPoint = hit.point;
-        
+        // capture the interactable (if any) and hit object, but DO NOT call Grab yet
+        HandInteractable hitInteractable = null;
+        GameObject hitObj = null;
         if (hit.collider != null)
-            if (hit.collider.TryGetComponent(out HandInteractable interactable))
-            {
-                CanReturn = false; 
-                this.interactable = interactable;
-                interactable.Grab(this); 
-                handgrabbing.SetBool("grabbing", interactable.GrabType == HandInteractable.GrabTypeEnum.Grip);
-                HandleInteractable(interactable);
-            }
-        
-        StartCoroutine(MoveHand(targetPoint, impactPoint));
+        {
+            if (hit.collider.TryGetComponent(out HandInteractable foundInteractable))
+                hitInteractable = foundInteractable;
+
+            // store the raw hit GameObject as well for your battery / parenting logic
+            hitObj = hit.collider.gameObject;
+        }
+
+        Vector3 impactPoint = hit.point;
+
+        // start movement and pass the captured objects along
+        StartCoroutine(MoveHand(targetPoint, impactPoint, hitInteractable, hitObj));
     }
 
     void HandleInteractable(HandInteractable interactable)
@@ -278,7 +226,6 @@ public class BaseHandBehaviour : MonoBehaviour
     {
         this.pickupable ??= pickupable;
     }
-
     public void ReleaseItem()
     {
         if (pickupable == null) return;
@@ -304,7 +251,7 @@ public class BaseHandBehaviour : MonoBehaviour
         handTransform.SetParent(parent, worldPositionStays); 
     }
     
-    private IEnumerator MoveHand(Vector3 target, Vector3 impactPoint)
+    private IEnumerator MoveHand(Vector3 target, Vector3 impactPoint, HandInteractable interactableParam, GameObject hitObj)
     {
         Vector3 start = handTransform.position;
         float distance = Vector3.Distance(start, target);
@@ -318,14 +265,31 @@ public class BaseHandBehaviour : MonoBehaviour
             yield return null;
         }
 
+        // ensure exact final position
         handTransform.position = target;
-        if (hitGameObject != null)
+
+        // *** Now the hand has arrived: set the interactable and call Grab/HandleInteractable here ***
+        if (interactableParam != null)
         {
+            CanReturn = false;
+            this.interactable = interactableParam;
+            interactableParam.Grab(this);
+            handgrabbing.SetBool("grabbing", interactableParam.GrabType == HandInteractable.GrabTypeEnum.Grip);
+            HandleInteractable(interactableParam);
+
+            // mark that we are grabbing only after Grab(...) is called
+            isGrabbing = true;
+        }
+
+
+        if (hitObj != null)
+        {
+            hitGameObject = hitObj;
             handTransform.position = impactPoint;
             handTransform.SetParent(hitGameObject.transform, true);
+
             if (LayerMask.LayerToName(hitGameObject.layer) == "Battery")
             {
-
                 if (hitGameObject.GetComponent<gear>() != null)
                 {
                     if (hitGameObject.transform.childCount == 2)
@@ -341,7 +305,7 @@ public class BaseHandBehaviour : MonoBehaviour
                     }
                 }
             }
-            
+
             lockReturn = true;
             StartCoroutine(UnlockReturn());
         }
@@ -364,6 +328,7 @@ public class BaseHandBehaviour : MonoBehaviour
     private IEnumerator ReturnHand()
     {
         handTransform.parent = null;
+        isGrabbing = false;
 
         if (battery != null)
         {
@@ -398,7 +363,7 @@ public class BaseHandBehaviour : MonoBehaviour
         handgrabbing.SetBool("grabbing", true);
 
         //dragsounds.SetActive(false);
-        pressure = 0;
+        //pressure = 0;
         globalAudio.PlayOneShot(grabsfx, 0.7f);
 
         br = null;
@@ -468,9 +433,7 @@ public class BaseHandBehaviour : MonoBehaviour
         handTransform.rotation = handOrigin.rotation;
         handTransform.parent = originalParent;
         isActive = false;
-        // playeranimations.SetTrigger("return");
         canDrag = false;
-        // cableRenderer.enabled = false;
         CableSim.InitializeCable();
         CableSim.isActive = false;
         gameObject.transform.localScale = selftransform;
@@ -488,88 +451,88 @@ public class BaseHandBehaviour : MonoBehaviour
     
     
 
-    void LateUpdate()
-    {
-        if (CanReturn || !canDrag)
-        {
-            dragsounds.SetActive(false);
-            return;
-        }
-
-        bool leftReleased = Hand == "Left" && Input.GetMouseButtonUp(0);
-        bool rightReleased = Hand == "Right" && Input.GetMouseButtonUp(1);
-
-
-        bool isHandActive =
-            (Hand == "Left" && Input.GetMouseButton(0)) ||
-            (Hand == "Right" && Input.GetMouseButton(1));
-
-        if (!CanReturn && canDrag && isHandActive)
-        {
-            GameObject grabbed = handTransform.parent?.gameObject;
-            if (grabbed == null) return;
-
-            Rigidbody rb = grabbed.GetComponent<Rigidbody>();
-            if (rb == null) return;
-
-            Vector3 targetPos = handOrigin.position;
-            string objectLayer = LayerMask.LayerToName(grabbed.layer);
-
-            
-            dragsounds.SetActive(true);
-
-            Vector3 direction = targetPos - rb.position;
-            float distance = direction.magnitude;
-
-            Vector3 dirNormalized = direction.normalized;
-
-            float constantPullForce = pullSpeed * 350; // increase this for stronger pull
-            float damping = 8f;
-
-            Vector3 force =
-                dirNormalized * constantPullForce
-                - rb.linearVelocity * damping;
-
-            rb.AddForce(force, ForceMode.Force);
-            //else
-            //{
-            //     pressureHoldTimer += Time.deltaTime;
-            //
-            //     if (pressureHoldTimer >= pressureStartDelay)
-            //     {
-            //         pressureBuilding = true;
-            //
-            //         SMOKE.SetActive(true);
-            //         pressurebuild.SetActive(true);
-            //         gauge.SetActive(true);
-            //         Crosshair.SetActive(false);
-            //
-            //         if (pressure < 10f)
-            //         {
-            //             pressure += Time.deltaTime * 4f;
-            //             pressure = Mathf.Min(pressure, 10f);
-            //             guageUI.fillAmount = pressure / 10f;
-            //         }
-            //     }
-            //
-            //     Breakable breakable = grabbed.GetComponent<Breakable>();
-            //     if (breakable != null && breakable.SwitchMaterials)
-            //     {
-            //         if (pressure < 5f)
-            //             breakable.renderer.material = breakable.pristine;
-            //         else if (pressure <= 9f)
-            //             breakable.renderer.material = breakable.damaged;
-            //         else
-            //             breakable.renderer.material = breakable.broken;
-            //     }
-            // }
-            // }
-            // else
-            // {
-            //     dragsounds.SetActive(false);
-            // }
-        }
-    }
+    // void LateUpdate()
+    // {
+    //     if (CanReturn || !canDrag)
+    //     {
+    //         dragsounds.SetActive(false);
+    //         return;
+    //     }
+    //
+    //     bool leftReleased = Hand == "Left" && Input.GetMouseButtonUp(0);
+    //     bool rightReleased = Hand == "Right" && Input.GetMouseButtonUp(1);
+    //
+    //
+    //     bool isHandActive =
+    //         (Hand == "Left" && Input.GetMouseButton(0)) ||
+    //         (Hand == "Right" && Input.GetMouseButton(1));
+    //
+    //     if (!CanReturn && canDrag && isHandActive)
+    //     {
+    //         GameObject grabbed = handTransform.parent?.gameObject;
+    //         if (grabbed == null) return;
+    //
+    //         Rigidbody rb = grabbed.GetComponent<Rigidbody>();
+    //         if (rb == null) return;
+    //
+    //         Vector3 targetPos = handOrigin.position;
+    //         string objectLayer = LayerMask.LayerToName(grabbed.layer);
+    //
+    //         
+    //         dragsounds.SetActive(true);
+    //
+    //         Vector3 direction = targetPos - rb.position;
+    //         float distance = direction.magnitude;
+    //
+    //         Vector3 dirNormalized = direction.normalized;
+    //
+    //         float constantPullForce = pullSpeed * 350; // increase this for stronger pull
+    //         float damping = 8f;
+    //
+    //         Vector3 force =
+    //             dirNormalized * constantPullForce
+    //             - rb.linearVelocity * damping;
+    //
+    //         rb.AddForce(force, ForceMode.Force);
+    //         //else
+    //         //{
+    //         //     pressureHoldTimer += Time.deltaTime;
+    //         //
+    //         //     if (pressureHoldTimer >= pressureStartDelay)
+    //         //     {
+    //         //         pressureBuilding = true;
+    //         //
+    //         //         SMOKE.SetActive(true);
+    //         //         pressurebuild.SetActive(true);
+    //         //         gauge.SetActive(true);
+    //         //         Crosshair.SetActive(false);
+    //         //
+    //         //         if (pressure < 10f)
+    //         //         {
+    //         //             pressure += Time.deltaTime * 4f;
+    //         //             pressure = Mathf.Min(pressure, 10f);
+    //         //             guageUI.fillAmount = pressure / 10f;
+    //         //         }
+    //         //     }
+    //         //
+    //         //     Breakable breakable = grabbed.GetComponent<Breakable>();
+    //         //     if (breakable != null && breakable.SwitchMaterials)
+    //         //     {
+    //         //         if (pressure < 5f)
+    //         //             breakable.renderer.material = breakable.pristine;
+    //         //         else if (pressure <= 9f)
+    //         //             breakable.renderer.material = breakable.damaged;
+    //         //         else
+    //         //             breakable.renderer.material = breakable.broken;
+    //         //     }
+    //         // }
+    //         // }
+    //         // else
+    //         // {
+    //         //     dragsounds.SetActive(false);
+    //         // }
+    //     }
+    // }
 
     public void ForceImmediateReturn()
     {

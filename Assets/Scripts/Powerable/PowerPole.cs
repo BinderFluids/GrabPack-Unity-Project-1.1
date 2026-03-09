@@ -30,12 +30,12 @@ public class PowerPole : PowerableBehaviour
     protected override void OnPoweredOn()
     {
         StartGlow();
-        GlobalAudio.PlayOneShot(connect, 0.7f);
+        //GlobalAudio.PlayOneShot(connect, 0.7f);
     }
 
     protected override void OnPoweredOff()
     {
-        GlobalAudio.PlayOneShot(disconnect, 0.7f);
+        //GlobalAudio.PlayOneShot(disconnect, 0.7f);
     }
 
     void Update()
