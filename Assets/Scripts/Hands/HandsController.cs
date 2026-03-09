@@ -10,9 +10,6 @@ public class HandsController : MonoBehaviour
 
     [Header("Hands")] 
     [SerializeField] private ContainerData[] handContainersData;
-
-    [SerializeField] private Vector3 mousePos; 
-
     private void Start()
     {
         cam ??= Camera.main;
@@ -20,7 +17,6 @@ public class HandsController : MonoBehaviour
 
     private void Update()
     {
-        mousePos = Input.mousePosition;
         HandleInput();
     }
 

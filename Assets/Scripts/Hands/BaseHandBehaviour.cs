@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.LowLevelPhysics2D;
 using UnityEngine.UI;
 
 
@@ -246,8 +247,11 @@ public class BaseHandBehaviour : MonoBehaviour
         CanReturn = true;
         StartCoroutine(ReturnHand());
     }
-    
-    
+
+    public void SetParent(Transform parent, bool worldPositionStays = true)
+    {
+        handTransform.SetParent(parent, worldPositionStays); 
+    }
     
     private IEnumerator MoveHand(Vector3 target, Vector3 impactPoint)
     {
@@ -542,4 +546,10 @@ public class BaseHandBehaviour : MonoBehaviour
             aimOverride.leftActive = false;
         }
     }
+}
+
+
+public class PullBehaviour
+{
+    
 }

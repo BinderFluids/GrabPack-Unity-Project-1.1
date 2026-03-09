@@ -22,7 +22,8 @@ public class Interact : MonoBehaviour
 
     void RaycastInteraction()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Vector3 center = new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 0f);
+        Ray ray = Camera.main.ScreenPointToRay(center);
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit, interactionRange, buttonLayer))
