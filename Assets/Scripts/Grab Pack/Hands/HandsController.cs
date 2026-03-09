@@ -11,6 +11,8 @@ public class HandsController : MonoBehaviour
     [Header("Hands")] 
     [SerializeField] private ContainerData[] handContainersData;
 
+    [SerializeField] private Vector3 mousePos; 
+
     private void Start()
     {
         cam ??= Camera.main;
@@ -18,6 +20,7 @@ public class HandsController : MonoBehaviour
 
     private void Update()
     {
+        mousePos = Input.mousePosition;
         HandleInput();
     }
 
@@ -28,17 +31,17 @@ public class HandsController : MonoBehaviour
             BaseHandBehaviour hand = data.hand;
 
             hand.HandleInput(data.mouseIndex);
-            
+
             if (Input.GetMouseButtonDown(data.mouseIndex))
-                hand.Fire(CastRay(), maxRange);
-            if (Input.GetMouseButtonUp(data.mouseIndex))
-                hand.Return();
+                if (!hand.IsActive) hand.Fire(CastRay(), maxRange);
+                else hand.Return();
         }
     }
     
     Ray CastRay()
     {
-        return cam.ScreenPointToRay(Input.mousePosition);
+        Vector3 center = new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 0f);
+        return cam.ScreenPointToRay(center);
         // if (Physics.Raycast(ray, out RaycastHit hit, maxRange))
         //     return hit.point; 
         //

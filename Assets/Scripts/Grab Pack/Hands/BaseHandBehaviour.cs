@@ -19,7 +19,8 @@ public class BaseHandBehaviour : MonoBehaviour
     public float speed = 20f;
 
     private Transform originalParent;
-    private bool active; 
+    private bool isActive;
+    public bool IsActive => isActive;
 
     public Animator playeranimations;
 
@@ -48,7 +49,7 @@ public class BaseHandBehaviour : MonoBehaviour
     public AudioClip dragsfx;
     public GameObject dragsounds;
 
-    private bool lockReturn = false;
+    [SerializeField] private bool lockReturn = false;
 
     public RotateArms aimOverride;
 
@@ -124,7 +125,7 @@ public class BaseHandBehaviour : MonoBehaviour
 
     public void Fire(Ray ray, float range)
     {
-        if (active) return;
+        if (isActive) return;
         if (!gameObject.activeSelf) return;
         
         globalAudio.PlayOneShot(firesfx, 0.7f);
@@ -179,11 +180,11 @@ public class BaseHandBehaviour : MonoBehaviour
 
         }
         CanReturn = true;
-        if (active) return;
+        if (isActive) return;
         
         playeranimations.SetTrigger("shoot");
         handTransform.parent = null;
-        active = true;
+        isActive = true;
 
 
         if (Hand == "Right")
@@ -262,7 +263,7 @@ public class BaseHandBehaviour : MonoBehaviour
     public void Return()
     {
         if (!gameObject.activeSelf) return;
-        if (lockReturn || !canDrag) return;
+        if (lockReturn || canDrag) return;
 
         CanReturn = true;
         StartCoroutine(ReturnHand());
@@ -381,7 +382,7 @@ public class BaseHandBehaviour : MonoBehaviour
         }
 
 
-        active = true;
+        isActive = true;
         canDrag = false;
         hitOBJ = null;
         Vector3 startPosition = handTransform.position;
@@ -433,7 +434,7 @@ public class BaseHandBehaviour : MonoBehaviour
         handTransform.position = handOrigin.position;
         handTransform.rotation = handOrigin.rotation;
         handTransform.parent = originalParent;
-        active = false;
+        isActive = false;
         // playeranimations.SetTrigger("return");
         canDrag = false;
         // cableRenderer.enabled = false;
@@ -454,7 +455,7 @@ public class BaseHandBehaviour : MonoBehaviour
 
     void LateUpdate()
     {
-        if (CanReturn || !canDrag || active)
+        if (CanReturn || !canDrag || isActive)
         {
             dragsounds.SetActive(false);
             return;
@@ -542,7 +543,7 @@ public class BaseHandBehaviour : MonoBehaviour
         pressure = 0;
         StopAllCoroutines();
         CableSim.isActive = false;
-        active = false;
+        isActive = false;
         canDrag = false;
         hitOBJ = null;
         handgrabbing.SetBool("grabbing", false);
