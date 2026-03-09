@@ -20,14 +20,4 @@ public class Grabbable : MonoBehaviour
 
         hand = null; 
     }
-
-    public virtual void Pull()
-    {
-        
-    }
-
-    public void Release()
-    {
-        
-    }
 }

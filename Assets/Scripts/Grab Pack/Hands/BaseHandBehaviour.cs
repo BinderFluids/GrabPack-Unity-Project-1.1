@@ -460,24 +460,22 @@ public class BaseHandBehaviour : MonoBehaviour
             Vector3 targetPos = handOrigin.position;
             string objectLayer = LayerMask.LayerToName(grabbed.layer);
 
-            if (!isPressureHand)
-            {
-                dragsounds.SetActive(true);
+            
+            dragsounds.SetActive(true);
 
-                Vector3 direction = targetPos - rb.position;
-                float distance = direction.magnitude;
+            Vector3 direction = targetPos - rb.position;
+            float distance = direction.magnitude;
 
-                Vector3 dirNormalized = direction.normalized;
+            Vector3 dirNormalized = direction.normalized;
 
-                float constantPullForce = pullSpeed * 350; // increase this for stronger pull
-                float damping = 8f;
+            float constantPullForce = pullSpeed * 350; // increase this for stronger pull
+            float damping = 8f;
 
-                Vector3 force =
-                    dirNormalized * constantPullForce
-                    - rb.linearVelocity * damping;
+            Vector3 force =
+                dirNormalized * constantPullForce
+                - rb.linearVelocity * damping;
 
-                rb.AddForce(force, ForceMode.Force);
-            }
+            rb.AddForce(force, ForceMode.Force);
             //else
             //{
             //     pressureHoldTimer += Time.deltaTime;

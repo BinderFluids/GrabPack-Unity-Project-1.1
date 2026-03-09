@@ -7,10 +7,7 @@
     <list default="true" id="17116273-0ca8-4720-8e20-e14000d3ac2e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GrabPack-Unity-Project-1.1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GrabPack-Unity-Project-1.1/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Grab Pack/Hands/BaseHandBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Grab Pack/Hands/BaseHandBehaviour.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Grab Pack/Hands/HandContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Grab Pack/Hands/Grabbable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Grab Pack/Hands/HandContainer.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Grab Pack/Hands/Grabbable.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Grab Pack/Hands/HandsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Grab Pack/Hands/HandsController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Powerable/PowerableBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Powerable/PowerableBehaviour.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Grab Pack/Hands/Grabbable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Grab Pack/Hands/Grabbable.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,7 +103,7 @@
       <option name="presentableId" value="Default" />
       <updated>1773012232685</updated>
       <workItem from="1773012234676" duration="13123000" />
-      <workItem from="1773027308302" duration="3718000" />
+      <workItem from="1773027308302" duration="4014000" />
     </task>
     <servers />
   </component>
