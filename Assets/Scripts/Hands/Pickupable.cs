@@ -45,7 +45,7 @@ public class Pickupable : HandInteractable
             rb.isKinematic = true;
             col.enabled = false;
 
-            _transform.SetParent(hand.transform, true);
+            _transform.SetParent(hand._transform, true);
         }
     }
 }
