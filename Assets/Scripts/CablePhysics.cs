@@ -144,7 +144,7 @@ public class CablePhysics : MonoBehaviour
 
                     PowerPole pole = hit.collider.GetComponent<PowerPole>();
                     if (pole != null)
-                        pole.Startglow();
+                        pole.StartGlow();
 
 
                     return; 
@@ -208,7 +208,7 @@ public class CablePhysics : MonoBehaviour
         foreach (PowerPole pole in allPoles)
         {
             if (polesTouchedThisFrame.Contains(pole))
-                pole.Startglow();
+                pole.StartGlow();
         }
     }
 

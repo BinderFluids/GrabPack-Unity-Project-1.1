@@ -1,8 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PowerPole : MonoBehaviour
+public class PowerPole : BasePowerable
 {
     public GameObject glow;
     public float glowcounter = 0.1f;
@@ -12,49 +13,41 @@ public class PowerPole : MonoBehaviour
     public AudioClip connect;
     public AudioClip disconnect;
 
-
-    public bool powered = false;
     private bool touchedThisFrame = false;
-
-
     private bool wasPowered = false;
 
-    public void Startglow()
+
+    public void StartGlow()
     {
         if (source.powering)
         {
             glow.SetActive(true);
-            powered = true;
             touchedThisFrame = true;
             glowcounter = 0.1f;
         }
     }
 
+    protected override void OnPoweredOn()
+    {
+        StartGlow();
+        GlobalAudio.PlayOneShot(connect, 0.7f);
+    }
 
+    protected override void OnPoweredOff()
+    {
+        GlobalAudio.PlayOneShot(disconnect, 0.7f);
+    }
 
     void Update()
     {
-        if (!touchedThisFrame)
+        if (!IsPowered)
             glowcounter -= Time.deltaTime;
 
-        if (glowcounter <= 0)
+        if (glowcounter <= 0 && IsPowered)
         {
             glow.SetActive(false);
-            powered = false;
+            PowerOff(); 
         }
-
-        if (powered && !wasPowered)
-        {
-            GlobalAudio.PlayOneShot(connect, 0.7f);
-        }
-        else if (!powered && wasPowered)
-        {
-            GlobalAudio.PlayOneShot(disconnect, 0.7f);
-        }
-
-        wasPowered = powered;
-
-        touchedThisFrame = false;
     }
 }
 

@@ -202,6 +202,7 @@ public class LaunchHand : MonoBehaviour
 
 
         if (isReturning) return;
+        
         playeranimations.SetTrigger("shoot");
         handTransform.parent = null;
         returned = false;
@@ -610,8 +611,8 @@ public class LaunchHand : MonoBehaviour
                     pressureBuilding = true;
 
                     SMOKE.SetActive(true);
-                    gauge.SetActive(true);
                     pressurebuild.SetActive(true);
+                    gauge.SetActive(true);
                     Crosshair.SetActive(false);
 
                     if (pressure < 10f)

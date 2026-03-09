@@ -1,16 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class JumpPad : MonoBehaviour
+public class JumpPad : BasePowerable
 {
     public Rigidbody Player;
     public float jumpForce = 10f;
     public LaunchHand rockethand;
 
     public bool launched = false;
-
-    public bool Powered = true;
     public ElectricalReciever powerSource;
 
     public Material poweredmatieral;
@@ -49,7 +48,7 @@ public class JumpPad : MonoBehaviour
                 return;
             }
 
-            if (!launched && Powered)
+            if (!launched && IsPowered)
             {
                 float baseForce = player.isGrounded ? jumpForce : jumpForce / 2f;
 
@@ -74,18 +73,11 @@ public class JumpPad : MonoBehaviour
         {
             launched = false;
         }
+    }
 
-        if (!Powered && powerSource.CircuitComplete)
-        {
-            Powered = true;
-            renderer.material = poweredmatieral;
-            light.SetActive(true);
-        }
-        else if (Powered && !powerSource.CircuitComplete)
-        {
-            Powered = false;
-            renderer.material = offMaterial;
-            light.SetActive(false);
-        }
+    protected override void OnPowered(bool active)
+    {
+        renderer.material = active ? poweredmatieral : offMaterial;
+        light.SetActive(active);
     }
 }

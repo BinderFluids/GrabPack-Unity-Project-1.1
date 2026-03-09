@@ -16,10 +16,10 @@ public class Lift : MonoBehaviour
 
     void Update()
     {
-        if (powerSource.CircuitComplete)
+        if (powerSource.IsPowered)
         {
             anim.SetBool("open", true);
-            powerSource.CircuitComplete = false;
+            powerSource.PowerOff();
         }
     }
 
