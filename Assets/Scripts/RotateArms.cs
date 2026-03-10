@@ -17,12 +17,6 @@ public class RotateArms : MonoBehaviour
 
     private bool initialized = false;
 
-
-    void Start()
-    {
-
-    }
-
     void LateUpdate()
     {
         if (!initialized)

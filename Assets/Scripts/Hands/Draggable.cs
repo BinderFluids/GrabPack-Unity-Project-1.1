@@ -18,15 +18,14 @@ public class Draggable : HandInteractable
         foreach (BaseHandBehaviour hand in hands)
         {
             if (!hand.MouseButtonHeld) return;
-            Debug.Log($"{hand.gameObject.name} is dragging {gameObject.name}");
             
-            Vector3 targetPos = hand.handOrigin.position;
+            Vector3 targetPos = hand.Origin.position;
             
             Vector3 direction = targetPos - rb.position;
 
             Vector3 dirNormalized = direction.normalized;
 
-            float constantPullForce = hand.pullSpeed * 350; // increase this for a stronger pull
+            float constantPullForce = hand.PullSpeed * 350; // increase this for a stronger pull
             float damping = 8f;
 
             Vector3 force =

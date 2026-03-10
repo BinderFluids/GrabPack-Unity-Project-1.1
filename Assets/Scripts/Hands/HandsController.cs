@@ -9,7 +9,7 @@ public class HandsController : MonoBehaviour
     [SerializeField] private float maxRange;
 
     [Header("Hands")] 
-    [SerializeField] private ContainerData[] handContainersData;
+    [SerializeField] private HandConfig[] handContainersData;
     private void Start()
     {
         cam ??= Camera.main;
@@ -22,10 +22,17 @@ public class HandsController : MonoBehaviour
 
     void HandleInput()
     {
-        foreach (var data in handContainersData)
+        foreach (HandConfig config in handContainersData)
         {
-            BaseHandBehaviour hand = data.hand;
-            hand.HandleInput(data.mouseIndex, CastRay(), maxRange, data.handNormal);
+            BaseHandBehaviour hand = config.hand;
+            RotateArm rotateArm = config.rotateArm;
+            
+            hand.HandleInput(config.mouseIndex, CastRay(), maxRange, config.handNormal);
+
+            if (hand.IsActive)
+                rotateArm.SetActive(true, hand.TargetPoint);
+            else
+                rotateArm.SetActive(false, Vector3.zero);
         }
     }
     
@@ -36,9 +43,10 @@ public class HandsController : MonoBehaviour
     }
 
     [Serializable]
-    public struct ContainerData
+    public struct HandConfig
     {
         public BaseHandBehaviour hand;
+        public RotateArm rotateArm;
         public int handNormal; 
         public int mouseIndex;   
     }

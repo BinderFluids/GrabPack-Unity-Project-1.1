@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
@@ -9,36 +10,45 @@ public class BaseHandBehaviour : MonoBehaviour
 {
     public CableManager cableManager;
 
-    public string Hand = "Left";
-    public Transform _transform;
+    [SerializeField] private Transform _transform;
+    public Transform Transform => _transform;
     
-    public Transform handOrigin;
-    public float maxRange = 10f;
-    public float fireSpeed = 20f;
-    public float pullSpeed = 5f;
-
+    [SerializeField] private Transform handOrigin;
+    public Transform Origin => handOrigin;
     private Transform originalParent;
-    private bool isActive;
-    public bool IsActive => isActive;
+    
+    [Header("Movement Settings")]
+    [SerializeField] private float maxRange = 10f;
+    [SerializeField] private float fireSpeed = 20f;
+    [SerializeField] private float pullSpeed = 5f;
+    public float PullSpeed => pullSpeed;
 
-    public Animator playeranimations;
-
-    public CablePhysics CableSim;
-    public Vector3 selftransform;
-
-
-    public Animator handgrabbing;
-    public Barricade br;
-
+    [Header("Animation")]
+    [SerializeField] private Animator playerAnimations;
+    [SerializeField] private Animator handgrabbing;
+    
+    [Header("Audio")]
     public AudioSource globalAudio;
     public AudioClip firesfx;
     public AudioClip grabsfx;
-    public AudioClip dragsfx;
-    public GameObject dragsounds;
-
-    [SerializeField] private bool lockRetract = false;
-
-    public RotateArms aimOverride;
+    
+    //Events
+    
+    
+    
+    
+    
+    private bool isActive;
+    public bool IsActive => isActive;
+    
+    private Vector3 targetPoint;
+    public Vector3 TargetPoint => targetPoint;
+    
+    public CablePhysics CableSim;
+    
+    public Barricade br;
+    private bool lockRetract = false;
+    
     
     //Interaction
     [SerializeField] private HandInteractable interactable;
@@ -46,12 +56,16 @@ public class BaseHandBehaviour : MonoBehaviour
     [SerializeField] private Pickupable pickupable;
     
     public bool MouseButtonHeld { get; private set; }
-    
+
+    private void Awake()
+    {
+        if (_transform == null)
+            _transform = transform;
+    }
+
     void Start()
     {
-        _transform ??= transform; 
         originalParent = _transform.parent;
-        selftransform = gameObject.transform.localScale;
     }
 
     public void HandleInput(int mouseIndex, Ray ray, float maxRange, int handNormal)
@@ -90,30 +104,11 @@ public class BaseHandBehaviour : MonoBehaviour
         maxRange = Mathf.Min(remaining, range);
 
         Physics.Raycast(ray, out RaycastHit hit, maxRange);
-        Vector3 targetPoint = hit.collider ? hit.point : ray.origin + ray.direction * maxRange;
+        targetPoint = hit.collider ? hit.point : ray.origin + ray.direction * maxRange;
         
-        if (Hand == "Right")
-        {
-            aimOverride.rightActive = true;
-        }
-        if (Hand == "Left")
-        {
-            aimOverride.leftActive = true;
-        }
-
-        playeranimations.SetTrigger("shoot");
+        playerAnimations.SetTrigger("shoot");
         _transform.SetParent(null, true); 
         isActive = true;
-
-        if (Hand == "Right")
-        {
-            aimOverride.rightHitPoint = targetPoint;
-        }
-        if (Hand == "Left")
-        {
-            aimOverride.leftHitPoint = targetPoint;
-        }
-        
         
         Vector3 projectedForward = Vector3.ProjectOnPlane(_transform.forward, hit.normal * handNormal);
         _transform.rotation = Quaternion.LookRotation(projectedForward, hit.normal * handNormal);
@@ -126,10 +121,7 @@ public class BaseHandBehaviour : MonoBehaviour
                 hitInteractable = foundInteractable;
         }
 
-        Vector3 impactPoint = hit.point;
-
-        // start movement and pass the captured objects along
-        StartCoroutine(MoveHand(targetPoint, impactPoint, hitInteractable));
+        StartCoroutine(MoveHand(targetPoint, hit.point, hitInteractable));
     }
 
     public void GiveItem(Pickupable pickupable)
@@ -167,6 +159,8 @@ public class BaseHandBehaviour : MonoBehaviour
         float duration = distance / fireSpeed;
         float elapsedTime = 0f;
 
+        handgrabbing.SetBool("grabbing", false);
+        
         //Move
         while (elapsedTime < duration)
         {
@@ -198,17 +192,13 @@ public class BaseHandBehaviour : MonoBehaviour
     {
         _transform.parent = null;
 
-        //MOVED LOGIC TO PICKUPABLE class
-
-        handgrabbing.SetBool("grabbing", true);
-
-        //dragsounds.SetActive(false);
+        
+        handgrabbing.SetBool("grabbing", pickupable != null);
+        
         globalAudio.PlayOneShot(grabsfx, 0.7f);
 
         br = null;
-
-
-        isActive = true;
+        
         Vector3 startPosition = _transform.position;
         Quaternion startRotation = _transform.rotation;
 
@@ -255,40 +245,5 @@ public class BaseHandBehaviour : MonoBehaviour
         isActive = false;
         CableSim.InitializeCable();
         CableSim.isActive = false;
-        gameObject.transform.localScale = selftransform;
-
-
-        if (Hand == "Right")
-        {
-            aimOverride.rightActive = false;
-        }
-        if (Hand == "Left")
-        {
-            aimOverride.leftActive = false;
-        }
-    }
-    
-
-    public void ForceImmediateReturn()
-    {
-        StopAllCoroutines();
-        CableSim.isActive = false;
-        isActive = false;
-        handgrabbing.SetBool("grabbing", false);
-        _transform.parent = originalParent;
-        _transform.position = handOrigin.position;
-        _transform.rotation = handOrigin.rotation;
-
-        //cableRenderer.enabled = false;
-        CableSim.InitializeCable();
-
-        if (Hand == "Right")
-        {
-            aimOverride.rightActive = false;
-        }
-        if (Hand == "Left")
-        {
-            aimOverride.leftActive = false;
-        }
     }
 }

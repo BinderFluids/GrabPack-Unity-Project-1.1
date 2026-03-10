@@ -130,62 +130,62 @@ public class RigidboyPlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1) && handmanager.hasRedHand)
-        {
-            if (redcable.isActive == false && purplecable.isActive == false && pressurecable.isActive == false && conductivecable.isActive == false)
-            {
-                if (redlaunch.holdingbattery == false && purplelaunch.holdingbattery == false && pressurelaunch.holdingbattery == false && conductivelaunch.holdingbattery == false)
-                {
-                    playeranimations.SetBool("switch", true);
-                    handtoSwitch = "red";
-                    playeranimations.SetTrigger("Switch");
-
-                }
-
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2) && handmanager.hasPurpleHand)
-        {
-            if (redcable.isActive == false && purplecable.isActive == false && pressurecable.isActive == false && conductivecable.isActive == false)
-            {
-                if (redlaunch.holdingbattery == false && purplelaunch.holdingbattery == false && pressurelaunch.holdingbattery == false && conductivelaunch.holdingbattery == false)
-                {
-                    playeranimations.SetBool("switch", true);
-                    handtoSwitch = "purple";
-                    playeranimations.SetTrigger("Switch");
-
-                }
-
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3) && handmanager.hasPressureHand)
-        {
-            if (redcable.isActive == false && purplecable.isActive == false && pressurecable.isActive == false && conductivecable.isActive == false)
-            {
-                if (redlaunch.holdingbattery == false && purplelaunch.holdingbattery == false && pressurelaunch.holdingbattery == false && conductivelaunch.holdingbattery == false)
-                {
-                    playeranimations.SetBool("switch", true);
-                    handtoSwitch = "flare";
-                    playeranimations.SetTrigger("Switch");
-
-                }
-
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha4) && handmanager.hasConductiveHand)
-        {
-            if (redcable.isActive == false && purplecable.isActive == false && pressurecable.isActive == false && conductivecable.isActive == false)
-            {
-                if (redlaunch.holdingbattery == false && purplelaunch.holdingbattery == false && pressurelaunch.holdingbattery == false && conductivelaunch.holdingbattery == false)
-                {
-                    playeranimations.SetBool("switch", true);
-                    playeranimations.SetTrigger("Switch");
-
-                    handtoSwitch = "conductive";
-                }
-
-            }
-        }
+        // if (Input.GetKeyDown(KeyCode.Alpha1) && handmanager.hasRedHand)
+        // {
+        //     if (redcable.isActive == false && purplecable.isActive == false && pressurecable.isActive == false && conductivecable.isActive == false)
+        //     {
+        //         if (redlaunch.holdingbattery == false && purplelaunch.holdingbattery == false && pressurelaunch.holdingbattery == false && conductivelaunch.holdingbattery == false)
+        //         {
+        //             playeranimations.SetBool("switch", true);
+        //             handtoSwitch = "red";
+        //             playeranimations.SetTrigger("Switch");
+        //
+        //         }
+        //
+        //     }
+        // }
+        // if (Input.GetKeyDown(KeyCode.Alpha2) && handmanager.hasPurpleHand)
+        // {
+        //     if (redcable.isActive == false && purplecable.isActive == false && pressurecable.isActive == false && conductivecable.isActive == false)
+        //     {
+        //         if (redlaunch.holdingbattery == false && purplelaunch.holdingbattery == false && pressurelaunch.holdingbattery == false && conductivelaunch.holdingbattery == false)
+        //         {
+        //             playeranimations.SetBool("switch", true);
+        //             handtoSwitch = "purple";
+        //             playeranimations.SetTrigger("Switch");
+        //
+        //         }
+        //
+        //     }
+        // }
+        // if (Input.GetKeyDown(KeyCode.Alpha3) && handmanager.hasPressureHand)
+        // {
+        //     if (redcable.isActive == false && purplecable.isActive == false && pressurecable.isActive == false && conductivecable.isActive == false)
+        //     {
+        //         if (redlaunch.holdingbattery == false && purplelaunch.holdingbattery == false && pressurelaunch.holdingbattery == false && conductivelaunch.holdingbattery == false)
+        //         {
+        //             playeranimations.SetBool("switch", true);
+        //             handtoSwitch = "flare";
+        //             playeranimations.SetTrigger("Switch");
+        //
+        //         }
+        //
+        //     }
+        // }
+        // if (Input.GetKeyDown(KeyCode.Alpha4) && handmanager.hasConductiveHand)
+        // {
+        //     if (redcable.isActive == false && purplecable.isActive == false && pressurecable.isActive == false && conductivecable.isActive == false)
+        //     {
+        //         if (redlaunch.holdingbattery == false && purplelaunch.holdingbattery == false && pressurelaunch.holdingbattery == false && conductivelaunch.holdingbattery == false)
+        //         {
+        //             playeranimations.SetBool("switch", true);
+        //             playeranimations.SetTrigger("Switch");
+        //
+        //             handtoSwitch = "conductive";
+        //         }
+        //
+        //     }
+        // }
 
         isGrounded = Physics.SphereCast(groundCheck.position, groundCheckRadius, Vector3.down, out RaycastHit hit, groundCheckRadius + 0.3f, groundLayer);
 
