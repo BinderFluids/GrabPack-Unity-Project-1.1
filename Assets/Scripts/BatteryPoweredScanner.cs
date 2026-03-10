@@ -5,7 +5,7 @@ using UnityEngine;
 public class BatteryPoweredScanner : MonoBehaviour
 {
     public GameObject ONLINEscanner;
-    public BatterySOcket connectedBatterySocket;
+    public PickupableSocket connectedBatterySocket;
 
     public HandScanner workingScanner;
     // Start is called before the first frame update
@@ -17,12 +17,12 @@ public class BatteryPoweredScanner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (connectedBatterySocket.full == true)
+        if (connectedBatterySocket.HasItem == true)
         {
             ONLINEscanner.SetActive(true);
             workingScanner.enabled = true;
         }
-        if (connectedBatterySocket.full == false)
+        if (connectedBatterySocket.HasItem == false)
         {
             ONLINEscanner.SetActive(false); 
             workingScanner.enabled = false;

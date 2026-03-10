@@ -27,10 +27,7 @@ public class PowerableBehaviour : MonoBehaviour, IPowerable
 
     private void Start()
     {
-        if (IsPowered)
-            PowerOn();
-        else
-            PowerOff();
+        SetPowered(IsPowered);
     }
 
     private void OnDestroy()
@@ -42,6 +39,14 @@ public class PowerableBehaviour : MonoBehaviour, IPowerable
         powerSourceReference.Value.onPowerOff -= PowerOff;
     }
 
+    public void SetPowered(bool active)
+    {
+        if (active)
+            PowerOn();
+        else
+            PowerOff();
+    }
+    
     public void PowerOn()
     {
         if (IsPowered) return;

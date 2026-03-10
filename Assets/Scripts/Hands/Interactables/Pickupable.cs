@@ -3,6 +3,8 @@ using UnityEngine.Events;
 
 public class Pickupable : HandInteractable
 {
+    [SerializeField] private PickupableSocket socket;
+    
     [SerializeField] private Rigidbody rb;
     public Rigidbody Rigidbody => rb;
     [SerializeField] private BoxCollider col;
@@ -12,6 +14,11 @@ public class Pickupable : HandInteractable
     protected override void OnGrab(BaseHandBehaviour hand)
     {
         hand.GiveItem(this); 
+    }
+
+    public void SetSocket(PickupableSocket socket)
+    {
+        this.socket = socket;
     }
 
     public void Drop(BaseHandBehaviour hand)
@@ -24,6 +31,8 @@ public class Pickupable : HandInteractable
 
     protected override void OnRetract(BaseHandBehaviour hand)
     {
+        socket?.RemoveItem();
+        
         if (rb != null)
         {
             rb.isKinematic = true;

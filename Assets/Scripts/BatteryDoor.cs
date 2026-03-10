@@ -7,7 +7,7 @@ public class BatteryDoor : MonoBehaviour
     public string BoolName;
     public Animator animator;
 
-    public BatterySOcket ConnectedBattery;
+    public PickupableSocket ConnectedBattery;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,11 +17,11 @@ public class BatteryDoor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (ConnectedBattery.full == true)
+        if (ConnectedBattery.HasItem == true)
         {
             animator.SetBool(BoolName, true);
         }
-        if (ConnectedBattery.full == false)
+        if (ConnectedBattery.HasItem == false)
         {
             animator.SetBool(BoolName, false);
         }
