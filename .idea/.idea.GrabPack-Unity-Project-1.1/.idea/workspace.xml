@@ -6,7 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="17116273-0ca8-4720-8e20-e14000d3ac2e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GrabPack-Unity-Project-1.1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GrabPack-Unity-Project-1.1/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Hands/BaseHandBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Hands/BaseHandBehaviour.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Barricade.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Barricade.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Hands/Interactables/HandInteractable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Hands/Interactables/HandInteractable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Hands/Interactables/TimedInteractable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Hands/Interactables/TimedInteractable.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -119,7 +121,7 @@
       <workItem from="1773116807268" duration="6313000" />
       <workItem from="1773125738454" duration="4043000" />
       <workItem from="1773129975851" duration="2028000" />
-      <workItem from="1773132024056" duration="3054000" />
+      <workItem from="1773132024056" duration="3967000" />
     </task>
     <servers />
   </component>

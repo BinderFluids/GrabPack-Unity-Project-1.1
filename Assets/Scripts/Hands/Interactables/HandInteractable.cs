@@ -70,17 +70,22 @@ public class HandInteractable : MonoBehaviour
 
     public void UpdatePull(BaseHandBehaviour hand)
     {
-        
+        OnUpdatePull(hand);
     }
     protected virtual void OnUpdatePull(BaseHandBehaviour hand) {}
     public void LateUpdatePull(BaseHandBehaviour hand)
     {
-        
+        OnLateUpdatePull(hand); 
     }
 
     protected virtual void OnLateUpdatePull(BaseHandBehaviour hand)
     {
         
+    }
+
+    private void OnDestroy()
+    {
+        RetractAllHands();
     }
 }
 

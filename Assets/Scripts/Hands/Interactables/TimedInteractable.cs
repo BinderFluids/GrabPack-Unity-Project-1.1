@@ -22,7 +22,7 @@ public class TimedInteractable : HandInteractable
     public event Action onInteractionTick = delegate {};
     
     
-    private float timeHeld = 0f;
+    [SerializeField] private float timeHeld = 0f;
     private bool isInteracting;
     
     private bool interactionFinished;
