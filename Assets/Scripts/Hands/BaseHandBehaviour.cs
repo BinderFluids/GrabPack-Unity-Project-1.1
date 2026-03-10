@@ -82,13 +82,23 @@ public class BaseHandBehaviour : MonoBehaviour
             {
                 ReleaseItem();
             }
+            
+            if (interactable != null)
+                StartPull();
         }
 
         if (Input.GetMouseButton(mouseIndex))
-            interactable?.UpdatePull(this); 
+            if (interactable != null)
+                UpdatePull();
 
         if (Input.GetMouseButtonUp(mouseIndex) && interactable != null)
             Retract(); 
+    }
+
+    protected virtual void StartPull() {}
+    protected virtual void UpdatePull()
+    {
+        interactable?.UpdatePull(this); 
     }
 
     public void LateHandleInput(int mouseIndex, Ray ray, float maxRange, int handNormal)
@@ -148,9 +158,11 @@ public class BaseHandBehaviour : MonoBehaviour
         if (lockRetract) return;
 
         StartCoroutine(ReturnHand());
+        OnRetract();
         interactable?.Retract(this);
         interactable = null; 
     }
+    protected virtual void OnRetract() {}
 
     public void SetParent(Transform parent, bool worldPositionStays = true)
     {

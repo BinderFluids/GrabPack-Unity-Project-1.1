@@ -11,6 +11,10 @@ public class HandInteractable : MonoBehaviour
         Grip,
         None
     }
+    
+    [SerializeField] protected bool canInteract = true;
+    public bool CanInteract => canInteract;
+    public void SetInteractable(bool value) => canInteract = value;
 
     [SerializeField] protected Transform _transform;
     
@@ -28,17 +32,15 @@ public class HandInteractable : MonoBehaviour
 
     [SerializeField, Range(0, 2)] private int maxHands = 2;
     
-    [SerializeField] protected bool canInteract = true;
-    public bool CanInteract => canInteract;
-    public void SetInteractable(bool value) => canInteract = value;
     
     public bool Grab(BaseHandBehaviour hand)
     {
         if (hands.Count >= maxHands) return false;
-        if (!canInteract) return false;
         
         hands.Add(hand); 
         hand.SetParent(transform);
+        
+        if (!canInteract) return false;
         
         OnGrab(hand);
         onGrab?.Invoke();
@@ -80,4 +82,9 @@ public class HandInteractable : MonoBehaviour
     {
         
     }
+}
+
+public class PressureHandInteractable : HandInteractable
+{
+    
 }

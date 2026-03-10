@@ -54,7 +54,7 @@ public class freeze : MonoBehaviour
 
                     played = true;
                     frozen = true;
-                    breakable.isbreakable = true;
+                    breakable.SetInteractable(true);
 
                     launchhand.Retract();
                 }
@@ -74,7 +74,7 @@ public class freeze : MonoBehaviour
 
                     played = true;
                     frozen = false;
-                    breakable.isbreakable = false;
+                    breakable.SetInteractable(false);
 
                     launchhand.Retract();
                 }

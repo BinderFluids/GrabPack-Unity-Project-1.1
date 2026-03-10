@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class Draggable : HandInteractable
+public class Draggable : HandInteractable, IPressureHandInteractable
 {
     [SerializeField] private Rigidbody rb;
     public Rigidbody Rigidbody => rb;
@@ -10,6 +10,16 @@ public class Draggable : HandInteractable
     private void Start()
     {
         rb ??= GetComponent<Rigidbody>();
+    }
+
+    public void ReleasePressure(BaseHandBehaviour hand, float pressure)
+    {
+        Vector3 launchDir =(_transform.position - hand.Origin.position).normalized;
+        float launchForce = pressure * 100f;
+        
+        //handgrabbing.SetBool("grabbing", true);
+        rb.isKinematic = false;
+        rb.AddForce(launchDir * launchForce, ForceMode.Impulse);
     }
 
     protected override void OnLateUpdatePull(BaseHandBehaviour hand)

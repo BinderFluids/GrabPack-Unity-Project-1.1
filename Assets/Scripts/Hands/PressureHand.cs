@@ -1,17 +1,17 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PressureHand : BaseHandBehaviour
 {
+    
     private float pressureHoldTimer = 0f;
-    public float pressureStartDelay = 0.5f; 
     private bool pressureBuilding = false;
     
     
+    [Header("Pressure Hand")]
     public GameObject pressurebuild;
     public AudioClip pressureRelease;
-    
-    public bool isPressureHand = false;
     public float pressure = 0;
 
     public GameObject SMOKE;
@@ -19,7 +19,54 @@ public class PressureHand : BaseHandBehaviour
     public GameObject gauge;
     public Image guageUI;
     public ParticleSystem impact;
+    public GameObject Crosshair;
+    
+    protected override void StartPull()
+    {
+        pressure = 0f; 
+    }
+    
+    protected override void UpdatePull()
+    {
+        if (Interactable == null) return;
+        if (Interactable is not IPressureHandInteractable)
+        {
+            Interactable.UpdatePull(this);
+            return;
+        }
+
+        pressure += Time.deltaTime; 
+        SMOKE.SetActive(true);
+        pressurebuild.SetActive(true);
+        gauge.SetActive(true);
+        Crosshair.SetActive(false);
         
+        if (pressure < 10f)
+        {
+            pressure += Time.deltaTime * 4f;
+            pressure = Mathf.Min(pressure, 10f);
+            guageUI.fillAmount = pressure / 10f;
+        }
+    }
+
+    protected override void OnRetract()
+    {
+        if (Interactable == null) return;
+        if (Interactable is not IPressureHandInteractable pressureHandInteractable) return;
+        
+        SMOKE.SetActive(false);
+        gauge.SetActive(false);
+        if (pressure >= 1f)
+        {
+            globalAudio.PlayOneShot(pressureRelease, 2.0f);
+        }
+        pressureHandInteractable.ReleasePressure(this, pressure);
+        pressure = 0f;
+        pressurebuild.SetActive(false);
+        Crosshair.SetActive(true);
+        
+    }
+
     //     if ((leftReleased || rightReleased) && isPressureHand)
     // {
     //

@@ -71,4 +71,6 @@ public class TimedInteractable : HandInteractable
             onTimerFinishedEvent?.Invoke();
         }
     }
+
+    protected virtual void OnInteractionFinished() { }
 }
