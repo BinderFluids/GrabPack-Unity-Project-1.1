@@ -11,9 +11,6 @@ public class TimedInteractable : HandInteractable
     }
     [SerializeField] private TimerType timerType;
     
-    [Tooltip("Optional - If set, only interactable by this hand")]
-    [SerializeField] private BaseHandBehaviour targetHand;
-
     [SerializeField] private bool interactOnce = true;
     [SerializeField] private bool resetOnRelease; 
     [field: SerializeField] public float TimeToInteract { get; set; } = 1f;
@@ -33,9 +30,6 @@ public class TimedInteractable : HandInteractable
     
     protected override void OnGrab(BaseHandBehaviour hand)
     {
-        if (targetHand != null)
-            if (hand != targetHand) return;
-
         if (timerType == TimerType.Hold) isInteracting = true;
         if (resetOnRelease) timeHeld = 0f; 
     }

@@ -271,7 +271,7 @@ public class BaseHandBehaviour : MonoBehaviour
 }
 
 
-public enum Element
+public enum ConductionHandElement
 {
     Fire,
     Ice,

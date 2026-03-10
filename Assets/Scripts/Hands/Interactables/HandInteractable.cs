@@ -12,6 +12,8 @@ public class HandInteractable : MonoBehaviour
         None
     }
     
+    [Tooltip("Optional - If set, only interactable by this hand")]
+    [SerializeField] private BaseHandBehaviour targetHand;
     [SerializeField] protected bool canInteract = true;
     public bool CanInteract => canInteract;
     public void SetInteractable(bool value) => canInteract = value;
@@ -26,8 +28,8 @@ public class HandInteractable : MonoBehaviour
     
     [SerializeField] private UnityEvent onGrabUnityEvent;
     [SerializeField] private UnityEvent onRetractUnityEvent;
-    public event Action onGrab;
-    public event Action onRetract;
+    public event Action<BaseHandBehaviour> onGrab;
+    public event Action<BaseHandBehaviour> onRetract;
 
 
     [SerializeField, Range(0, 2)] private int maxHands = 2;
@@ -41,9 +43,10 @@ public class HandInteractable : MonoBehaviour
         hand.SetParent(transform);
         
         if (!canInteract) return false;
+        if (targetHand != null && targetHand != hand) return false;
         
         OnGrab(hand);
-        onGrab?.Invoke();
+        onGrab?.Invoke(hand);
         onGrabUnityEvent?.Invoke();
 
         return true;
@@ -53,7 +56,7 @@ public class HandInteractable : MonoBehaviour
     public void Retract(BaseHandBehaviour hand)
     {
         OnRetract(hand);
-        onRetract?.Invoke();
+        onRetract?.Invoke(hand);
         onRetractUnityEvent?.Invoke();
         hands.Remove(hand); 
     }

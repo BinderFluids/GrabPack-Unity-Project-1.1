@@ -3,18 +3,18 @@ using UnityEngine;
 public class ConductionHand : BaseHandBehaviour
 {
     [SerializeField] private float elementHoldTime;
-    [SerializeField] private Element element;
-    public Element Element => element;
+    [SerializeField] private ConductionHandElement conductionHandElement;
+    public ConductionHandElement ConductionHandElement => conductionHandElement;
 
-    public void SetElement(Element value)
+    public void SetElement(ConductionHandElement value)
     {
-        if (element != Element.None) return;
-        element = value;
+        if (conductionHandElement != ConductionHandElement.None) return;
+        conductionHandElement = value;
         Invoke(nameof(ClearElement), elementHoldTime);
     }
 
     public void ClearElement()
     {
-        element = Element.None;
+        conductionHandElement = ConductionHandElement.None;
     }
 }
