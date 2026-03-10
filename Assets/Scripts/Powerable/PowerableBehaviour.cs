@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -7,7 +8,7 @@ public class PowerableBehaviour : MonoBehaviour, IPowerable
     [field: SerializeField] public bool IsPowered { get; private set; }
     
     [Tooltip("Optional power source which will trigger this powerable's states")]
-    [SerializeField] private InterfaceReference<IPowerable> powerSourceReference;
+    [SerializeField] private List<InterfaceReference<IPowerable>> powerSourceReferences;
 
     public event Action onPoweredOn;
     public event Action onPowerOff;
@@ -18,11 +19,8 @@ public class PowerableBehaviour : MonoBehaviour, IPowerable
 
     private void Awake()
     {
-        if (powerSourceReference.UnderlyingValue == null) return; 
-        
-        powerSourceReference.Value.onSetPowered += OnPowered;
-        powerSourceReference.Value.onPoweredOn += PowerOn;
-        powerSourceReference.Value.onPowerOff += PowerOff; 
+        foreach (InterfaceReference<IPowerable> reference in powerSourceReferences)
+            reference.Value.onPoweredOn += CheckAllPowerSourcesOn; 
     }
 
     private void Start()
@@ -32,11 +30,20 @@ public class PowerableBehaviour : MonoBehaviour, IPowerable
 
     private void OnDestroy()
     {
-        if (powerSourceReference.UnderlyingValue == null) return;
+        foreach (InterfaceReference<IPowerable> reference in powerSourceReferences)
+            reference.Value.onPoweredOn -= CheckAllPowerSourcesOn;
+    }
+
+    private void CheckAllPowerSourcesOn()
+    {
+        if (powerSourceReferences.TrueForAll(reference => reference.Value.IsPowered))
+        {
+            if (IsPowered) return;
+            PowerOn();    
+        }
+        else if (IsPowered)
+            PowerOff();
         
-        powerSourceReference.Value.onSetPowered -= OnPowered;
-        powerSourceReference.Value.onPoweredOn -= PowerOn;
-        powerSourceReference.Value.onPowerOff -= PowerOff;
     }
 
     public void SetPowered(bool active)
