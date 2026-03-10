@@ -14,4 +14,7 @@ public class AnimatorExtensionEvents : MonoBehaviour
 
     public void SetBoolFalse(string name) => _animator.SetBool(name, false);
 
+    public void ToggleBool(string name) => _animator.SetBool(name, !_animator.GetBool(name));
+
+
 }

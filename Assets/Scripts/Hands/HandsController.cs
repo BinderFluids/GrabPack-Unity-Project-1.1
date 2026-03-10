@@ -26,6 +26,11 @@ public class HandsController : MonoBehaviour
         HandleInput();
     }
 
+    private void LateUpdate()
+    {
+        LateHandleInput(); 
+    }
+
     void HandleInput()
     {
         foreach (HandConfig config in handConfigs)
@@ -34,6 +39,14 @@ public class HandsController : MonoBehaviour
             RotateArm rotateArm = config.rotateArm;
             
             hand.HandleInput(config.mouseIndex, CastRay(), maxRange, config.handNormal);
+        }
+    }
+    void LateHandleInput()
+    {
+        foreach (HandConfig config in handConfigs)
+        {
+            BaseHandBehaviour hand = config.hand;
+            hand.LateHandleInput(config.mouseIndex, CastRay(), maxRange, config.handNormal);
         }
     }
 

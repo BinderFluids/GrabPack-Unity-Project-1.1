@@ -1,11 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class HandScanner : MonoBehaviour
 {
+    
     public string HandToDectect = "Hand_Blue";
-
+    [SerializeField] private TimedInteractable timedInteractable;
+    
     public MeshRenderer screen;
     public Material screenidle;
     public Material screenScanning;
@@ -35,7 +38,7 @@ public class HandScanner : MonoBehaviour
     public Material smile;
 
 
-    public Color Green;
+    public Color greenLightColor;
     public Color scannercolour;
 
 
@@ -44,13 +47,42 @@ public class HandScanner : MonoBehaviour
     public GameObject scanningAudio;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        scanningduration = 0f;
-
-
         scannerLight.color = scannercolour;
+        timedInteractable.onInteractionTick += OnInteractionTick; 
+        timedInteractable.onTimerFinished += OnInteractionFinished;
+    }
 
+    void OnGrab()
+    {
+        
+    }
+
+    void OnRelease()
+    {
+        
+    }
+    
+    void OnInteractionTick()
+    {
+        Vector2 offset2 = scanning.mainTextureOffset;
+        offset2.x += speed / 2 * Time.deltaTime; 
+        scanning.mainTextureOffset = offset2;
+        
+        float offset = Mathf.Lerp(minOffset, maxOffset, Mathf.PingPong(Time.time * speed, 1f));
+        screenScanning.mainTextureOffset = new Vector2(screenScanning.mainTextureOffset.x, offset);
+    }
+
+    void OnInteractionFinished()
+    {
+        scannerLight.color = greenLightColor;
+    }
+
+    private void OnDestroy()
+    {
+        timedInteractable.onInteractionTick -= OnInteractionTick;
+        timedInteractable.onTimerFinished -= OnInteractionFinished;
     }
 
     // Update is called once per frame
@@ -60,85 +92,88 @@ public class HandScanner : MonoBehaviour
         offset3.x += speed / 2 * Time.deltaTime; 
         ready.mainTextureOffset = offset3;
 
-        if (!SCANNED)
+        if (timedInteractable.InteractionFinished)
         {
-            Transform child = transform.Find(HandToDectect);
-            if (child != null)
-            {
-                if (hasStarted == false)
-                {
-                    Vector2 offset2 = scanning.mainTextureOffset;
-                    offset2.x = 0;
-                    startScanning();
-
-
-                }
-
-            }
-            else
-            {
-                screen.material = screenidle;
-                hasStarted = false;
-                scanningLabel.material = ready;
-                Vector2 offset2 = scanning.mainTextureOffset;
-                offset2.x = 0;
-
-                scanningAudio.SetActive(false);
-
-
-            }
-            if (hasStarted)
-            {
-                scanningduration += Time.deltaTime;
-
-
-                Vector2 offset2 = scanning.mainTextureOffset;
-                offset2.x += speed / 2 * Time.deltaTime; 
-                scanning.mainTextureOffset = offset2;
-
-
-
-                float offset = Mathf.Lerp(minOffset, maxOffset, Mathf.PingPong(Time.time * speed, 1f));
-                screenScanning.mainTextureOffset = new Vector2(screenScanning.mainTextureOffset.x, offset);
-
-
-
-                if (scanningduration > ScanDuration)
-                {
-                    SCANNED = true;
-                }
-            }
-        }
-        if (SCANNED)
-        {
-            handprint.material = smile;
-            scannerLight.color = Green;
-
-
-            screen.material = greenbackground;
-            hasStarted = false;
-            scanningLabel.material = verified;
-
             Vector2 offset4 = verified.mainTextureOffset;
             offset4.x += speed / 2 * Time.deltaTime; 
             verified.mainTextureOffset = offset4;
         }
-
-
-
-
+        
+        // // if (!SCANNED)
+        // // {
+        // //     Transform child = transform.Find(HandToDectect);
+        // //     if (child != null)
+        // //     {
+        // //         if (hasStarted == false)
+        // //         {
+        // //             Vector2 offset2 = scanning.mainTextureOffset;
+        // //             offset2.x = 0;
+        // //             startScanning();
+        // //
+        // //
+        // //         }
+        // //
+        // //     }
+        //     else
+        //     {
+        //         // screen.material = screenidle;
+        //         // hasStarted = false;
+        //         // scanningLabel.material = ready;
+        //         // Vector2 offset2 = scanning.mainTextureOffset;
+        //         // offset2.x = 0;
+        //         //
+        //         // scanningAudio.SetActive(false);
+        //
+        //
+        //     }
+        //     // if (hasStarted)
+        //     // {
+        //     //     scanningduration += Time.deltaTime;
+        //     //
+        //     //
+        //     //     Vector2 offset2 = scanning.mainTextureOffset;
+        //     //     offset2.x += speed / 2 * Time.deltaTime; 
+        //     //     scanning.mainTextureOffset = offset2;
+        //     //
+        //     //
+        //     //
+        //     //     float offset = Mathf.Lerp(minOffset, maxOffset, Mathf.PingPong(Time.time * speed, 1f));
+        //     //     screenScanning.mainTextureOffset = new Vector2(screenScanning.mainTextureOffset.x, offset);
+        //     //
+        //     //
+        //     //
+        //     //     if (scanningduration > ScanDuration)
+        //     //     {
+        //     //         SCANNED = true;
+        //     //     }
+        //     // }
+        // }
+        // if (SCANNED)
+        // {
+        //     // handprint.material = smile;
+        //     // scannerLight.color = greenLightColor;
+        //     //
+        //     //
+        //     // screen.material = greenbackground;
+        //     // hasStarted = false;
+        //     // scanningLabel.material = verified;
+        //     //
+        //     // Vector2 offset4 = verified.mainTextureOffset;
+        //     // offset4.x += speed / 2 * Time.deltaTime; 
+        //     // verified.mainTextureOffset = offset4;
+        // }
     }
 
-    public void startScanning()
-    {
-        scanningduration = 0f;
-        scanningAudio.SetActive(true);
-        Vector2 offset2 = scanning.mainTextureOffset;
-        offset2.x = 0;
-        scanningLabel.material = scanning;
-        hasStarted = true;
-
-        screen.material = screenScanning;
-
-    }
+    // public void startScanning()
+    // {
+    //     scanningduration = 0f;
+    //     scanningAudio.SetActive(true);
+    //     Vector2 offset2 = scanning.mainTextureOffset;
+    //     offset2.x = 0;
+    //     scanningLabel.material = scanning;
+    //     hasStarted = true;
+    //
+    //     screen.material = screenScanning;
+    //
+    // }
 }

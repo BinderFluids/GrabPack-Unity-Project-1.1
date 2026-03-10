@@ -51,7 +51,6 @@ public class BaseHandBehaviour : MonoBehaviour
     public Barricade br;
     private bool lockRetract = false;
     
-    
     //Interaction
     [SerializeField] private HandInteractable interactable;
     public HandInteractable Interactable => interactable;
@@ -85,14 +84,18 @@ public class BaseHandBehaviour : MonoBehaviour
             }
         }
 
-        MouseButtonHeld = Input.GetMouseButton(mouseIndex);
+        if (Input.GetMouseButton(mouseIndex))
+            interactable?.UpdatePull(this); 
 
         if (Input.GetMouseButtonUp(mouseIndex) && interactable != null)
-        {
             Retract(); 
-        }
     }
-    
+
+    public void LateHandleInput(int mouseIndex, Ray ray, float maxRange, int handNormal)
+    {
+        if (Input.GetMouseButtonDown(mouseIndex))
+            interactable?.LateUpdatePull(this); 
+    }
     
     public void FireHand(Ray ray, float range, int handNormal = 1)
     {
@@ -177,13 +180,16 @@ public class BaseHandBehaviour : MonoBehaviour
         if (interactableParam != null)
         {
             interactable = interactableParam;
-            interactableParam.Grab(this);
+            if (interactableParam.Grab(this))
+            {
+                handgrabbing.SetBool("grabbing", interactableParam.GrabType == HandInteractable.GrabTypeEnum.Grip);
 
-            handgrabbing.SetBool("grabbing", interactableParam.GrabType == HandInteractable.GrabTypeEnum.Grip);
-
-            lockRetract = true;
-            yield return new WaitForSeconds(lockRetractTime);
-            lockRetract = false;
+                lockRetract = true;
+                yield return new WaitForSeconds(lockRetractTime);
+                lockRetract = false;
+            }
+            else
+                Retract();
         }
         else
             Retract(); 
