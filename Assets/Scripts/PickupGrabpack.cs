@@ -1,8 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PickupGrabpack : MonoBehaviour
+public class PickupGrabpack : MonoBehaviour, IInteractable
 {
     public bool hasRedHand = true;
     public bool hasBlueHand = true;
@@ -26,9 +27,11 @@ public class PickupGrabpack : MonoBehaviour
 
     public HandManager handmanager;
 
-
-    public void Pickup()
+    public event Action onInteract; 
+    public void Interact()
     {
+        
+        
         gameObject.SetActive(false);
 
         BlueHand.SetActive(hasBlueHand);

@@ -2,10 +2,10 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Interactable : MonoBehaviour
+
+public class Interactable : MonoBehaviour, IInteractable
 {
     [SerializeField] private bool canInteract = true;
-    public bool CanInteract => canInteract;
     public void SetInteract(bool value) => canInteract = value;
     
     
@@ -21,3 +21,4 @@ public class Interactable : MonoBehaviour
     }
     protected virtual void OnInteract() { }
 }
+

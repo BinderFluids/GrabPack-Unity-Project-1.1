@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.XR;
 
 public class Pickupable : HandInteractable
 {
