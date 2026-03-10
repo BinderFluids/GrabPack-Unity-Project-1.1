@@ -69,6 +69,12 @@ public class BaseHandBehaviour : MonoBehaviour
         originalParent = _transform.parent;
     }
 
+    public void Disable()
+    {
+        gameObject.SetActive(false);
+    }
+    
+    #region INPUT
     public void HandleInput(int mouseIndex, Ray ray, float maxRange, int handNormal)
     {
         // detect initial presses
@@ -94,18 +100,19 @@ public class BaseHandBehaviour : MonoBehaviour
         if (Input.GetMouseButtonUp(mouseIndex) && interactable != null)
             Retract(); 
     }
-
+    public void LateHandleInput(int mouseIndex, Ray ray, float maxRange, int handNormal)
+    {
+        if (Input.GetMouseButtonDown(mouseIndex))
+            interactable?.LateUpdatePull(this); 
+    }
+#endregion
+    
     protected virtual void StartPull() {}
     protected virtual void UpdatePull()
     {
         interactable?.UpdatePull(this); 
     }
 
-    public void LateHandleInput(int mouseIndex, Ray ray, float maxRange, int handNormal)
-    {
-        if (Input.GetMouseButtonDown(mouseIndex))
-            interactable?.LateUpdatePull(this); 
-    }
     
     public void FireHand(Ray ray, float range, int handNormal = 1)
     {
@@ -169,7 +176,8 @@ public class BaseHandBehaviour : MonoBehaviour
         _transform.SetParent(parent, worldPositionStays); 
     }
 
-    private float lockRetractTime = .5f;
+    #region MOVEMENT
+    private float lockRetractTime = .2f;
     private IEnumerator MoveHand(Vector3 target, Vector3 impactPoint, HandInteractable interactableParam)
     {
         Vector3 start = _transform.position;
@@ -206,9 +214,6 @@ public class BaseHandBehaviour : MonoBehaviour
         else
             Retract(); 
     }
-    
-
-
     private IEnumerator ReturnHand()
     {
         _transform.parent = null;
@@ -268,6 +273,7 @@ public class BaseHandBehaviour : MonoBehaviour
         CableSim.InitializeCable();
         CableSim.isActive = false;
     }
+    #endregion
 }
 
 

@@ -10,6 +10,7 @@ public class HandsController : MonoBehaviour
     [SerializeField] private float maxRange;
 
     [Header("Hands")] 
+    [SerializeField] private HandsInventory inventory;
     [SerializeField] private HandConfig[] handConfigs;
     private void Start()
     {
@@ -23,7 +24,8 @@ public class HandsController : MonoBehaviour
 
     private void Update()
     {
-        HandleInput();
+        HandleHandInput();
+        HandleInventoryInput();
     }
 
     private void LateUpdate()
@@ -31,7 +33,24 @@ public class HandsController : MonoBehaviour
         LateHandleInput(); 
     }
 
-    void HandleInput()
+    void HandleInventoryInput()
+    {
+        for (int i = 0; i <= 9; i++)
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha0 + i) ||
+                Input.GetKeyDown(KeyCode.Keypad0 + i))
+            {
+                BaseHandBehaviour newHand = inventory.GetHand(i);
+                if (newHand == null || newHand == handConfigs[1].hand) return;
+                
+                DisableHand(i);
+                EnableHand(1, newHand); 
+            }
+        }
+    }
+    
+
+    void HandleHandInput()
     {
         foreach (HandConfig config in handConfigs)
         {
@@ -46,7 +65,7 @@ public class HandsController : MonoBehaviour
         foreach (HandConfig config in handConfigs)
         {
             BaseHandBehaviour hand = config.hand;
-            hand.LateHandleInput(config.mouseIndex, CastRay(), maxRange, config.handNormal);
+            hand?.LateHandleInput(config.mouseIndex, CastRay(), maxRange, config.handNormal);
         }
     }
 
@@ -55,11 +74,22 @@ public class HandsController : MonoBehaviour
         RotateArm rotateArm = handConfigs.First(c => c.hand == hand).rotateArm;
         rotateArm.SetActive(true, hand.TargetPoint);
     }
-
     void OnRetract(BaseHandBehaviour hand)
     {
         RotateArm rotateArm = handConfigs.First(c => c.hand == hand).rotateArm;
         rotateArm.SetActive(false, Vector3.zero);
+    }
+
+    public void DisableHand(int index)
+    {
+        HandConfig config = handConfigs[index];
+        config.hand = null; 
+    }
+
+    public void EnableHand(int index, BaseHandBehaviour hand)
+    {
+        HandConfig config = handConfigs[index];
+        config.hand = hand;
     }
     
     Ray CastRay()
