@@ -14,13 +14,9 @@ public class Lift : MonoBehaviour
         anim = gameObject.GetComponent<Animator>();
     }
 
-    void Update()
+    public void Open()
     {
-        if (powerSource.IsPowered)
-        {
-            anim.SetBool("open", true);
-            powerSource.PowerOff();
-        }
+        anim.SetBool("open", true);
     }
 
     IEnumerator MoveToTarget(Transform target, float duration)
@@ -36,8 +32,7 @@ public class Lift : MonoBehaviour
         }
 
         transform.position = target.position;
-        anim.SetBool("open", true);
-
+        Open(); 
     }
 
     public void StartMoving()

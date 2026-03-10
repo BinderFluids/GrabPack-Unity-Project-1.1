@@ -4,7 +4,10 @@ using UnityEngine.Events;
 
 public class PowerableBehaviour : MonoBehaviour, IPowerable
 {
-    public bool IsPowered { get; private set; }
+    [field: SerializeField] public bool IsPowered { get; private set; }
+    
+    [Tooltip("Optional power source which will trigger this powerable's states")]
+    [SerializeField] private InterfaceReference<IPowerable> powerSourceReference;
 
     public event Action onPoweredOn;
     public event Action onPowerOff;
@@ -12,10 +15,37 @@ public class PowerableBehaviour : MonoBehaviour, IPowerable
     [SerializeField] private UnityEvent onPoweredOnUnityEvent;
     [SerializeField] private UnityEvent onPoweredOffUnityEvent;
     [SerializeField] private UnityEvent<bool> onSetPoweredUnityEvent;
-    
+
+    private void Awake()
+    {
+        if (powerSourceReference.UnderlyingValue == null) return; 
+        
+        powerSourceReference.Value.onSetPowered += OnPowered;
+        powerSourceReference.Value.onPoweredOn += PowerOn;
+        powerSourceReference.Value.onPowerOff += PowerOff; 
+    }
+
+    private void Start()
+    {
+        if (IsPowered)
+            PowerOn();
+        else
+            PowerOff();
+    }
+
+    private void OnDestroy()
+    {
+        if (powerSourceReference.UnderlyingValue == null) return;
+        
+        powerSourceReference.Value.onSetPowered -= OnPowered;
+        powerSourceReference.Value.onPoweredOn -= PowerOn;
+        powerSourceReference.Value.onPowerOff -= PowerOff;
+    }
 
     public void PowerOn()
     {
+        if (IsPowered) return;
+        
         IsPowered = true; 
         
         OnPoweredOn();
@@ -30,6 +60,8 @@ public class PowerableBehaviour : MonoBehaviour, IPowerable
     
     public void PowerOff()
     {
+        if (!IsPowered) return;
+        
         IsPowered = false;
         
         OnPoweredOff();

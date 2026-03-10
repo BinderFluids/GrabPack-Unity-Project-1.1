@@ -1,12 +1,10 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class ElectricalReciever : PowerableBehaviour
 {
+    [SerializeField] private HandInteractable handInteractable; 
     [SerializeField] private List<InterfaceReference<IPowerable>> requiredPowerables;
     [SerializeField] private List<InterfaceReference<IPowerable>> powerablesOnComplete = new();
     private bool allPowered => 
@@ -14,45 +12,29 @@ public class ElectricalReciever : PowerableBehaviour
     
     public AudioSource GlobalAudio;
     public AudioClip puzzlecomplete;
-
-    public GameObject[] hands;
-
+    
     private void Start()
     {
         foreach (PowerableBehaviour powerable in requiredPowerables)
             powerable.onPoweredOn += CheckAllPoweredOn; 
     }
     
-    void CheckAllPoweredOn()
+    public void CheckAllPoweredOn()
     {
+        if (handInteractable.Hands.Count == 0) return;
+        
         if (allPowered)
             CompleteCircuit(); 
     }
 
     public void CompleteCircuit()
     {
-        foreach (GameObject hand in hands)
-        {
-            if (hand != null && hand.activeInHierarchy && hand.transform.parent == transform)
-            {
-                PowerOn();
-                powerablesOnComplete.
-                    ForEach(powerable => powerable.Value.PowerOn());
-                
-                GlobalAudio.PlayOneShot(puzzlecomplete, 1.0f);
-                ReturnAllHands();
-            }
-        }
-    }
-
-    void ReturnAllHands()
-    {
-        BaseHandBehaviour[] hands = FindObjectsOfType<BaseHandBehaviour>();
-
-        foreach (BaseHandBehaviour hand in hands)
-        {
-            hand.Retract();
-        }
+        PowerOn();
+        powerablesOnComplete.
+            ForEach(powerable => powerable.Value.PowerOn());
+            
+        GlobalAudio.PlayOneShot(puzzlecomplete, 1.0f);
+        handInteractable.RetractAllHands();
     }
     
     private void OnDestroy()

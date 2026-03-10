@@ -13,16 +13,11 @@ public class PowerPole : PowerableBehaviour
     public AudioClip connect;
     public AudioClip disconnect;
 
-    private bool touchedThisFrame = false;
-    private bool wasPowered = false;
-
-
     public void StartGlow()
     {
         if (source.powering)
         {
             glow.SetActive(true);
-            touchedThisFrame = true;
             glowcounter = 0.1f;
         }
     }
@@ -30,12 +25,12 @@ public class PowerPole : PowerableBehaviour
     protected override void OnPoweredOn()
     {
         StartGlow();
-        //GlobalAudio.PlayOneShot(connect, 0.7f);
+        GlobalAudio.PlayOneShot(connect, 0.7f);
     }
 
     protected override void OnPoweredOff()
     {
-        //GlobalAudio.PlayOneShot(disconnect, 0.7f);
+        GlobalAudio.PlayOneShot(disconnect, 0.7f);
     }
 
     void Update()
@@ -43,7 +38,7 @@ public class PowerPole : PowerableBehaviour
         if (!IsPowered)
             glowcounter -= Time.deltaTime;
 
-        if (glowcounter <= 0 && IsPowered)
+        if (glowcounter <= 0)
         {
             glow.SetActive(false);
             PowerOff(); 

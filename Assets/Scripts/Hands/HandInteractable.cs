@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -17,6 +18,8 @@ public class HandInteractable : MonoBehaviour
     public GrabTypeEnum GrabType => grabType;
     
     [SerializeField] protected List<BaseHandBehaviour> hands = new(); 
+    public List<BaseHandBehaviour> Hands => hands;
+    
     [SerializeField] private UnityEvent onGrabUnityEvent;
     [SerializeField] private UnityEvent onRetractUnityEvent;
     public event Action onGrab;
@@ -41,6 +44,14 @@ public class HandInteractable : MonoBehaviour
         hands.Remove(hand); 
     }
     protected virtual void OnRetract(BaseHandBehaviour hand) { }
+
+
+    public void RetractAllHands()
+    {
+        List<BaseHandBehaviour> tempList = new List<BaseHandBehaviour>(hands);
+        foreach (BaseHandBehaviour hand in tempList)
+            hand.Retract();
+    }
 }
 
 /*
