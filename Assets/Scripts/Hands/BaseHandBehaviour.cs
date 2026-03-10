@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine.LowLevelPhysics2D;
 using UnityEngine.UI;
 
@@ -33,7 +34,8 @@ public class BaseHandBehaviour : MonoBehaviour
     public AudioClip grabsfx;
     
     //Events
-    
+    public event Action<BaseHandBehaviour> onFire;
+    public event Action<BaseHandBehaviour> onRetract;
     
     
     
@@ -121,6 +123,7 @@ public class BaseHandBehaviour : MonoBehaviour
                 hitInteractable = foundInteractable;
         }
 
+        onFire?.Invoke(this); 
         StartCoroutine(MoveHand(targetPoint, hit.point, hitInteractable));
     }
 
@@ -140,7 +143,7 @@ public class BaseHandBehaviour : MonoBehaviour
     {
         if (!gameObject.activeSelf) return;
         if (lockRetract) return;
-        
+
         StartCoroutine(ReturnHand());
         interactable?.Retract(this);
         interactable = null; 
@@ -239,6 +242,7 @@ public class BaseHandBehaviour : MonoBehaviour
             yield return null;
         }
 
+        onRetract?.Invoke(this); 
         _transform.position = handOrigin.position;
         _transform.rotation = handOrigin.rotation;
         _transform.parent = originalParent;

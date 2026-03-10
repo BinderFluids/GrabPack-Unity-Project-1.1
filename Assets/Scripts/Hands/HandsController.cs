@@ -1,5 +1,6 @@
 
 using System;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -9,10 +10,15 @@ public class HandsController : MonoBehaviour
     [SerializeField] private float maxRange;
 
     [Header("Hands")] 
-    [SerializeField] private HandConfig[] handContainersData;
+    [SerializeField] private HandConfig[] handConfigs;
     private void Start()
     {
         cam ??= Camera.main;
+        foreach (HandConfig config in handConfigs)
+        {
+            config.hand.onFire += OnFire;
+            config.hand.onRetract += OnRetract;
+        }
     }
 
     private void Update()
@@ -22,18 +28,25 @@ public class HandsController : MonoBehaviour
 
     void HandleInput()
     {
-        foreach (HandConfig config in handContainersData)
+        foreach (HandConfig config in handConfigs)
         {
             BaseHandBehaviour hand = config.hand;
             RotateArm rotateArm = config.rotateArm;
             
             hand.HandleInput(config.mouseIndex, CastRay(), maxRange, config.handNormal);
-
-            if (hand.IsActive)
-                rotateArm.SetActive(true, hand.TargetPoint);
-            else
-                rotateArm.SetActive(false, Vector3.zero);
         }
+    }
+
+    void OnFire(BaseHandBehaviour hand)
+    {
+        RotateArm rotateArm = handConfigs.First(c => c.hand == hand).rotateArm;
+        rotateArm.SetActive(true, hand.TargetPoint);
+    }
+
+    void OnRetract(BaseHandBehaviour hand)
+    {
+        RotateArm rotateArm = handConfigs.First(c => c.hand == hand).rotateArm;
+        rotateArm.SetActive(false, Vector3.zero);
     }
     
     Ray CastRay()
@@ -41,6 +54,16 @@ public class HandsController : MonoBehaviour
         Vector3 center = new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 0f);
         return cam.ScreenPointToRay(center);
     }
+
+    private void OnDestroy()
+    {
+        foreach (HandConfig config in handConfigs)
+        {
+            config.hand.onFire -= OnFire;
+            config.hand.onRetract -= OnRetract;
+        }
+    }
+
 
     [Serializable]
     public struct HandConfig
