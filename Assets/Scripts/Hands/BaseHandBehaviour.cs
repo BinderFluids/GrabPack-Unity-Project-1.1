@@ -269,3 +269,12 @@ public class BaseHandBehaviour : MonoBehaviour
         CableSim.isActive = false;
     }
 }
+
+
+public enum Element
+{
+    Fire,
+    Ice,
+    Electricity,
+    None
+}
