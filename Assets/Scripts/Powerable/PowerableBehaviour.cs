@@ -20,7 +20,10 @@ public class PowerableBehaviour : MonoBehaviour, IPowerable
     private void Awake()
     {
         foreach (InterfaceReference<IPowerable> reference in powerSourceReferences)
-            reference.Value.onPoweredOn += CheckAllPowerSourcesOn; 
+        {
+            reference.Value.onPoweredOn += CheckAllPowerSources;
+            reference.Value.onPowerOff += CheckAllPowerSources;
+        } 
     }
 
     private void Start()
@@ -31,10 +34,13 @@ public class PowerableBehaviour : MonoBehaviour, IPowerable
     private void OnDestroy()
     {
         foreach (InterfaceReference<IPowerable> reference in powerSourceReferences)
-            reference.Value.onPoweredOn -= CheckAllPowerSourcesOn;
+        {
+            reference.Value.onPoweredOn -= CheckAllPowerSources;
+            reference.Value.onPowerOff -= CheckAllPowerSources;
+        }
     }
 
-    private void CheckAllPowerSourcesOn()
+    private void CheckAllPowerSources()
     {
         if (powerSourceReferences.TrueForAll(reference => reference.Value.IsPowered))
         {

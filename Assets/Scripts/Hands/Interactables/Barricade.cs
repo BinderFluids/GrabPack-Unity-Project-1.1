@@ -13,7 +13,7 @@ public class Barricade : MonoBehaviour
         timedInteractable.onInteractionTick += PullTick;
         timedInteractable.onTimerFinished += InteractionFinished;
         
-        rb ??= GetComponent<Rigidbody>();
+        if (rb == null) rb = GetComponent<Rigidbody>();
         rb.isKinematic = true;
     }
 

@@ -5,11 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="17116273-0ca8-4720-8e20-e14000d3ac2e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Hands/HandType.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Hands/HandType.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GrabPack-Unity-Project-1.1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GrabPack-Unity-Project-1.1/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Cable/CablePhysics.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Cable/CablePhysics.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ElectricalSource.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ElectricalSource.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Hands/BaseHandBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Hands/BaseHandBehaviour.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Hands/Interactables/Barricade.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Hands/Interactables/Barricade.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Hands/Interactables/HandInteractable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Hands/Interactables/HandInteractable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Powerable/JumpPad.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Powerable/JumpPad.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Powerable/PowerPole.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Powerable/PowerPole.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Powerable/PowerableBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Powerable/PowerableBehaviour.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,17 +31,21 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Cable/CablePhysics.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Core/AnimatorExtensionEvents.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Core/CollisionEventBroadcaster.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Core/FollowSpline.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Door.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/HandScanner.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Hands/BaseHandBehaviour.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Hands/HandType.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Hands/HandsInventory.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Hands/Interactables/Barricade.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Hands/Interactables/HandInteractable.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Hands/Interactables/IPressureHandInteractable.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Hands/Interactables/TimedInteractable.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Interactable/Interactable.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Powerable/JumpPad.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Powerable/PowerableBehaviour.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/RotateArm.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/RotateArms.cs" root0="FORCE_HIGHLIGHTING" />
@@ -124,7 +132,8 @@
       <workItem from="1773116807268" duration="6313000" />
       <workItem from="1773125738454" duration="4043000" />
       <workItem from="1773129975851" duration="2028000" />
-      <workItem from="1773132024056" duration="14278000" />
+      <workItem from="1773132024056" duration="18798000" />
+      <workItem from="1773204370202" duration="407000" />
     </task>
     <servers />
   </component>
@@ -159,16 +168,29 @@
         </breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/Hands/BaseHandBehaviour.cs</url>
-          <line>231</line>
+          <line>232</line>
           <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Hands/BaseHandBehaviour.cs" containingFunctionPresentation="Method 'ReturnHand'">
             <startOffsets>
-              <option value="6644" />
+              <option value="6761" />
             </startOffsets>
             <endOffsets>
-              <option value="6645" />
+              <option value="6762" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Cable/CablePhysics.cs</url>
+          <line>190</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Cable/CablePhysics.cs" containingFunctionPresentation="Method 'DetectPoleContacts'">
+            <startOffsets>
+              <option value="5086" />
+            </startOffsets>
+            <endOffsets>
+              <option value="5101" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

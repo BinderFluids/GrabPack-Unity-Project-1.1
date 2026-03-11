@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class JumpPad : PowerableBehaviour
+public class JumpPad : MonoBehaviour
 {
     public Rigidbody Player;
     public float jumpForce = 10f;
@@ -31,53 +31,73 @@ public class JumpPad : PowerableBehaviour
     public float cooldownTime = 2f;
     private float cooldownTimer = 0f;
 
-    void Update()
+    public void LaunchPlayer()
     {
-        if (cooldownTimer > 0)
-            cooldownTimer -= Time.deltaTime;
-
-        bool handAttached = rocketHand != null &&
-                            rocketHand.activeInHierarchy &&
-                            rocketHand.transform.IsChildOf(transform);
-
-        if (handAttached)
-        {
-            if (cooldownTimer > 0)
-            {
-                rockethand.Retract();
-                return;
-            }
-
-            if (!launched && IsPowered)
-            {
-                float baseForce = player.isGrounded ? jumpForce : jumpForce / 2f;
-
-                float distance = Vector3.Distance(Player.transform.position, transform.position);
-
-                float distanceMultiplier = Mathf.Clamp01(1 - (distance / maxBoostDistance));
-                distanceMultiplier = Mathf.Lerp(minBoostMultiplier, 1f, distanceMultiplier);
-
-                float finalForce = baseForce * distanceMultiplier;
-
-                Player.linearVelocity = Vector3.zero;
-                Player.AddForce(transform.up * finalForce, ForceMode.Impulse);
-
-                launched = true;
-                cooldownTimer = cooldownTime;
-
-                rockethand.Retract();
-                GlobalAudio.PlayOneShot(boostsfx, 1.0f);
-            }
-        }
-        else
-        {
-            launched = false;
-        }
+        float baseForce = player.isGrounded ? jumpForce : jumpForce / 2f;
+        
+        float distance = Vector3.Distance(Player.transform.position, transform.position);
+        
+        float distanceMultiplier = Mathf.Clamp01(1 - (distance / maxBoostDistance));
+        distanceMultiplier = Mathf.Lerp(minBoostMultiplier, 1f, distanceMultiplier);
+        
+        float finalForce = baseForce * distanceMultiplier;
+        
+        Player.linearVelocity = Vector3.zero;
+        Player.AddForce(transform.up * finalForce, ForceMode.Impulse);
+        
+        launched = true;
+        cooldownTimer = cooldownTime;
+        
+        GlobalAudio.PlayOneShot(boostsfx, 1.0f);
     }
-
-    protected override void OnPowered(bool active)
-    {
-        renderer.material = active ? poweredmatieral : offMaterial;
-        light.SetActive(active);
-    }
+    
+    // void Update()
+    // {
+    //     if (cooldownTimer > 0)
+    //         cooldownTimer -= Time.deltaTime;
+    //
+    //     bool handAttached = rocketHand != null &&
+    //                         rocketHand.activeInHierarchy &&
+    //                         rocketHand.transform.IsChildOf(transform);
+    //
+    //     if (handAttached)
+    //     {
+    //         if (cooldownTimer > 0)
+    //         {
+    //             rockethand.Retract();
+    //             return;
+    //         }
+    //
+    //         if (!launched && IsPowered)
+    //         {
+    //             float baseForce = player.isGrounded ? jumpForce : jumpForce / 2f;
+    //
+    //             float distance = Vector3.Distance(Player.transform.position, transform.position);
+    //
+    //             float distanceMultiplier = Mathf.Clamp01(1 - (distance / maxBoostDistance));
+    //             distanceMultiplier = Mathf.Lerp(minBoostMultiplier, 1f, distanceMultiplier);
+    //
+    //             float finalForce = baseForce * distanceMultiplier;
+    //
+    //             Player.linearVelocity = Vector3.zero;
+    //             Player.AddForce(transform.up * finalForce, ForceMode.Impulse);
+    //
+    //             launched = true;
+    //             cooldownTimer = cooldownTime;
+    //
+    //             rockethand.Retract();
+    //             GlobalAudio.PlayOneShot(boostsfx, 1.0f);
+    //         }
+    //     }
+    //     else
+    //     {
+    //         launched = false;
+    //     }
+    // }
+    //
+    // protected override void OnPowered(bool active)
+    // {
+    //     renderer.material = active ? poweredmatieral : offMaterial;
+    //     light.SetActive(active);
+    // }
 }

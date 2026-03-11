@@ -15,11 +15,8 @@ public class PowerPole : PowerableBehaviour
 
     public void StartGlow()
     {
-        if (source.powering)
-        {
-            glow.SetActive(true);
-            glowcounter = 0.1f;
-        }
+        glow.SetActive(true);
+        glowcounter = 0.1f;
     }
 
     protected override void OnPoweredOn()

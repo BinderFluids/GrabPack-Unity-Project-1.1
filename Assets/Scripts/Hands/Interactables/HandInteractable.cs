@@ -38,12 +38,11 @@ public class HandInteractable : MonoBehaviour
     public bool Grab(BaseHandBehaviour hand)
     {
         if (hands.Count >= maxHands) return false;
+        if (!canInteract) return false;
+        if (targetHandType != null && hand.HandType != targetHandType) return false;
         
         hands.Add(hand); 
         hand.SetParent(transform);
-        
-        if (!canInteract) return false;
-        if (targetHandType != null && hand.HandType != targetHandType) return false;
         
         OnGrab(hand);
         onGrab?.Invoke(hand);
@@ -68,6 +67,7 @@ public class HandInteractable : MonoBehaviour
         List<BaseHandBehaviour> tempList = new List<BaseHandBehaviour>(hands);
         foreach (BaseHandBehaviour hand in tempList)
             hand.Retract();
+        hands.Clear();
     }
 
 

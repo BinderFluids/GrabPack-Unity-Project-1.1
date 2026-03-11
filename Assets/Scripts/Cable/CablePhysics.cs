@@ -4,6 +4,8 @@ using System.Collections.Generic;
 public class CablePhysics : MonoBehaviour
 {
     public BaseHandBehaviour baseHandBehaviour;
+    [SerializeField] private PowerableBehaviour powerableBehaviour;
+    
     public Rigidbody playerRb;
     public Transform startTransform;
     public Transform endTransform;
@@ -14,7 +16,7 @@ public class CablePhysics : MonoBehaviour
 
     private List<Vector3> ropePoints = new List<Vector3>();
 
-    private HashSet<PowerPole> polesTouchedThisFrame = new HashSet<PowerPole>();
+    [SerializeField] private List<PowerPole> polesTouchedThisFrame = new List<PowerPole>();
 
 
     public bool isActive = false;
@@ -44,13 +46,11 @@ public class CablePhysics : MonoBehaviour
         meshFilter.mesh = cableMesh;
 
 
-        InitializeCable();
+        //InitializeCable();
     }
 
     void LateUpdate()
     {
-
-
         if (!isActive)
         {
             if (cableMesh.vertexCount > 0)
@@ -110,10 +110,6 @@ public class CablePhysics : MonoBehaviour
                 continue;
 
             dir.Normalize();
-
-
-
-
 
             if (Physics.SphereCast(from, ropeRadius, dir, out RaycastHit hit, dist, collisionLayer))
             {
@@ -186,12 +182,14 @@ public class CablePhysics : MonoBehaviour
             }
         }
 
-        PowerPole[] allPoles = FindObjectsOfType<PowerPole>();
+        PowerPole[] allPoles = FindObjectsByType<PowerPole>(FindObjectsSortMode.None);
 
         foreach (PowerPole pole in allPoles)
         {
-            if (polesTouchedThisFrame.Contains(pole) && !pole.IsPowered)
+            if (polesTouchedThisFrame.Contains(pole) && !pole.IsPowered && powerableBehaviour.IsPowered)
+            {
                 pole.PowerOn();
+            }
             else if (pole.IsPowered && !polesTouchedThisFrame.Contains(pole))
                 pole.PowerOff();
         }

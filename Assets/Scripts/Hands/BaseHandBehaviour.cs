@@ -213,17 +213,18 @@ public class BaseHandBehaviour : MonoBehaviour
         //Interactable logic
         if (interactableParam != null)
         {
-            interactable = interactableParam;
             if (interactableParam.Grab(this))
             {
                 handgrabbing.SetBool("grabbing", interactableParam.GrabType == HandInteractable.GrabTypeEnum.Grip);
-
+                interactable = interactableParam;
+                
                 lockRetract = true;
                 yield return new WaitForSeconds(lockRetractTime);
                 lockRetract = false;
             }
             else
-                Retract();
+                //skips triggering any handinteractable specific events
+                StartCoroutine(nameof(ReturnHand));
         }
         else
             Retract(); 
