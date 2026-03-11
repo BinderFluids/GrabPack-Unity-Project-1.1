@@ -6,11 +6,8 @@ public class ElectricalSource : MonoBehaviour
 {
     public bool powering = false;
 
-    public MeshRenderer cable1;
+    public MeshRenderer cable;
     public MeshRenderer cable2;
-    public MeshRenderer cable3;
-    public MeshRenderer cable4;
-    public MeshRenderer cable5;
 
     public Material glowingcable;
 
@@ -45,11 +42,8 @@ public class ElectricalSource : MonoBehaviour
 
             powering = true;
 
-            cable1.material = glowingcable;
+            cable.material = glowingcable;
             cable2.material = glowingcable;
-            cable3.material = glowingcable;
-            cable4.material = glowingcable;
-            cable5.material = glowingcable;
 
             changed = false;
 
@@ -61,11 +55,8 @@ public class ElectricalSource : MonoBehaviour
 
             if (!changed)
             {
-                cable1.material = normalcable;
+                cable.material = normalcable;
                 cable2.material = normalcable;
-                cable3.material = normalcable;
-                cable4.material = normalcable;
-                cable5.material = normalcable;
 
                 changed = true;
             }

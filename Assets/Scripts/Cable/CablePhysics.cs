@@ -4,11 +4,9 @@ using System.Collections.Generic;
 public class CablePhysics : MonoBehaviour
 {
     public BaseHandBehaviour baseHandBehaviour;
-    public CableManager cablemanager;
     public Rigidbody playerRb;
     public Transform startTransform;
     public Transform endTransform;
-    public LineRenderer lineRenderer;
     public LayerMask collisionLayer;
 
     public int visualSegmentsPerSection = 8;
@@ -27,7 +25,7 @@ public class CablePhysics : MonoBehaviour
     private Mesh cableMesh;
     private MeshFilter meshFilter;
 
-    public RotateArms aimOverride;
+    public RotateArm aimOverride;
 
     public bool controlsRightArm = false;
 
@@ -63,22 +61,8 @@ public class CablePhysics : MonoBehaviour
         if (aimOverride != null)
         {
 
-            Vector3 targetPoint;
-
-            if (ropePoints.Count > 1)
-            {
-                targetPoint = ropePoints[1];
-            }
-            else
-            {
-                targetPoint = endTransform.position;
-            }
-
-            if (controlsRightArm)
-                aimOverride.rightHitPoint = targetPoint;
-            else
-                aimOverride.leftHitPoint = targetPoint;
-
+            Vector3 targetPoint = ropePoints.Count > 1 ? ropePoints[1] : endTransform.position;
+            aimOverride.SetActive(true, targetPoint); 
 
             if (controlsRightArm)
             {

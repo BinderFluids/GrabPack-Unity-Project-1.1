@@ -69,9 +69,22 @@ public class BaseHandBehaviour : MonoBehaviour
         originalParent = _transform.parent;
     }
 
-    public void Disable()
+    public void EnableHand(CablePhysics cableSim)
+    {
+        CableSim = cableSim;
+        CableSim.endTransform = _transform;
+        CableSim.baseHandBehaviour = this; 
+        
+        gameObject.SetActive(true);
+        originalParent = _transform.parent;
+    }
+    public void DisableHand()
     {
         gameObject.SetActive(false);
+
+        CableSim.endTransform = null;
+        CableSim.baseHandBehaviour = null;
+        CableSim = null; 
     }
     
     #region INPUT

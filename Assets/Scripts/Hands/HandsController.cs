@@ -19,6 +19,7 @@ public class HandsController : MonoBehaviour
         {
             config.hand.onFire += OnFire;
             config.hand.onRetract += OnRetract;
+            config.hand.EnableHand(config.physics);
         }
     }
 
@@ -43,7 +44,7 @@ public class HandsController : MonoBehaviour
                 BaseHandBehaviour newHand = inventory.GetHand(i);
                 if (newHand == null || newHand == handConfigs[1].hand) return;
                 
-                DisableHand(i);
+                DisableHand(1);
                 EnableHand(1, newHand); 
             }
         }
@@ -54,10 +55,7 @@ public class HandsController : MonoBehaviour
     {
         foreach (HandConfig config in handConfigs)
         {
-            BaseHandBehaviour hand = config.hand;
-            RotateArm rotateArm = config.rotateArm;
-            
-            hand.HandleInput(config.mouseIndex, CastRay(), maxRange, config.handNormal);
+            config.hand.HandleInput(config.mouseIndex, CastRay(), maxRange, config.handNormal);
         }
     }
     void LateHandleInput()
@@ -83,6 +81,7 @@ public class HandsController : MonoBehaviour
     public void DisableHand(int index)
     {
         HandConfig config = handConfigs[index];
+        config.hand.DisableHand();
         config.hand = null; 
     }
 
@@ -90,6 +89,7 @@ public class HandsController : MonoBehaviour
     {
         HandConfig config = handConfigs[index];
         config.hand = hand;
+        config.hand.EnableHand(config.physics);
     }
     
     Ray CastRay()
@@ -109,9 +109,11 @@ public class HandsController : MonoBehaviour
 
 
     [Serializable]
-    public struct HandConfig
+    public class HandConfig
     {
         public BaseHandBehaviour hand;
+        public Transform anchor;
+        public CablePhysics physics; 
         public RotateArm rotateArm;
         public int handNormal; 
         public int mouseIndex;   

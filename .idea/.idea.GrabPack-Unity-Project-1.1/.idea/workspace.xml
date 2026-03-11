@@ -5,9 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="17116273-0ca8-4720-8e20-e14000d3ac2e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Hands/HandsInventory.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Hands/HandsInventory.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GrabPack-Unity-Project-1.1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GrabPack-Unity-Project-1.1/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Cable/CablePhysics.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Cable/CablePhysics.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ElectricalSource.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ElectricalSource.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Hands/BaseHandBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Hands/BaseHandBehaviour.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Hands/HandsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Hands/HandsController.cs" afterDir="false" />
     </list>
@@ -123,7 +123,7 @@
       <workItem from="1773116807268" duration="6313000" />
       <workItem from="1773125738454" duration="4043000" />
       <workItem from="1773129975851" duration="2028000" />
-      <workItem from="1773132024056" duration="9583000" />
+      <workItem from="1773132024056" duration="13848000" />
     </task>
     <servers />
   </component>
@@ -158,13 +158,13 @@
         </breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/Hands/BaseHandBehaviour.cs</url>
-          <line>217</line>
+          <line>230</line>
           <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Hands/BaseHandBehaviour.cs" containingFunctionPresentation="Method 'ReturnHand'">
             <startOffsets>
-              <option value="6179" />
+              <option value="6559" />
             </startOffsets>
             <endOffsets>
-              <option value="6180" />
+              <option value="6560" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="4" />
