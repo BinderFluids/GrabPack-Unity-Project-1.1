@@ -23,13 +23,18 @@ public class PowerableBehaviour : MonoBehaviour, IPowerable
         {
             reference.Value.onPoweredOn += CheckAllPowerSources;
             reference.Value.onPowerOff += CheckAllPowerSources;
-        } 
+        }
+        OnAwake();
     }
+
+    protected virtual void OnAwake() { }
 
     private void Start()
     {
         SetPowered(IsPowered);
     }
+
+    protected virtual void OnStart() { }
 
     private void OnDestroy()
     {
