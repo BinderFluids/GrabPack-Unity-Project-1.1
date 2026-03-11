@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.ComponentModel.Design.Serialization;
 using Unity.VisualScripting;
+using UnityEngine.Events;
 using UnityEngine.LowLevelPhysics2D;
 using UnityEngine.UI;
 
@@ -33,7 +34,13 @@ public class BaseHandBehaviour : MonoBehaviour
     
     //Events
     public event Action<BaseHandBehaviour> onFire;
+    [SerializeField] private UnityEvent onFireUnityEvent;
+    
+    public event Action<HandInteractable> onGrab;
+    [SerializeField] private UnityEvent onGrabUnityEvent;
+    
     public event Action<BaseHandBehaviour> onRetract;
+    [SerializeField] private UnityEvent onRetractUnityEvent;
     
     
     private bool isActive;
@@ -60,7 +67,16 @@ public class BaseHandBehaviour : MonoBehaviour
     void Start()
     {
         originalParent = _transform.parent;
+        SubscribeEvents();
     }
+
+    private void OnDestroy()
+    {
+        UnsubscribeEvents();
+    }
+
+    protected virtual void SubscribeEvents() {}
+    protected virtual void UnsubscribeEvents() {}
 
     public void EnableHand(GrabPackManager grabPack, CablePhysics cableSim, Transform origin)
     {
@@ -154,7 +170,9 @@ public class BaseHandBehaviour : MonoBehaviour
                 hitInteractable = foundInteractable;
         }
 
-        onFire?.Invoke(this); 
+        onFire?.Invoke(this);
+        onFireUnityEvent?.Invoke();
+        
         StartCoroutine(MoveHand(targetPoint, hit.point, hitInteractable));
     }
 
@@ -177,6 +195,8 @@ public class BaseHandBehaviour : MonoBehaviour
 
         StartCoroutine(ReturnHand());
         OnRetract();
+        onRetract?.Invoke(this); 
+        onRetractUnityEvent?.Invoke();
         interactable?.Retract(this);
         interactable = null; 
     }
@@ -214,6 +234,8 @@ public class BaseHandBehaviour : MonoBehaviour
             {
                 handgrabbing.SetBool("grabbing", interactableParam.GrabType == HandInteractable.GrabTypeEnum.Grip);
                 interactable = interactableParam;
+                onGrab?.Invoke(interactable); 
+                onGrabUnityEvent?.Invoke();
                 
                 lockRetract = true;
                 yield return new WaitForSeconds(lockRetractTime);
@@ -284,13 +306,4 @@ public class BaseHandBehaviour : MonoBehaviour
         CableSim.isActive = false;
     }
     #endregion
-}
-
-
-public enum ConductionHandElement
-{
-    Fire,
-    Ice,
-    Electricity,
-    None
 }
