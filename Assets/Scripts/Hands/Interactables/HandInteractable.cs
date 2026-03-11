@@ -32,7 +32,7 @@ public class HandInteractable : MonoBehaviour
     public event Action<BaseHandBehaviour> onRetract;
 
 
-    [SerializeField, Range(0, 2)] private int maxHands = 2;
+    [SerializeField, Range(1, 2)] private int maxHands = 2;
     
     
     public bool Grab(BaseHandBehaviour hand)

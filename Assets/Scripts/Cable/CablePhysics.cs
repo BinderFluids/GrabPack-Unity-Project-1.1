@@ -118,14 +118,7 @@ public class CablePhysics : MonoBehaviour
                 if (Vector3.Distance(wrapPoint, from) > 0.05f &&
                     Vector3.Distance(wrapPoint, to) > 0.05f)
                 {
-
-
                     ropePoints.Insert(i + 1, wrapPoint);
-
-                    PowerPole pole = hit.collider.GetComponent<PowerPole>();
-                    if (pole != null)
-                        pole.StartGlow();
-                    
                     return; 
                 }
             }

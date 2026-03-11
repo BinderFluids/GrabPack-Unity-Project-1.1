@@ -21,6 +21,7 @@ public class PowerPole : PowerableBehaviour
 
     protected override void OnPoweredOn()
     {
+        Debug.Log("Powered On");
         StartGlow();
         GlobalAudio.PlayOneShot(connect, 0.7f);
     }
