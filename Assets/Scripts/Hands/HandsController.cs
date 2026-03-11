@@ -1,5 +1,6 @@
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -12,6 +13,8 @@ public class HandsController : MonoBehaviour
     [Header("Hands")] 
     [SerializeField] private HandsInventory inventory;
     [SerializeField] private HandConfig[] handConfigs;
+    public IReadOnlyList<HandConfig> HandConfigs => handConfigs;
+    
     private void Start()
     {
         cam ??= Camera.main;
@@ -33,28 +36,11 @@ public class HandsController : MonoBehaviour
     private void Update()
     {
         HandleHandInput();
-        HandleInventoryInput();
     }
 
     private void LateUpdate()
     {
         LateHandleInput(); 
-    }
-
-    void HandleInventoryInput()
-    {
-        for (int i = 0; i <= 9; i++)
-        {
-            if (Input.GetKeyDown(KeyCode.Alpha0 + i) ||
-                Input.GetKeyDown(KeyCode.Keypad0 + i))
-            {
-                BaseHandBehaviour newHand = inventory.GetHand(i);
-                if (newHand == null || newHand == handConfigs[1].hand) return;
-                
-                DisableHand(1);
-                EnableHand(1, newHand); 
-            }
-        }
     }
     
 
@@ -88,6 +74,8 @@ public class HandsController : MonoBehaviour
     public void DisableHand(int index)
     {
         HandConfig config = handConfigs[index];
+        if (config.hand == null) return; 
+        
         UnsubscribeFromHandEvents(config.hand);
         
         config.hand.DisableHand();
@@ -96,6 +84,7 @@ public class HandsController : MonoBehaviour
     public void EnableHand(int index, BaseHandBehaviour hand)
     {
         HandConfig config = handConfigs[index];
+        
         SubscribeToHandEvents(hand); 
         config.hand = hand;
         config.hand.EnableHand(config.physics);

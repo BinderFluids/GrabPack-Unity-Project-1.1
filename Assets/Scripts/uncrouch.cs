@@ -20,16 +20,4 @@ public class uncrouch : MonoBehaviour
 
 
     }
-
-    public void Switcher()
-    {
-        player.SwitchHand();
-    }
-
-    public void EndSwitch()
-    {
-        player.playeranimations.SetBool("switch", false);
-
-
-    }
 }
