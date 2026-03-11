@@ -6,26 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="17116273-0ca8-4720-8e20-e14000d3ac2e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GrabPack-Unity-Project-1.1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GrabPack-Unity-Project-1.1/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Armature_A_FirstPersonPlayer_HandSwitch.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Armature_A_FirstPersonPlayer_HandSwitch.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/Scanningline 2.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Scanningline 2.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/T_Scanning 1.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/T_Scanning 1.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/scannerReady 1.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/scannerReady 1.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/scannerReady 2.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/scannerReady 2.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/TestScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/TestScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GrabPackManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GrabPackManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/HandPickUp.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/HandPickUp.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Hands/BaseHandBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Hands/BaseHandBehaviour.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Hands/HandController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Hands/HandController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Hands/HandSwitcher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Hands/HandSwitcher.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Hands/HandType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Hands/HandType.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Hands/HandTypes/Conductive.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Hands/HandTypes/Conductive.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Hands/HandTypes/Launch.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Hands/HandTypes/Launch.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Hands/HandTypes/Pressure.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Hands/HandTypes/Pressure.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Hands/HandTypes/Red.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Hands/HandTypes/Red.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Hands/HandsInventory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Hands/HandsInventory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Hands/PressureHand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Hands/PressureHand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interactable/InteractionAgent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Interactable/InteractionAgent.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PickupGrabpack.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PickupGrabpack.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/RigidboyPlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RigidboyPlayerController.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -153,7 +134,7 @@
       <workItem from="1773132024056" duration="18798000" />
       <workItem from="1773204370202" duration="2974000" />
       <workItem from="1773210261460" duration="3861000" />
-      <workItem from="1773214137049" duration="4316000" />
+      <workItem from="1773214137049" duration="4936000" />
     </task>
     <servers />
   </component>

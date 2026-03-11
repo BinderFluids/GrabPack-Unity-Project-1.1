@@ -37,17 +37,6 @@ public class RigidboyPlayerController : MonoBehaviour
     public Animator croucher;
     private Vector3 moveDirection;
 
-    public GameObject RedHand;
-    public GameObject PurpleHand;
-    public GameObject FlareHand;
-    public GameObject conductiveHand;
-    public GameObject BlueHand;
-
-    public string handtoSwitch;
-
-    public BaseHandBehaviour purplelauncher;
-    public BaseHandBehaviour redLauncher;
-
     public float groundCheckRadius;
     public Transform groundCheck;
 
@@ -55,16 +44,6 @@ public class RigidboyPlayerController : MonoBehaviour
 
     private Vector3 currentMoveDirection;
     public float airInputSmooth = 6f;
-
-    public CablePhysics redcable;
-    public CablePhysics purplecable;
-    public CablePhysics pressurecable;
-    public CablePhysics conductivecable;
-
-    public BaseHandBehaviour redlaunch;
-    public BaseHandBehaviour purplelaunch;
-    public BaseHandBehaviour pressurelaunch;
-    public BaseHandBehaviour conductivelaunch;
 
     public AudioSource footstepSource;
     public AudioClip[] grassFootsteps;
@@ -79,9 +58,6 @@ public class RigidboyPlayerController : MonoBehaviour
 
     private bool isPlayingFootsteps = false;
 
-
-
-    public HandManager handmanager;
 
     private bool CanStandUp()
     {
@@ -101,92 +77,10 @@ public class RigidboyPlayerController : MonoBehaviour
         playeranimations.SetBool("crouch", false);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-
-
-        if (handmanager.hasRedHand == false)
-        {
-            RedHand.SetActive(false);
-        }
-        if (handmanager.hasBlueHand == false)
-        {
-            BlueHand.SetActive(false);
-        }
-        if (handmanager.hasPurpleHand == false)
-        {
-            PurpleHand.SetActive(false);
-        }
-        if (handmanager.hasPressureHand == false)
-        {
-            FlareHand.SetActive(false);
-        }
-        if (handmanager.hasConductiveHand == false)
-        {
-            conductiveHand.SetActive(false);
-        }
-
-        InitializeStartingHand();
-
     }
 
     private void Update()
     {
-        // if (Input.GetKeyDown(KeyCode.Alpha1) && handmanager.hasRedHand)
-        // {
-        //     if (redcable.isActive == false && purplecable.isActive == false && pressurecable.isActive == false && conductivecable.isActive == false)
-        //     {
-        //         if (redlaunch.holdingbattery == false && purplelaunch.holdingbattery == false && pressurelaunch.holdingbattery == false && conductivelaunch.holdingbattery == false)
-        //         {
-        //             playeranimations.SetBool("switch", true);
-        //             handtoSwitch = "red";
-        //             playeranimations.SetTrigger("Switch");
-        //
-        //         }
-        //
-        //     }
-        // }
-        // if (Input.GetKeyDown(KeyCode.Alpha2) && handmanager.hasPurpleHand)
-        // {
-        //     if (redcable.isActive == false && purplecable.isActive == false && pressurecable.isActive == false && conductivecable.isActive == false)
-        //     {
-        //         if (redlaunch.holdingbattery == false && purplelaunch.holdingbattery == false && pressurelaunch.holdingbattery == false && conductivelaunch.holdingbattery == false)
-        //         {
-        //             playeranimations.SetBool("switch", true);
-        //             handtoSwitch = "purple";
-        //             playeranimations.SetTrigger("Switch");
-        //
-        //         }
-        //
-        //     }
-        // }
-        // if (Input.GetKeyDown(KeyCode.Alpha3) && handmanager.hasPressureHand)
-        // {
-        //     if (redcable.isActive == false && purplecable.isActive == false && pressurecable.isActive == false && conductivecable.isActive == false)
-        //     {
-        //         if (redlaunch.holdingbattery == false && purplelaunch.holdingbattery == false && pressurelaunch.holdingbattery == false && conductivelaunch.holdingbattery == false)
-        //         {
-        //             playeranimations.SetBool("switch", true);
-        //             handtoSwitch = "flare";
-        //             playeranimations.SetTrigger("Switch");
-        //
-        //         }
-        //
-        //     }
-        // }
-        // if (Input.GetKeyDown(KeyCode.Alpha4) && handmanager.hasConductiveHand)
-        // {
-        //     if (redcable.isActive == false && purplecable.isActive == false && pressurecable.isActive == false && conductivecable.isActive == false)
-        //     {
-        //         if (redlaunch.holdingbattery == false && purplelaunch.holdingbattery == false && pressurelaunch.holdingbattery == false && conductivelaunch.holdingbattery == false)
-        //         {
-        //             playeranimations.SetBool("switch", true);
-        //             playeranimations.SetTrigger("Switch");
-        //
-        //             handtoSwitch = "conductive";
-        //         }
-        //
-        //     }
-        // }
-
         isGrounded = Physics.SphereCast(groundCheck.position, groundCheckRadius, Vector3.down, out RaycastHit hit, groundCheckRadius + 0.3f, groundLayer);
 
         float mouseX = Input.GetAxis("Mouse X") * lookSpeedX;
@@ -346,96 +240,6 @@ public class RigidboyPlayerController : MonoBehaviour
             }
         }
         return null;
-    }
-
-    public void SwitchHand()
-    {
-        playeranimations.speed = 1f;
-        targetMoveSpeed = moveSpeed;
-
-        if (handtoSwitch == "red")
-        {
-            redhand();
-        }
-        if (handtoSwitch == "purple")
-        {
-            purplehand();
-        }
-        if (handtoSwitch == "flare")
-        {
-            flarehand();
-        }
-        if (handtoSwitch == "conductive")
-        {
-            conductivehand();
-        }
-
-
-
-    }
-
-    public void redhand()
-    {
-        RedHand.SetActive(true);
-        PurpleHand.SetActive(false);
-        FlareHand.SetActive(false);
-        conductiveHand.SetActive(false);
-
-    }
-
-    public void purplehand()
-    {
-        RedHand.SetActive(false);
-        PurpleHand.SetActive(true);
-        FlareHand.SetActive(false);
-        conductiveHand.SetActive(false);
-
-    }
-
-    public void flarehand()
-    {
-        RedHand.SetActive(false);
-        PurpleHand.SetActive(false);
-        FlareHand.SetActive(true);
-        conductiveHand.SetActive(false);
-
-    }
-
-    public void conductivehand()
-    {
-        RedHand.SetActive(false);
-        PurpleHand.SetActive(false);
-        FlareHand.SetActive(false);
-        conductiveHand.SetActive(true);
-
-    }
-
-
-    private void InitializeStartingHand()
-    {
-        RedHand.SetActive(false);
-        PurpleHand.SetActive(false);
-        FlareHand.SetActive(false);
-        conductiveHand.SetActive(false);
-
-        BlueHand.SetActive(handmanager.hasBlueHand);
-
-        if (handmanager.hasRedHand)
-        {
-            redhand();
-        }
-        else if (handmanager.hasPurpleHand)
-        {
-            purplehand();
-        }
-        else if (handmanager.hasPressureHand)
-        {
-            flarehand();
-        }
-        else if (handmanager.hasConductiveHand)
-        {
-            conductivehand();
-        }
     }
 
     public void StopFootsteps()
