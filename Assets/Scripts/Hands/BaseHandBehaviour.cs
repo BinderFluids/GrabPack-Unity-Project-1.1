@@ -9,6 +9,9 @@ using UnityEngine.UI;
 
 public class BaseHandBehaviour : MonoBehaviour
 {
+    [SerializeField] private HandType handType;
+    public HandType HandType => handType;
+    
     public CableManager cableManager;
 
     [SerializeField] private Transform _transform;
@@ -36,8 +39,6 @@ public class BaseHandBehaviour : MonoBehaviour
     //Events
     public event Action<BaseHandBehaviour> onFire;
     public event Action<BaseHandBehaviour> onRetract;
-    
-    
     
     
     private bool isActive;

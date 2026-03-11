@@ -1539,8 +1539,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PowerableBehaviour
   <IsPowered>k__BackingField: 0
-  powerSourceReference:
-    underlyingValue: {fileID: 0}
+  powerSourceReferences: []
   onPoweredOnUnityEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -1562,6 +1561,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53dae030e327406fb304dca04c3e14d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TimedInteractable
+  targetHandType: {fileID: 11400000, guid: c1f5b7d04ec598989aec277a01b458b4, type: 2}
+  canInteract: 1
   _transform: {fileID: 0}
   grabType: 1
   hands: []
@@ -1656,15 +1657,14 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   maxHands: 1
-  canInteract: 1
   timerType: 0
-  targetHand: {fileID: 0}
   interactOnce: 1
   resetOnRelease: 1
   <TimeToInteract>k__BackingField: 3
   onInteractionTickEvent:
     m_PersistentCalls:
       m_Calls: []
+  timeHeld: 0
   onTimerFinishedEvent:
     m_PersistentCalls:
       m_Calls:

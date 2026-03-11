@@ -13,7 +13,7 @@ public class HandInteractable : MonoBehaviour
     }
     
     [Tooltip("Optional - If set, only interactable by this hand")]
-    [SerializeField] private BaseHandBehaviour targetHand;
+    [SerializeField] private HandType targetHandType;
     [SerializeField] protected bool canInteract = true;
     public bool CanInteract => canInteract;
     public void SetInteractable(bool value) => canInteract = value;
@@ -43,7 +43,7 @@ public class HandInteractable : MonoBehaviour
         hand.SetParent(transform);
         
         if (!canInteract) return false;
-        if (targetHand != null && targetHand != hand) return false;
+        if (targetHandType != null && hand.HandType != targetHandType) return false;
         
         OnGrab(hand);
         onGrab?.Invoke(hand);
