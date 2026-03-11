@@ -19,8 +19,8 @@ public class HandSwitcher : MonoBehaviour
     void HandleInventoryInput()
     {
         for (int i = 0; i <= 9; i++)
-            if (Input.GetKeyDown(KeyCode.Alpha0 + i) ||
-                Input.GetKeyDown(KeyCode.Keypad0 + i))
+            if (Input.GetKeyDown(KeyCode.Alpha0 + i + 1) ||
+                Input.GetKeyDown(KeyCode.Keypad0 + i + 1))
                 SwitchHand(i);
     }
 
@@ -34,6 +34,7 @@ public class HandSwitcher : MonoBehaviour
         isSwitching = true;
         handToEnable = newHand;
                 
+        handController.Hand?.ReleaseItem();
         grabPackAnimator.SetBool("switch", true);
         grabPackAnimator.SetTrigger("Switch");
     }

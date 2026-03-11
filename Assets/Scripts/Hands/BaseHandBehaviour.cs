@@ -78,7 +78,6 @@ public class BaseHandBehaviour : MonoBehaviour
     {
         grabPack = null; 
         
-        ReleaseItem();
         gameObject.SetActive(false);
 
         CableSim.endTransform = null;
