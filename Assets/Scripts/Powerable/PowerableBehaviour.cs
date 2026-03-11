@@ -54,7 +54,6 @@ public class PowerableBehaviour : MonoBehaviour, IPowerable
         }
         else if (IsPowered)
             PowerOff();
-        
     }
 
     public void SetPowered(bool active)

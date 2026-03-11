@@ -25,6 +25,7 @@ public class HandInteractable : MonoBehaviour
     
     [SerializeField] protected List<BaseHandBehaviour> hands = new(); 
     public List<BaseHandBehaviour> Hands => hands;
+    public bool IsGrabbed => hands.Count > 0;
     
     [SerializeField] private UnityEvent onGrabUnityEvent;
     [SerializeField] private UnityEvent onRetractUnityEvent;
@@ -54,10 +55,11 @@ public class HandInteractable : MonoBehaviour
 
     public void Retract(BaseHandBehaviour hand)
     {
+        hands.Remove(hand); 
+        
         OnRetract(hand);
         onRetract?.Invoke(hand);
         onRetractUnityEvent?.Invoke();
-        hands.Remove(hand); 
     }
     protected virtual void OnRetract(BaseHandBehaviour hand) { }
 
@@ -80,7 +82,6 @@ public class HandInteractable : MonoBehaviour
     {
         OnLateUpdatePull(hand); 
     }
-
     protected virtual void OnLateUpdatePull(BaseHandBehaviour hand)
     {
         

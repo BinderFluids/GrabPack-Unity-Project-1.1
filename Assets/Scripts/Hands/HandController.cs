@@ -7,12 +7,13 @@ using UnityEngine;
 
 public class HandController : MonoBehaviour
 {
+    [Header("Dependencies")]
     [SerializeField] private GrabPackManager grabPack;
+    [SerializeField] private CablePhysics physics; 
+    [SerializeField] private RotateArm rotateArm;
     [SerializeField] private Camera cam;
 
     [Header("Settings")]
-    [SerializeField] private CablePhysics physics; 
-    [SerializeField] private RotateArm rotateArm;
     [SerializeField] private int handNormal; 
     [SerializeField] private int mouseIndex;   
     

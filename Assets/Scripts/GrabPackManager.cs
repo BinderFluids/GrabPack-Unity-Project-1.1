@@ -2,11 +2,13 @@ using UnityEngine;
 
 public class GrabPackManager : MonoBehaviour
 {
-    [field: SerializeField] public float MaxRange { get; private set; }
+    [Header("Behaviours")]
+    [SerializeField] private PowerableBehaviour powerableBehaviour;
+    public PowerableBehaviour PowerableBehaviour => powerableBehaviour;
     
-    [field: SerializeField] public float FireSpeed { get; private set; }
-    
-    [field: SerializeField] public float PullSpeed { get; private set; }
-
+    [Header("Fields")]
     [SerializeField] private AudioClip fireClip;
+    [field: SerializeField] public float MaxRange { get; private set; }
+    [field: SerializeField] public float FireSpeed { get; private set; }
+    [field: SerializeField] public float PullSpeed { get; private set; }
 }
