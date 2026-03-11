@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d52e89d3437467187bd2266473c66bc, type: 3}
   m_Name: Launch
   m_EditorClassIdentifier: Assembly-CSharp::HandType
+  handPrefab: {fileID: 3396329379332374786, guid: 9a0ab27cb90de0216b4282bace406e67, type: 3}

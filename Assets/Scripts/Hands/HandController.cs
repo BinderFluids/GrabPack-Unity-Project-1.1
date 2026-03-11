@@ -12,7 +12,8 @@ public class HandController : MonoBehaviour
     [SerializeField] private CablePhysics physics; 
     [SerializeField] private RotateArm rotateArm;
     [SerializeField] private Camera cam;
-
+    [SerializeField] private Transform origin;
+    
     [Header("Settings")]
     [SerializeField] private int handNormal; 
     [SerializeField] private int mouseIndex;   
@@ -76,16 +77,16 @@ public class HandController : MonoBehaviour
         hand.DisableHand();
         hand = null; 
     }
-    public void EnableHand(BaseHandBehaviour hand)
+    public void EnableHand(BaseHandBehaviour newHand)
     {
-        if (hand == null)
+        if (newHand == null)
         {
             Debug.LogError("Trying to enable a Hand that is null");
             return;
         }
         
-        this.hand = hand; 
-        hand.EnableHand(grabPack, physics);
+        hand = newHand; 
+        newHand.EnableHand(grabPack, physics, origin);
         
         SubscribeToHandEvents(); 
     }

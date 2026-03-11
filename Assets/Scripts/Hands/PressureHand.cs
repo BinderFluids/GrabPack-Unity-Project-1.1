@@ -58,7 +58,7 @@ public class PressureHand : BaseHandBehaviour
         gauge.SetActive(false);
         if (pressure >= 1f)
         {
-            globalAudio.PlayOneShot(pressureRelease, 2.0f);
+            //globalAudio.PlayOneShot(pressureRelease, 2.0f);
         }
         pressureHandInteractable.ReleasePressure(this, pressure);
         pressure = 0f;

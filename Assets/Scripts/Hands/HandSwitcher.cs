@@ -18,34 +18,37 @@ public class HandSwitcher : MonoBehaviour
 
     void HandleInventoryInput()
     {
-        if (isSwitching) return;
-        
         for (int i = 0; i <= 9; i++)
-        {
             if (Input.GetKeyDown(KeyCode.Alpha0 + i) ||
                 Input.GetKeyDown(KeyCode.Keypad0 + i))
-            {
-                BaseHandBehaviour newHand = inventory.GetHand(i);
-                if (newHand == null) return;
-                if (handController.Hand == newHand) return; 
-                
-                isSwitching = true;
-                handToEnable = newHand;
-                
-                grabPackAnimator.SetBool("switch", true);
-                grabPackAnimator.SetTrigger("Switch");
-            }
-        }
+                SwitchHand(i);
     }
 
+    public void SwitchHand(BaseHandBehaviour newHand)
+    {
+        if (isSwitching) return;
+        
+        if (newHand == null) return;
+        if (handController.Hand == newHand) return; 
+        
+        isSwitching = true;
+        handToEnable = newHand;
+                
+        grabPackAnimator.SetBool("switch", true);
+        grabPackAnimator.SetTrigger("Switch");
+    }
+    public void SwitchHand(int i)
+    {
+        SwitchHand(inventory.GetHand(i));
+    }
     
     //Called from animation events
-    public void SwitchHand()
+    void SwitchHandOnAnimation()
     {
         handController.DisableHand();
         handController.EnableHand(handToEnable);
     }
-    public void OnSwitchEnd()
+    void OnSwitchEnd()
     {
         isSwitching = false; 
     }

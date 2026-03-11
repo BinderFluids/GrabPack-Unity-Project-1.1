@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d52e89d3437467187bd2266473c66bc, type: 3}
   m_Name: Red
   m_EditorClassIdentifier: Assembly-CSharp::HandType
+  handPrefab: {fileID: 2498179012039250628, guid: 574412e6877992ec6a4d5a560ded1558, type: 3}

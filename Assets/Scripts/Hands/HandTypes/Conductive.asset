@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d52e89d3437467187bd2266473c66bc, type: 3}
   m_Name: Conductive
   m_EditorClassIdentifier: Assembly-CSharp::HandType
+  handPrefab: {fileID: 1507377922928684610, guid: 6c1ffaeb88ac7b2259235de317e58382, type: 3}

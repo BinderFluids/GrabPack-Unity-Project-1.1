@@ -15,9 +15,6 @@ public class BaseHandBehaviour : MonoBehaviour
 
     private GrabPackManager grabPack;
     public GrabPackManager GrabPack => grabPack;
-    
-    public CableManager cableManager;
-
     [SerializeField] private Transform _transform;
     public Transform Transform => _transform;
     
@@ -27,11 +24,10 @@ public class BaseHandBehaviour : MonoBehaviour
     
 
     [Header("Animation")]
-    [SerializeField] private Animator playerAnimations;
     [SerializeField] private Animator handgrabbing;
     
     [Header("Audio")]
-    public AudioSource globalAudio;
+    //public AudioSource globalAudio;
     public AudioClip firesfx;
     public AudioClip grabsfx;
     
@@ -54,8 +50,6 @@ public class BaseHandBehaviour : MonoBehaviour
     public HandInteractable Interactable => interactable;
     [SerializeField] private Pickupable pickupable;
     public bool HasItem => pickupable != null;
-    
-    public bool MouseButtonHeld { get; private set; }
 
     private void Awake()
     {
@@ -68,9 +62,10 @@ public class BaseHandBehaviour : MonoBehaviour
         originalParent = _transform.parent;
     }
 
-    public void EnableHand(GrabPackManager grabPack, CablePhysics cableSim)
+    public void EnableHand(GrabPackManager grabPack, CablePhysics cableSim, Transform origin)
     {
         this.grabPack = grabPack;
+        handOrigin = origin; 
         
         CableSim = cableSim;
         CableSim.endTransform = _transform;
@@ -136,16 +131,16 @@ public class BaseHandBehaviour : MonoBehaviour
         if (isActive) return;
         if (!gameObject.activeSelf) return;
 
-        globalAudio.PlayOneShot(firesfx, 0.7f);
+       // globalAudio.PlayOneShot(firesfx, 0.7f);
 
         CableSim.isActive = true;
-        float remaining = cableManager.GetRemainingLength();
+        float remaining = grabPack.CableManager.GetRemainingLength();
         float maxRange = Mathf.Min(remaining, grabPack.MaxRange);
 
         Physics.Raycast(ray, out RaycastHit hit, maxRange);
         targetPoint = hit.collider ? hit.point : ray.origin + ray.direction * maxRange;
         
-        playerAnimations.SetTrigger("shoot");
+        grabPack.Animator.SetTrigger("shoot");
         _transform.SetParent(null, true); 
         isActive = true;
         
@@ -239,7 +234,7 @@ public class BaseHandBehaviour : MonoBehaviour
         
         handgrabbing.SetBool("grabbing", pickupable != null);
         
-        globalAudio.PlayOneShot(grabsfx, 0.7f);
+        //globalAudio.PlayOneShot(grabsfx, 0.7f);
 
         Vector3 startPosition = _transform.position;
         Quaternion startRotation = _transform.rotation;

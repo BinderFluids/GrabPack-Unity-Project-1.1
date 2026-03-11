@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d52e89d3437467187bd2266473c66bc, type: 3}
   m_Name: Pressure
   m_EditorClassIdentifier: Assembly-CSharp::HandType
+  handPrefab: {fileID: 392790495287396343, guid: c27eeab7a19aa17228800bf586a0e3b4, type: 3}

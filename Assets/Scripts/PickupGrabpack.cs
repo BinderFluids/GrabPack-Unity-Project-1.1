@@ -12,11 +12,11 @@ public class PickupGrabpack : MonoBehaviour, IInteractable
     public bool hasConductiveHand = true;
 
 
-    public GameObject RedHand;
-    public GameObject PurpleHand;
-    public GameObject FlareHand;
-    public GameObject conductiveHand;
-    public GameObject BlueHand;
+    // public GameObject RedHand;
+    // public GameObject PurpleHand;
+    // public GameObject FlareHand;
+    // public GameObject conductiveHand;
+    // public GameObject BlueHand;
 
 
     public GameObject MockRedHand;
@@ -30,33 +30,31 @@ public class PickupGrabpack : MonoBehaviour, IInteractable
     public event Action onInteract; 
     public void Interact()
     {
-        
-        
         gameObject.SetActive(false);
 
-        BlueHand.SetActive(hasBlueHand);
-
-        RedHand.SetActive(false);
-        PurpleHand.SetActive(false);
-        FlareHand.SetActive(false);
-        conductiveHand.SetActive(false);
-
-        if (hasRedHand)
-            RedHand.SetActive(true);
-        else if (hasPurpleHand)
-            PurpleHand.SetActive(true);
-        else if (hasPressureHand)
-            FlareHand.SetActive(true);
-        else if (hasConductiveHand)
-            conductiveHand.SetActive(true);
+        // BlueHand.SetActive(hasBlueHand);
+        //
+        // RedHand.SetActive(false);
+        // PurpleHand.SetActive(false);
+        // FlareHand.SetActive(false);
+        // conductiveHand.SetActive(false);
+        //
+        // if (hasRedHand)
+        //     RedHand.SetActive(true);
+        // else if (hasPurpleHand)
+        //     PurpleHand.SetActive(true);
+        // else if (hasPressureHand)
+        //     FlareHand.SetActive(true);
+        // else if (hasConductiveHand)
+        //     conductiveHand.SetActive(true);
 
         handmanager.hasGrabPack = true;
 
-        handmanager.hasRedHand = hasRedHand;
-        handmanager.hasBlueHand = hasBlueHand;
-        handmanager.hasPressureHand = hasPressureHand;
-        handmanager.hasPurpleHand = hasPurpleHand;
-        handmanager.hasConductiveHand = hasConductiveHand;
+        // handmanager.hasRedHand = hasRedHand;
+        // handmanager.hasBlueHand = hasBlueHand;
+        // handmanager.hasPressureHand = hasPressureHand;
+        // handmanager.hasPurpleHand = hasPurpleHand;
+        // handmanager.hasConductiveHand = hasConductiveHand;
     }
 
     void Start()
