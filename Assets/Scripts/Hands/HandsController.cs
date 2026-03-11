@@ -15,12 +15,19 @@ public class HandsController : MonoBehaviour
     private void Start()
     {
         cam ??= Camera.main;
-        foreach (HandConfig config in handConfigs)
-        {
-            config.hand.onFire += OnFire;
-            config.hand.onRetract += OnRetract;
-            config.hand.EnableHand(config.physics);
-        }
+        EnableHand(0, handConfigs[0].hand);
+        EnableHand(1, handConfigs[1].hand);
+    }
+
+    void SubscribeToHandEvents(BaseHandBehaviour hand)
+    {
+        hand.onFire += OnFire;
+        hand.onRetract += OnRetract;
+    }
+    void UnsubscribeFromHandEvents(BaseHandBehaviour hand)
+    {
+        hand.onFire -= OnFire;
+        hand.onRetract -= OnRetract;
     }
 
     private void Update()
@@ -81,13 +88,14 @@ public class HandsController : MonoBehaviour
     public void DisableHand(int index)
     {
         HandConfig config = handConfigs[index];
+        UnsubscribeFromHandEvents(config.hand);
         config.hand.DisableHand();
         config.hand = null; 
     }
-
     public void EnableHand(int index, BaseHandBehaviour hand)
     {
         HandConfig config = handConfigs[index];
+        SubscribeToHandEvents(hand); 
         config.hand = hand;
         config.hand.EnableHand(config.physics);
     }
