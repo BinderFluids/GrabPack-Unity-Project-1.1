@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
+using System.ComponentModel.Design.Serialization;
 using Unity.VisualScripting;
 using UnityEngine.LowLevelPhysics2D;
 using UnityEngine.UI;
@@ -56,6 +57,7 @@ public class BaseHandBehaviour : MonoBehaviour
     [SerializeField] private HandInteractable interactable;
     public HandInteractable Interactable => interactable;
     [SerializeField] private Pickupable pickupable;
+    public bool HasItem => pickupable != null;
     
     public bool MouseButtonHeld { get; private set; }
 
@@ -81,6 +83,7 @@ public class BaseHandBehaviour : MonoBehaviour
     }
     public void DisableHand()
     {
+        ReleaseItem();
         gameObject.SetActive(false);
 
         CableSim.endTransform = null;

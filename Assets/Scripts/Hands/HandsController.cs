@@ -89,6 +89,7 @@ public class HandsController : MonoBehaviour
     {
         HandConfig config = handConfigs[index];
         UnsubscribeFromHandEvents(config.hand);
+        
         config.hand.DisableHand();
         config.hand = null; 
     }
