@@ -12,6 +12,9 @@ public class BaseHandBehaviour : MonoBehaviour
 {
     [SerializeField] private HandType handType;
     public HandType HandType => handType;
+
+    private GrabPackManager grabPack;
+    public GrabPackManager GrabPack => grabPack;
     
     public CableManager cableManager;
 
@@ -22,11 +25,6 @@ public class BaseHandBehaviour : MonoBehaviour
     public Transform Origin => handOrigin;
     private Transform originalParent;
     
-    [Header("Movement Settings")]
-    [SerializeField] private float maxRange = 10f;
-    [SerializeField] private float fireSpeed = 20f;
-    [SerializeField] private float pullSpeed = 5f;
-    public float PullSpeed => pullSpeed;
 
     [Header("Animation")]
     [SerializeField] private Animator playerAnimations;
@@ -70,8 +68,10 @@ public class BaseHandBehaviour : MonoBehaviour
         originalParent = _transform.parent;
     }
 
-    public void EnableHand(CablePhysics cableSim)
+    public void EnableHand(GrabPackManager grabPack, CablePhysics cableSim)
     {
+        this.grabPack = grabPack;
+        
         CableSim = cableSim;
         CableSim.endTransform = _transform;
         CableSim.baseHandBehaviour = this; 
@@ -81,6 +81,8 @@ public class BaseHandBehaviour : MonoBehaviour
     }
     public void DisableHand()
     {
+        grabPack = null; 
+        
         ReleaseItem();
         gameObject.SetActive(false);
 
@@ -90,14 +92,14 @@ public class BaseHandBehaviour : MonoBehaviour
     }
     
     #region INPUT
-    public void HandleInput(int mouseIndex, Ray ray, float maxRange, int handNormal)
+    public void HandleInput(int mouseIndex, Ray ray, int handNormal)
     {
         // detect initial presses
         if (Input.GetMouseButtonDown(mouseIndex))
         {
             if (!IsActive && pickupable == null)
             {
-                FireHand(ray, maxRange, handNormal);
+                FireHand(ray, handNormal);
             }
             else if (!IsActive && pickupable != null)
             {
@@ -115,7 +117,7 @@ public class BaseHandBehaviour : MonoBehaviour
         if (Input.GetMouseButtonUp(mouseIndex) && interactable != null)
             Retract(); 
     }
-    public void LateHandleInput(int mouseIndex, Ray ray, float maxRange, int handNormal)
+    public void LateHandleInput(int mouseIndex, Ray ray,  int handNormal)
     {
         if (Input.GetMouseButtonDown(mouseIndex))
             interactable?.LateUpdatePull(this); 
@@ -129,7 +131,7 @@ public class BaseHandBehaviour : MonoBehaviour
     }
 
     
-    public void FireHand(Ray ray, float range, int handNormal = 1)
+    public void FireHand(Ray ray,  int handNormal = 1)
     {
         if (isActive) return;
         if (!gameObject.activeSelf) return;
@@ -138,7 +140,7 @@ public class BaseHandBehaviour : MonoBehaviour
 
         CableSim.isActive = true;
         float remaining = cableManager.GetRemainingLength();
-        maxRange = Mathf.Min(remaining, range);
+        float maxRange = Mathf.Min(remaining, grabPack.MaxRange);
 
         Physics.Raycast(ray, out RaycastHit hit, maxRange);
         targetPoint = hit.collider ? hit.point : ray.origin + ray.direction * maxRange;
@@ -197,7 +199,7 @@ public class BaseHandBehaviour : MonoBehaviour
     {
         Vector3 start = _transform.position;
         float distance = Vector3.Distance(start, target);
-        float duration = distance / fireSpeed;
+        float duration = distance / grabPack.FireSpeed;
         float elapsedTime = 0f;
 
         handgrabbing.SetBool("grabbing", false);
@@ -242,7 +244,7 @@ public class BaseHandBehaviour : MonoBehaviour
         Vector3 startPosition = _transform.position;
         Quaternion startRotation = _transform.rotation;
 
-        float duration = Vector3.Distance(startPosition, handOrigin.position) / fireSpeed;
+        float duration = Vector3.Distance(startPosition, handOrigin.position) / grabPack.FireSpeed;
         float elapsedTime = 0f;
 
         while (CableSim.GetCablePoints().Count > 1)
@@ -259,7 +261,7 @@ public class BaseHandBehaviour : MonoBehaviour
                 _transform.position = Vector3.MoveTowards(
                     _transform.position,
                     targetPoint,
-                    fireSpeed * Time.deltaTime
+                    grabPack.FireSpeed * Time.deltaTime
                 );
 
                 yield return null;
@@ -273,7 +275,7 @@ public class BaseHandBehaviour : MonoBehaviour
             _transform.position = Vector3.MoveTowards(
                 _transform.position,
                 handOrigin.position,
-                fireSpeed * Time.deltaTime
+                grabPack.FireSpeed * Time.deltaTime
             );
 
             yield return null;

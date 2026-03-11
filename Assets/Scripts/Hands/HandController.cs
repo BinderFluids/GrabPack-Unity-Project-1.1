@@ -8,7 +8,6 @@ using UnityEngine;
 public class HandController : MonoBehaviour
 {
     [SerializeField] private GrabPackManager grabPack;
-    
     [SerializeField] private Camera cam;
 
     [Header("Settings")]
@@ -51,11 +50,11 @@ public class HandController : MonoBehaviour
 
     void HandleHandInput()
     {
-        hand?.HandleInput(mouseIndex, CastRay(), grabPack.MaxRange, handNormal);
+        hand?.HandleInput(mouseIndex, CastRay(), handNormal);
     }
     void LateHandleInput()
     {
-        hand?.LateHandleInput(mouseIndex, CastRay(), grabPack.MaxRange, handNormal);
+        hand?.LateHandleInput(mouseIndex, CastRay(), handNormal);
     }
 
     void OnFire(BaseHandBehaviour hand)
@@ -85,7 +84,7 @@ public class HandController : MonoBehaviour
         }
         
         this.hand = hand; 
-        hand.EnableHand(physics);
+        hand.EnableHand(grabPack, physics);
         
         SubscribeToHandEvents(); 
     }

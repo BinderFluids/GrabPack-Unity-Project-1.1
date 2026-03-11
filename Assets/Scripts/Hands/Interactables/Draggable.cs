@@ -28,7 +28,7 @@ public class Draggable : HandInteractable, IPressureHandInteractable
         Vector3 direction = targetPos - rb.position;
         Vector3 dirNormalized = direction.normalized;
 
-        float constantPullForce = hand.PullSpeed * 350; 
+        float constantPullForce = hand.GrabPack.PullSpeed * 350; 
         float damping = 8f;
 
         Vector3 force =

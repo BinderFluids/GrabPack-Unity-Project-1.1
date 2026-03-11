@@ -5,17 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="17116273-0ca8-4720-8e20-e14000d3ac2e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/GrabPackManager.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/GrabPackManager.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GrabPack-Unity-Project-1.1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GrabPack-Unity-Project-1.1/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Armature_A_FirstPersonPlayer_HandSwitch.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Armature_A_FirstPersonPlayer_HandSwitch.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/scannerReady 2.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/scannerReady 2.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/TestScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/TestScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Hands/BaseHandBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Hands/BaseHandBehaviour.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Hands/HandSwitcher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Hands/HandSwitcher.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Hands/HandsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Hands/HandController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Hands/HandsController.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Hands/HandController.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/uncrouch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/uncrouch.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Hands/HandController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Hands/HandController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Hands/Interactables/Draggable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Hands/Interactables/Draggable.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,7 +135,7 @@
       <workItem from="1773132024056" duration="18798000" />
       <workItem from="1773204370202" duration="2974000" />
       <workItem from="1773210261460" duration="3861000" />
-      <workItem from="1773214137049" duration="41000" />
+      <workItem from="1773214137049" duration="548000" />
     </task>
     <servers />
   </component>
@@ -216,13 +209,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/Hands/HandController.cs</url>
-          <line>83</line>
+          <line>82</line>
           <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Hands/HandController.cs" containingFunctionPresentation="Method 'EnableHand'">
             <startOffsets>
-              <option value="1910" />
+              <option value="1867" />
             </startOffsets>
             <endOffsets>
-              <option value="1917" />
+              <option value="1874" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="10" />
