@@ -49,8 +49,6 @@ public class BaseHandBehaviour : MonoBehaviour
     public Vector3 TargetPoint => targetPoint;
     
     public CablePhysics CableSim;
-    
-    public Barricade br;
     private bool lockRetract = false;
     
     //Interaction
@@ -241,8 +239,6 @@ public class BaseHandBehaviour : MonoBehaviour
         
         globalAudio.PlayOneShot(grabsfx, 0.7f);
 
-        br = null;
-        
         Vector3 startPosition = _transform.position;
         Quaternion startRotation = _transform.rotation;
 

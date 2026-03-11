@@ -5,10 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="17116273-0ca8-4720-8e20-e14000d3ac2e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Hands/HandSwitcher.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Hands/HandSwitcher.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/GrabPackManager.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/GrabPackManager.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GrabPack-Unity-Project-1.1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GrabPack-Unity-Project-1.1/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Hands/HandsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Hands/HandsController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Armature_A_FirstPersonPlayer_HandSwitch.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Armature_A_FirstPersonPlayer_HandSwitch.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/scannerReady 2.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/scannerReady 2.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/TestScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/TestScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Hands/BaseHandBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Hands/BaseHandBehaviour.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Hands/HandSwitcher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Hands/HandSwitcher.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Hands/HandsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Hands/HandController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Hands/HandsController.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Hands/HandController.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/uncrouch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/uncrouch.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -20,7 +26,7 @@
     <option name="firstShow" value="false" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="29" />
+    <option name="cachedIndexableFilesCount" value="1" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="Git.Settings">
@@ -32,8 +38,10 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Core/CollisionEventBroadcaster.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Core/FollowSpline.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Door.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/GrabPackManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/HandScanner.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Hands/BaseHandBehaviour.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Hands/HandController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Hands/HandSwitcher.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Hands/HandType.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Hands/HandsInventory.cs" root0="FORCE_HIGHLIGHTING" />
@@ -43,7 +51,9 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Hands/Interactables/TimedInteractable.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Interactable/Interactable.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Powerable/JumpPad.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Powerable/PowerPole.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Powerable/PowerableBehaviour.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/RigidboyPlayerController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/RotateArm.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/RotateArms.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/SerializeInterface/InterfaceReference.cs" root0="FORCE_HIGHLIGHTING" />
@@ -131,7 +141,8 @@
       <workItem from="1773129975851" duration="2028000" />
       <workItem from="1773132024056" duration="18798000" />
       <workItem from="1773204370202" duration="2974000" />
-      <workItem from="1773210261460" duration="2011000" />
+      <workItem from="1773210261460" duration="3861000" />
+      <workItem from="1773214137049" duration="41000" />
     </task>
     <servers />
   </component>
@@ -165,19 +176,6 @@
           <option name="timeStamp" value="3" />
         </breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Hands/BaseHandBehaviour.cs</url>
-          <line>235</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Hands/BaseHandBehaviour.cs" containingFunctionPresentation="Method 'ReturnHand'">
-            <startOffsets>
-              <option value="6881" />
-            </startOffsets>
-            <endOffsets>
-              <option value="6882" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/Cable/CablePhysics.cs</url>
           <line>183</line>
           <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Cable/CablePhysics.cs" containingFunctionPresentation="Method 'DetectPoleContacts'">
@@ -189,6 +187,45 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Hands/HandSwitcher.cs</url>
+          <line>27</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Hands/HandSwitcher.cs" containingFunctionPresentation="Method 'HandleInventoryInput'">
+            <startOffsets>
+              <option value="666" />
+            </startOffsets>
+            <endOffsets>
+              <option value="715" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Hands/HandSwitcher.cs</url>
+          <line>45</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Hands/HandSwitcher.cs" containingFunctionPresentation="Method 'SwitchHand'">
+            <startOffsets>
+              <option value="1197" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1237" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Hands/HandController.cs</url>
+          <line>83</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Hands/HandController.cs" containingFunctionPresentation="Method 'EnableHand'">
+            <startOffsets>
+              <option value="1910" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1917" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -5,10 +5,10 @@ using UnityEngine;
 public class HandSwitcher : MonoBehaviour
 {
     [SerializeField] private Animator grabPackAnimator;
-    [SerializeField] private HandsController handsController;
+    [SerializeField] private HandController handController;
     [SerializeField] private HandsInventory inventory;
 
-    private int handToEnable;
+    private BaseHandBehaviour handToEnable;
     private bool isSwitching; 
 
     private void Update()
@@ -27,13 +27,13 @@ public class HandSwitcher : MonoBehaviour
             {
                 BaseHandBehaviour newHand = inventory.GetHand(i);
                 if (newHand == null) return;
-                if (handsController.HandConfigs[1].hand == newHand) return; 
+                if (handController.Hand == newHand) return; 
+                
+                isSwitching = true;
+                handToEnable = newHand;
                 
                 grabPackAnimator.SetBool("switch", true);
                 grabPackAnimator.SetTrigger("Switch");
-
-                handToEnable = i;
-                isSwitching = true;
             }
         }
     }
@@ -42,9 +42,8 @@ public class HandSwitcher : MonoBehaviour
     //Called from animation events
     public void SwitchHand()
     {
-        BaseHandBehaviour newHand = inventory.GetHand(handToEnable);
-        handsController.DisableHand(1);
-        handsController.EnableHand(1, newHand);
+        handController.DisableHand();
+        handController.EnableHand(handToEnable);
     }
     public void OnSwitchEnd()
     {
