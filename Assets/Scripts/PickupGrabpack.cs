@@ -31,30 +31,7 @@ public class PickupGrabpack : MonoBehaviour, IInteractable
     public void Interact()
     {
         gameObject.SetActive(false);
-
-        // BlueHand.SetActive(hasBlueHand);
-        //
-        // RedHand.SetActive(false);
-        // PurpleHand.SetActive(false);
-        // FlareHand.SetActive(false);
-        // conductiveHand.SetActive(false);
-        //
-        // if (hasRedHand)
-        //     RedHand.SetActive(true);
-        // else if (hasPurpleHand)
-        //     PurpleHand.SetActive(true);
-        // else if (hasPressureHand)
-        //     FlareHand.SetActive(true);
-        // else if (hasConductiveHand)
-        //     conductiveHand.SetActive(true);
-
         handmanager.hasGrabPack = true;
-
-        // handmanager.hasRedHand = hasRedHand;
-        // handmanager.hasBlueHand = hasBlueHand;
-        // handmanager.hasPressureHand = hasPressureHand;
-        // handmanager.hasPurpleHand = hasPurpleHand;
-        // handmanager.hasConductiveHand = hasConductiveHand;
     }
 
     void Start()

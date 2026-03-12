@@ -1,13 +1,14 @@
 using UnityEngine;
 using UnityUtils;
 
-public class GlobalAudio : Singleton<GlobalAudio>
+public class GlobalAudio : PersistentSingleton<GlobalAudio>
 {
     [SerializeField] private AudioSource audioSource;
     public AudioSource AudioSource => audioSource;
 
     protected override void Awake()
     {
+        base.Awake();
         audioSource = gameObject.GetOrAdd<AudioSource>();
         audioSource.playOnAwake = false; 
     }

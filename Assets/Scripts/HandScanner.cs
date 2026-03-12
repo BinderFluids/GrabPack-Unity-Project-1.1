@@ -66,12 +66,12 @@ public class HandScanner : MonoBehaviour
     
     void OnInteractionTick()
     {
-        Vector2 offset2 = scanning.mainTextureOffset;
-        offset2.x += speed / 2 * Time.deltaTime; 
-        scanning.mainTextureOffset = offset2;
-        
-        float offset = Mathf.Lerp(minOffset, maxOffset, Mathf.PingPong(Time.time * speed, 1f));
-        screenScanning.mainTextureOffset = new Vector2(screenScanning.mainTextureOffset.x, offset);
+        // Vector2 offset2 = scanning.mainTextureOffset;
+        // offset2.x += speed / 2 * Time.deltaTime; 
+        // scanning.mainTextureOffset = offset2;
+        //
+        // float offset = Mathf.Lerp(minOffset, maxOffset, Mathf.PingPong(Time.time * speed, 1f));
+        // screenScanning.mainTextureOffset = new Vector2(screenScanning.mainTextureOffset.x, offset);
     }
 
     void OnInteractionFinished()
@@ -88,16 +88,16 @@ public class HandScanner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector2 offset3 = ready.mainTextureOffset;
-        offset3.x += speed / 2 * Time.deltaTime; 
-        ready.mainTextureOffset = offset3;
-
-        if (timedInteractable.InteractionFinished)
-        {
-            Vector2 offset4 = verified.mainTextureOffset;
-            offset4.x += speed / 2 * Time.deltaTime; 
-            verified.mainTextureOffset = offset4;
-        }
+        // Vector2 offset3 = ready.mainTextureOffset;
+        // offset3.x += speed / 2 * Time.deltaTime; 
+        // ready.mainTextureOffset = offset3;
+        //
+        // if (timedInteractable.InteractionFinished)
+        // {
+        //     Vector2 offset4 = verified.mainTextureOffset;
+        //     offset4.x += speed / 2 * Time.deltaTime; 
+        //     verified.mainTextureOffset = offset4;
+        // }
         
         // // if (!SCANNED)
         // // {
