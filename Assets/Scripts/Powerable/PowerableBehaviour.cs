@@ -21,6 +21,8 @@ public class PowerableBehaviour : MonoBehaviour, IPowerable
     {
         foreach (InterfaceReference<IPowerable> reference in powerSourceReferences)
         {
+            if (reference.UnderlyingValue == null) continue; 
+            
             reference.Value.onPoweredOn += CheckAllPowerSources;
             reference.Value.onPowerOff += CheckAllPowerSources;
         }

@@ -10,8 +10,8 @@ public class PowerGrabPack : MonoBehaviour
     private void Start()
     {
         handInteractable ??= GetComponent<HandInteractable>();
-        handInteractable.onGrab += OnGrab;
-        handInteractable.onRetract += OnRelease;
+        handInteractable.OnGrabWrapper._onEvent += OnGrab;
+        handInteractable.OnRetractWrapper._onEvent += OnRelease;
     }
 
     void OnGrab(BaseHandBehaviour hand)
@@ -27,7 +27,7 @@ public class PowerGrabPack : MonoBehaviour
 
     private void OnDestroy()
     {
-        handInteractable.onGrab -= OnGrab;
-        handInteractable.onRetract -= OnRelease;
+        handInteractable.OnGrabWrapper._onEvent -= OnGrab;
+        handInteractable.OnRetractWrapper._onEvent -= OnRelease;
     }
 }

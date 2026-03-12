@@ -62,11 +62,11 @@ public class Door : MonoBehaviour
         }
         else
         {
-            if (ConnectedHandScanner.SCANNED)
-            {
-                Locked = false;
-                JustUnlocked = true;
-            }
+            // if (ConnectedHandScanner.SCANNED)
+            // {
+            //     Locked = false;
+            //     JustUnlocked = true;
+            // }
         }
     }
 

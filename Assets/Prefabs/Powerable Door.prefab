@@ -241,11 +241,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 588332d5128344339b7d271ab5615655, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HandInteractable
-  targetHand: {fileID: 0}
+  targetHandType: {fileID: 0}
   canInteract: 0
   _transform: {fileID: 0}
   grabType: 0
-  hands: []
   onGrabUnityEvent:
     m_PersistentCalls:
       m_Calls:
@@ -264,6 +263,32 @@ MonoBehaviour:
   onRetractUnityEvent:
     m_PersistentCalls:
       m_Calls: []
+  OnGrabWrapper:
+    onUnityEventNoArgs:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 565946775271523230}
+          m_TargetAssemblyTypeName: Interactable, Assembly-CSharp
+          m_MethodName: Interact
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: open
+            m_BoolArgument: 0
+          m_CallState: 2
+    onUnityEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  OnRetractWrapper:
+    onUnityEventNoArgs:
+      m_PersistentCalls:
+        m_Calls: []
+    onUnityEvent:
+      m_PersistentCalls:
+        m_Calls: []
   maxHands: 2
 --- !u!114 &7963421043137099202
 MonoBehaviour:
