@@ -2,7 +2,10 @@ using UnityEngine;
 
 public class GrabPackManager : MonoBehaviour
 {
-    [Header("Behaviours")]
+    [Header("Behaviours")] 
+    [SerializeField] private Rigidbody playerRigidbody; 
+    public Rigidbody PlayerRigidbody => playerRigidbody;
+    
     [SerializeField] private PowerableBehaviour powerableBehaviour;
     public PowerableBehaviour PowerableBehaviour => powerableBehaviour;
 

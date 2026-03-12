@@ -31,9 +31,12 @@ public class PowerableBehaviour : MonoBehaviour, IPowerable
 
     protected virtual void OnAwake() { }
 
+    private bool ignoreState = true;
     private void Start()
     {
         SetPowered(IsPowered);
+        ignoreState = false; 
+        OnStart();
     }
 
     protected virtual void OnStart() { }
@@ -68,7 +71,7 @@ public class PowerableBehaviour : MonoBehaviour, IPowerable
     
     public void PowerOn()
     {
-        if (IsPowered) return;
+        if (IsPowered && !ignoreState) return;
         
         IsPowered = true; 
         
@@ -84,7 +87,7 @@ public class PowerableBehaviour : MonoBehaviour, IPowerable
     
     public void PowerOff()
     {
-        if (!IsPowered) return;
+        if (!IsPowered && !ignoreState) return;
         
         IsPowered = false;
         

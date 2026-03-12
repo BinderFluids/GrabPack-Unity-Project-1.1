@@ -9,7 +9,7 @@ public class Draggable : HandInteractable, IPressureHandInteractable
 
     private void Start()
     {
-        rb ??= GetComponent<Rigidbody>();
+        if (rb == null) rb = GetComponent<Rigidbody>();
     }
 
     public void ReleasePressure(BaseHandBehaviour hand, float pressure)
@@ -24,6 +24,8 @@ public class Draggable : HandInteractable, IPressureHandInteractable
 
     protected override void OnLateUpdatePull(BaseHandBehaviour hand)
     {
+        Debug.Log("Pulling");
+        
         Vector3 targetPos = hand.Origin.position;
         Vector3 direction = targetPos - rb.position;
         Vector3 dirNormalized = direction.normalized;

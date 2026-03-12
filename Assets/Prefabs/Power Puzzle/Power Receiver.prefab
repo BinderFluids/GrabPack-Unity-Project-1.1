@@ -1,0 +1,193 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4533903714098140455
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8504966920590043889}
+  - component: {fileID: 249087172204502994}
+  - component: {fileID: 7648757885859043154}
+  - component: {fileID: 1419708693530798499}
+  - component: {fileID: 3371199252588517207}
+  - component: {fileID: 5812848583977511866}
+  m_Layer: 0
+  m_Name: Power Receiver
+  m_TagString: Grab-able
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!4 &8504966920590043889
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4533903714098140455}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.00000005960465, y: 0.00000010009888, z: 0.0000014066517, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.7576, y: 1.7576, z: 1.7576}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &249087172204502994
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4533903714098140455}
+  m_Mesh: {fileID: -5399983309521541700, guid: 8e0f9765ffdee7d4cb476ade37bf255f, type: 3}
+--- !u!23 &7648757885859043154
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4533903714098140455}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: -6314162422929722362, guid: 8e0f9765ffdee7d4cb476ade37bf255f, type: 3}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1419708693530798499
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4533903714098140455}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.005829038, y: 0.003407602, z: 0.0107382145}
+  m_Center: {x: 0.000000013038516, y: -0.0016833512, z: 0.00022198535}
+--- !u!114 &3371199252588517207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4533903714098140455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f681dbcb8057c104fb30bc8a2a59787b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <IsPowered>k__BackingField: 0
+  powerSourceReferences: []
+  onPoweredOnUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onPoweredOffUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onSetPoweredUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  handInteractable: {fileID: 5812848583977511866}
+  requiredPowerables: []
+  powerablesOnComplete: []
+  puzzlecomplete: {fileID: 8300000, guid: e5d357197a0affe4b8c50ddce95aef44, type: 3}
+--- !u!114 &5812848583977511866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4533903714098140455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 588332d5128344339b7d271ab5615655, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HandInteractable
+  handAnchor: {fileID: 0}
+  targetHandType: {fileID: 0}
+  canInteract: 1
+  _transform: {fileID: 8504966920590043889}
+  grabType: 0
+  onGrabUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onRetractUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnGrabWrapper:
+    onUnityEventNoArgs:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3371199252588517207}
+          m_TargetAssemblyTypeName: ElectricalReciever, Assembly-CSharp
+          m_MethodName: CheckAllPoweredOn
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    onUnityEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  OnRetractWrapper:
+    onUnityEventNoArgs:
+      m_PersistentCalls:
+        m_Calls: []
+    onUnityEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  maxHands: 1

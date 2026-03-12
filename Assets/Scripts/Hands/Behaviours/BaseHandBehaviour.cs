@@ -129,7 +129,7 @@ public class BaseHandBehaviour : MonoBehaviour
     }
     public void LateHandleInput(int mouseIndex, Ray ray,  int handNormal)
     {
-        if (Input.GetMouseButtonDown(mouseIndex))
+        if (Input.GetMouseButton(mouseIndex))
             interactable?.LateUpdatePull(this); 
     }
 #endregion

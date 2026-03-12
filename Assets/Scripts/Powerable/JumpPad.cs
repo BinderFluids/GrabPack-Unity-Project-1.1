@@ -5,12 +5,7 @@ using UnityEngine;
 
 public class JumpPad : MonoBehaviour
 {
-    public Rigidbody Player;
     public float jumpForce = 10f;
-    public BaseHandBehaviour rockethand;
-
-    public bool launched = false;
-    public ElectricalReciever powerSource;
 
     public Material poweredmatieral;
     public Material offMaterial;
@@ -19,8 +14,6 @@ public class JumpPad : MonoBehaviour
     public GameObject light;
 
     public RigidboyPlayerController player;
-
-    public AudioSource GlobalAudio;
     public AudioClip boostsfx;
 
     public GameObject rocketHand;
@@ -31,73 +24,24 @@ public class JumpPad : MonoBehaviour
     public float cooldownTime = 2f;
     private float cooldownTimer = 0f;
 
-    public void LaunchPlayer()
+    public void LaunchPlayer(BaseHandBehaviour hand)
     {
+        Rigidbody rb = hand.GrabPack.PlayerRigidbody;
+        
         float baseForce = player.isGrounded ? jumpForce : jumpForce / 2f;
-        
-        float distance = Vector3.Distance(Player.transform.position, transform.position);
-        
+
+        float distance = Vector3.Distance(rb.transform.position, transform.position);
+
         float distanceMultiplier = Mathf.Clamp01(1 - (distance / maxBoostDistance));
         distanceMultiplier = Mathf.Lerp(minBoostMultiplier, 1f, distanceMultiplier);
-        
+
         float finalForce = baseForce * distanceMultiplier;
-        
-        Player.linearVelocity = Vector3.zero;
-        Player.AddForce(transform.up * finalForce, ForceMode.Impulse);
-        
-        launched = true;
+
+        rb.linearVelocity = Vector3.zero;
+        rb.AddForce(transform.up * finalForce, ForceMode.Impulse);
+
         cooldownTimer = cooldownTime;
-        
-        GlobalAudio.PlayOneShot(boostsfx, 1.0f);
+
+        GlobalAudio.Instance.PlayOneShot(boostsfx, 1.0f);
     }
-    
-    // void Update()
-    // {
-    //     if (cooldownTimer > 0)
-    //         cooldownTimer -= Time.deltaTime;
-    //
-    //     bool handAttached = rocketHand != null &&
-    //                         rocketHand.activeInHierarchy &&
-    //                         rocketHand.transform.IsChildOf(transform);
-    //
-    //     if (handAttached)
-    //     {
-    //         if (cooldownTimer > 0)
-    //         {
-    //             rockethand.Retract();
-    //             return;
-    //         }
-    //
-    //         if (!launched && IsPowered)
-    //         {
-    //             float baseForce = player.isGrounded ? jumpForce : jumpForce / 2f;
-    //
-    //             float distance = Vector3.Distance(Player.transform.position, transform.position);
-    //
-    //             float distanceMultiplier = Mathf.Clamp01(1 - (distance / maxBoostDistance));
-    //             distanceMultiplier = Mathf.Lerp(minBoostMultiplier, 1f, distanceMultiplier);
-    //
-    //             float finalForce = baseForce * distanceMultiplier;
-    //
-    //             Player.linearVelocity = Vector3.zero;
-    //             Player.AddForce(transform.up * finalForce, ForceMode.Impulse);
-    //
-    //             launched = true;
-    //             cooldownTimer = cooldownTime;
-    //
-    //             rockethand.Retract();
-    //             GlobalAudio.PlayOneShot(boostsfx, 1.0f);
-    //         }
-    //     }
-    //     else
-    //     {
-    //         launched = false;
-    //     }
-    // }
-    //
-    // protected override void OnPowered(bool active)
-    // {
-    //     renderer.material = active ? poweredmatieral : offMaterial;
-    //     light.SetActive(active);
-    // }
 }
