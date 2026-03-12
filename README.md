@@ -1,3 +1,8 @@
+# Purpose of Fork
+Refactoring systems to make them more modular and performant
+
+
+
 # GrabPack-Unity-Project-1.2
 
 Download for unity poppy playtime project
@@ -11,4 +16,3 @@ How to Open:
 4. Add Project from extracted folder
 
 Please do not reupload or resell this project, you are welcome to use for your own projects/fan games
-
