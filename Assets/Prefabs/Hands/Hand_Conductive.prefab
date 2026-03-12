@@ -6211,13 +6211,16 @@ GameObject:
   - component: {fileID: 2945260611195473121}
   - component: {fileID: 1956133291888129477}
   - component: {fileID: 4148873355831568130}
+  - component: {fileID: 3983334379063814265}
+  - component: {fileID: 6111590526433728385}
+  - component: {fileID: 7951501954083370057}
   m_Layer: 0
   m_Name: Hand_Conductive
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2945260611195473121
 Transform:
   m_ObjectHideFlags: 0
@@ -6252,13 +6255,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handType: {fileID: 11400000, guid: bc435056bf38ac2d9be11efba55cc2fc, type: 2}
-  cableManager: {fileID: 0}
   _transform: {fileID: 2945260611195473121}
   handOrigin: {fileID: 0}
   handgrabbing: {fileID: 2897167790792749524}
-  globalAudio: {fileID: 0}
   firesfx: {fileID: 8300000, guid: a42e6c55b09e26c4cae72d9829c2c7fe, type: 3}
   grabsfx: {fileID: 8300000, guid: e7087adb457e62b42a79bc9742e6257a, type: 3}
+  onFireUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onGrabUnityEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3983334379063814265}
+        m_TargetAssemblyTypeName: Conduction.Reactant, Assembly-CSharp
+        m_MethodName: TryReactWithGameObject
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onRetractUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
   CableSim: {fileID: 0}
   interactable: {fileID: 0}
   pickupable: {fileID: 0}
@@ -6269,7 +6291,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1507377922928684610}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0f88e69f3bc369745843430c8a22eaad, type: 3}
   m_Name: 
@@ -6289,6 +6311,69 @@ MonoBehaviour:
   sparks: {fileID: 1065088565948058411}
   freezing: {fileID: 8978900747726728260}
   heat: {fileID: 6838152920161169038}
+--- !u!114 &3983334379063814265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1507377922928684610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2f33dc51cd943a7b26ec8005735460e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Conduction.Reactant
+  elementType: {fileID: 0}
+  canReact: 0
+  onReactUnityEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6111590526433728385}
+        m_TargetAssemblyTypeName: Conductor, Assembly-CSharp
+        m_MethodName: SetElementType
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &6111590526433728385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1507377922928684610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7442bb71d1b40159b8a4071cb24c6be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Conductor
+  elementType: {fileID: 0}
+--- !u!65 &7951501954083370057
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1507377922928684610}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.0075570396, y: 0.0030803354, z: 0.011319298}
+  m_Center: {x: 0.0011083203, y: 0.0006313585, z: 0.005042155}
 --- !u!1 &1524829808395039640
 GameObject:
   m_ObjectHideFlags: 0

@@ -37,10 +37,10 @@ public class freeze : MonoBehaviour
 
         if (conductiveHand != null)
         {
-            Conductor conductor = conductiveHand.GetComponent<Conductor>();
+            ConductorOld conductorOld = conductiveHand.GetComponent<ConductorOld>();
             BaseHandBehaviour launchhand = conductiveHand.GetComponent<BaseHandBehaviour>();
 
-            if (!played && conductor.CurrentElement == "ice")
+            if (!played && conductorOld.CurrentElement == "ice")
             {
                 if (!frozen)
                 {
@@ -60,7 +60,7 @@ public class freeze : MonoBehaviour
                 }
             }
 
-            if (!played && conductor.CurrentElement == "fire")
+            if (!played && conductorOld.CurrentElement == "fire")
             {
                 if (frozen)
                 {

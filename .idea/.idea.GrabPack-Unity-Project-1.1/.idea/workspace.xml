@@ -5,21 +5,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="17116273-0ca8-4720-8e20-e14000d3ac2e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Conduction.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Conduction/ConductorBehaviour.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Conduction/ConductorBehaviour.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Conduction/ElementSource.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Conduction/ElementSource.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Conduction/ElementType.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Conduction/ElementType.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Hands/Behaviours.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Hands/Behaviours/ConductionHand.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Conduction/Conductor.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Conduction/Conductor.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Conduction/Reactant.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Conduction/Reactant.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/TimerBehaviour.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/TimerBehaviour.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GrabPack-Unity-Project-1.1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GrabPack-Unity-Project-1.1/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Scanningline 2.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Scanningline 2.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/T_Scanning 1.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/T_Scanning 1.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/scannerReady 1.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/scannerReady 1.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/scannerReady 2.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/scannerReady 2.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Hands/Hand_Conductive.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Hands/Hand_Conductive.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/TestScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/TestScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BurnObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BurnObject.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Conduction/ConductorBehaviour.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Conduction/ConductorBehaviour.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Conduction/ElementSource.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Conduction/ElementSource.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Conduction/ElementType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Conduction/ElementType.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Conductor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ConductorOld.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Conductor.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ConductorOld.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/CollisionEventBroadcaster.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/CollisionEventBroadcaster.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ElementConductor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ElementConductor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GreenReciever.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GreenReciever.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Hands/BaseHandBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Hands/BaseHandBehaviour.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Hands/ConductionHand.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Hands/ConductionHand.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Hands/Behaviours/ConductionHand.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Hands/PressureHand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Hands/Behaviours/PressureHand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Hands/PressureHand.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Hands/Behaviours/PressureHand.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/freeze.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/freeze.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,21 +41,24 @@
     <option name="firstShow" value="false" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="1" />
+    <option name="cachedIndexableFilesCount" value="4" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/BurnObject.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Cable/CablePhysics.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Conduction/ConductorBehaviour.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Conduction/ElementSource.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Conduction/Conductor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Conduction/ElementType.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Conduction/Reactant.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Core/AnimatorExtensionEvents.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Core/CollisionEventBroadcaster.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Core/FollowSpline.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Core/TimerBehaviour.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Door.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ElementConductor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/GrabPackManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/HandScanner.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Hands/BaseHandBehaviour.cs" root0="FORCE_HIGHLIGHTING" />
@@ -150,7 +164,8 @@
       <workItem from="1773132024056" duration="18798000" />
       <workItem from="1773204370202" duration="2974000" />
       <workItem from="1773210261460" duration="3861000" />
-      <workItem from="1773214137049" duration="6938000" />
+      <workItem from="1773214137049" duration="7314000" />
+      <workItem from="1773257088365" duration="2513000" />
     </task>
     <servers />
   </component>

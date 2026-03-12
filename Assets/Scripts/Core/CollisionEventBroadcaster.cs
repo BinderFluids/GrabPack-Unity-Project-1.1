@@ -5,6 +5,7 @@ using UnityEngine.Events;
 [DisallowMultipleComponent]
 public class CollisionEventBroadcaster : MonoBehaviour
 {
+    [SerializeField] private bool doDebug; 
     [SerializeField] private Collider col; 
     
     [Header("Allowed Tags (empty = allow all)")]
@@ -79,11 +80,18 @@ public class CollisionEventBroadcaster : MonoBehaviour
         return false;
     }
 
+    void Log(object message)
+    {
+        if (doDebug)
+            Debug.Log(message);
+    }
+    
     // ---------- 3D ----------
     private void OnCollisionEnter(Collision collision)
     {
         if (!IsAllowed(collision.gameObject)) return;
 
+        Log($"Collision Enter {collision.gameObject}");
         OnCollisionEnterAction?.Invoke(collision);
         OnCollisionEnterUnityEvent?.Invoke(collision);
     }
@@ -91,7 +99,8 @@ public class CollisionEventBroadcaster : MonoBehaviour
     private void OnCollisionExit(Collision collision)
     {
         if (!IsAllowed(collision.gameObject)) return;
-
+        
+        Log($"Collision Exit {collision.gameObject}");
         OnCollisionExitAction?.Invoke(collision);
         OnCollisionExitUnityEvent?.Invoke(collision);
     }
@@ -100,6 +109,7 @@ public class CollisionEventBroadcaster : MonoBehaviour
     {
         if (!IsAllowed(collision.gameObject)) return;
 
+        Log($"Collision Stay {collision.gameObject}");
         OnCollisionStayAction?.Invoke(collision);
         OnCollisionStayUnityEvent?.Invoke(collision);
     }
@@ -108,6 +118,7 @@ public class CollisionEventBroadcaster : MonoBehaviour
     {
         if (!IsAllowed(other.gameObject)) return;
 
+        Log($"Trigger Enter {other.gameObject}");
         OnTriggerEnterAction?.Invoke(other);
         OnTriggerEnterUnityEvent?.Invoke(other);
     }
@@ -116,6 +127,7 @@ public class CollisionEventBroadcaster : MonoBehaviour
     {
         if (!IsAllowed(other.gameObject)) return;
 
+        Log($"Trigger Exit {other.gameObject}");
         OnTriggerExitAction?.Invoke(other);
         OnTriggerExitUnityEvent?.Invoke(other);
     }
@@ -124,6 +136,7 @@ public class CollisionEventBroadcaster : MonoBehaviour
     {
         if (!IsAllowed(other.gameObject)) return;
 
+        Log($"Trigger Stay {other.gameObject}");
         OnTriggerStayAction?.Invoke(other);
         OnTriggerStayUnityEvent?.Invoke(other);
     }
@@ -133,6 +146,7 @@ public class CollisionEventBroadcaster : MonoBehaviour
     {
         if (!IsAllowed(collision.gameObject)) return;
 
+        Log($"Collision Enter {collision.gameObject}");
         OnCollisionEnter2DAction?.Invoke(collision);
         OnCollisionEnter2DUnityEvent?.Invoke(collision);
     }
@@ -140,7 +154,8 @@ public class CollisionEventBroadcaster : MonoBehaviour
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (!IsAllowed(collision.gameObject)) return;
-
+        
+        Log($"Collision Exit {collision.gameObject}");
         OnCollisionExit2DAction?.Invoke(collision);
         OnCollisionExit2DUnityEvent?.Invoke(collision);
     }
@@ -149,6 +164,7 @@ public class CollisionEventBroadcaster : MonoBehaviour
     {
         if (!IsAllowed(collision.gameObject)) return;
 
+        Log($"Collision Stay {collision.gameObject}");
         OnCollisionStay2DAction?.Invoke(collision);
         OnCollisionStay2DUnityEvent?.Invoke(collision);
     }
@@ -157,6 +173,7 @@ public class CollisionEventBroadcaster : MonoBehaviour
     {
         if (!IsAllowed(other.gameObject)) return;
 
+        Log($"Trigger Enter {other.gameObject}");
         OnTriggerEnter2DAction?.Invoke(other);
         OnTriggerEnter2DUnityEvent?.Invoke(other);
     }
@@ -165,6 +182,7 @@ public class CollisionEventBroadcaster : MonoBehaviour
     {
         if (!IsAllowed(other.gameObject)) return;
 
+        Log($"Trigger Exit {other.gameObject}");
         OnTriggerExit2DAction?.Invoke(other);
         OnTriggerExit2DUnityEvent?.Invoke(other);
     }
@@ -173,6 +191,7 @@ public class CollisionEventBroadcaster : MonoBehaviour
     {
         if (!IsAllowed(other.gameObject)) return;
 
+        Log($"Trigger Stay {other.gameObject}");
         OnTriggerStay2DAction?.Invoke(other);
         OnTriggerStay2DUnityEvent?.Invoke(other);
     }

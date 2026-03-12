@@ -27,10 +27,10 @@ public class ElementConductor : MonoBehaviour
 
         if (conductiveHand != null)
         {
-            Conductor conductor = conductiveHand.GetComponent<Conductor>();
+            ConductorOld conductorOld = conductiveHand.GetComponent<ConductorOld>();
 
-            conductor.CurrentElement = elementToConduct;
-            conductor.UpdateElement(elementToConduct);
+            conductorOld.CurrentElement = elementToConduct;
+            conductorOld.UpdateElement(elementToConduct);
 
             if (!played)
             {

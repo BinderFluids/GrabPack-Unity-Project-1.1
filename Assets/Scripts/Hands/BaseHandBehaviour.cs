@@ -37,7 +37,7 @@ public class BaseHandBehaviour : MonoBehaviour
     [SerializeField] private UnityEvent onFireUnityEvent;
     
     public event Action<HandInteractable> onGrab;
-    [SerializeField] private UnityEvent onGrabUnityEvent;
+    [SerializeField] private UnityEvent<GameObject> onGrabUnityEvent;
     
     public event Action<BaseHandBehaviour> onRetract;
     [SerializeField] private UnityEvent onRetractUnityEvent;
@@ -235,7 +235,7 @@ public class BaseHandBehaviour : MonoBehaviour
                 handgrabbing.SetBool("grabbing", interactableParam.GrabType == HandInteractable.GrabTypeEnum.Grip);
                 interactable = interactableParam;
                 onGrab?.Invoke(interactable); 
-                onGrabUnityEvent?.Invoke();
+                onGrabUnityEvent?.Invoke(interactable.gameObject);
                 
                 lockRetract = true;
                 yield return new WaitForSeconds(lockRetractTime);
