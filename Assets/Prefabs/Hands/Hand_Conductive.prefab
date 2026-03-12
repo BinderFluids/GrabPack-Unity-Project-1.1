@@ -6214,6 +6214,7 @@ GameObject:
   - component: {fileID: 3983334379063814265}
   - component: {fileID: 6111590526433728385}
   - component: {fileID: 7951501954083370057}
+  - component: {fileID: 2679926189346119373}
   m_Layer: 0
   m_Name: Hand_Conductive
   m_TagString: Untagged
@@ -6374,6 +6375,37 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.0075570396, y: 0.0030803354, z: 0.011319298}
   m_Center: {x: 0.0011083203, y: 0.0006313585, z: 0.005042155}
+--- !u!114 &2679926189346119373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1507377922928684610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6716eb74d51b44c0bc01abac4f7cd3e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CountdownTimerBehaviour
+  timerDuration: 10
+  onTimerStartedUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onTimerFinishedUnityEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6111590526433728385}
+        m_TargetAssemblyTypeName: Conductor, Assembly-CSharp
+        m_MethodName: SetElementType
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: 32149994776a1171194d25b526a0b065, type: 2}
+          m_ObjectArgumentAssemblyTypeName: ElementType, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1524829808395039640
 GameObject:
   m_ObjectHideFlags: 0

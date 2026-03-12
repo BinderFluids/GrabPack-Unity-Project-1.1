@@ -5,32 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="17116273-0ca8-4720-8e20-e14000d3ac2e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Conduction/Conductor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Conduction/Conductor.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Conduction/Reactant.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Conduction/Reactant.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/TimerBehaviour.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/TimerBehaviour.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/CountdownTimerBehaviour.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GrabPack-Unity-Project-1.1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GrabPack-Unity-Project-1.1/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/Scanningline 2.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Scanningline 2.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/T_Scanning 1.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/T_Scanning 1.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/scannerReady 1.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/scannerReady 1.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/scannerReady 2.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/scannerReady 2.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Hands/Hand_Conductive.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Hands/Hand_Conductive.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/TestScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/TestScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BurnObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BurnObject.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Conduction/ConductorBehaviour.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Conduction/ConductorBehaviour.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Conduction/ElementSource.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Conduction/ElementSource.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Conduction/ElementType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Conduction/ElementType.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Conductor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ConductorOld.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Conductor.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ConductorOld.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/CollisionEventBroadcaster.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/CollisionEventBroadcaster.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ElementConductor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ElementConductor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GreenReciever.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GreenReciever.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Hands/BaseHandBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Hands/BaseHandBehaviour.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/freeze.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/freeze.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/TimerBehaviour.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/TimerBehaviour.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/CountdownTimerBehaviour.cs.meta" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,8 +33,8 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Conduction/Reactant.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Core/AnimatorExtensionEvents.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Core/CollisionEventBroadcaster.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Core/CountdownTimerBehaviour.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Core/FollowSpline.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Core/TimerBehaviour.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Door.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ElementConductor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/GrabPackManager.cs" root0="FORCE_HIGHLIGHTING" />
@@ -79,6 +57,8 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/RotateArm.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/RotateArms.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/SerializeInterface/InterfaceReference.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.gitamend.improvedtimers@0c93083e7968/Runtime/Timer.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.gitamend.improvedtimers@0c93083e7968/Runtime/Timers/CountdownTimer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ai.navigation@c33a115e9883/Editor/NavMeshSurfaceEditor.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.settings-manager@0b8638c5ce86/Editor/SettingsDictionary.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -165,7 +145,7 @@
       <workItem from="1773204370202" duration="2974000" />
       <workItem from="1773210261460" duration="3861000" />
       <workItem from="1773214137049" duration="7314000" />
-      <workItem from="1773257088365" duration="2513000" />
+      <workItem from="1773257088365" duration="2865000" />
     </task>
     <servers />
   </component>
