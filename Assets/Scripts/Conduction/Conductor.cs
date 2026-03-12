@@ -1,3 +1,4 @@
+using Conduction;
 using UnityEngine;
 
 
@@ -10,5 +11,10 @@ public class Conductor : MonoBehaviour
     public void SetElementType(ElementType type)
     {
         elementType = type;
+    }
+
+    public void Conduct(Reactant reactant)
+    {
+        
     }
 }

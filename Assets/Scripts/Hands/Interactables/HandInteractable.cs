@@ -20,10 +20,11 @@ public class HandInteractable : MonoBehaviour
 
     [SerializeField] protected Transform _transform;
     
+    [Tooltip("Defines which animation for the hand to play once interacted with")]
     [SerializeField] private GrabTypeEnum grabType = GrabTypeEnum.Grip;
     public GrabTypeEnum GrabType => grabType;
     
-    [SerializeField] protected List<BaseHandBehaviour> hands = new(); 
+    private List<BaseHandBehaviour> hands = new(); 
     public List<BaseHandBehaviour> Hands => hands;
     public bool IsGrabbed => hands.Count > 0;
     

@@ -22,18 +22,30 @@ public class CountdownTimerBehaviour : MonoBehaviour
     private void Start()
     {
         timer = new CountdownTimer(timerDuration);
+        timer.OnTimerStart += InvokeStartEvent;
+        timer.OnTimerStop += InvokeFinishEvent;
     }
-    
-    public void StartTimer()
+
+    private void OnDestroy()
     {
-        timer.Start();
+        timer.OnTimerStart -= InvokeStartEvent;
+        timer.OnTimerStop -= InvokeFinishEvent;
+    }
+
+    private void InvokeStartEvent()
+    {
         onTimerStartedUnityEvent?.Invoke();
     }
-    public void StopTimer()
+    private void InvokeFinishEvent()
     {
-        timer.Stop();
         onTimerFinishedUnityEvent?.Invoke();
     }
+    
+    public void StartTimer() =>
+        timer.Start();
+
+    public void StopTimer() =>
+        timer.Stop();
     
 
     private void Update()

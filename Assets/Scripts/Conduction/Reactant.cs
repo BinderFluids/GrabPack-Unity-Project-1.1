@@ -10,18 +10,22 @@ namespace Conduction
         [SerializeField] private ElementType elementType;
 
         [SerializeField] private bool canReact;
-        [SerializeField] private UnityEvent<ElementType> onReactUnityEvent;
-        public event Action<ElementType> onReact = delegate {}; 
+
+        public EventWrapper<ElementType> OnReactWrapper = new(); 
         
         public void SetReact(bool value) => canReact = value;
+
+        public void React(ElementType elementType)
+        {
+            if (!canReact) return;
+            if (elementType != null && elementType != this.elementType) return;
+
+            OnReactWrapper.Raise(elementType); 
+        }
         
         public void React(Conductor conductor)
         {
-            if (!canReact) return;
-            if (elementType != null && conductor.ElementType != elementType) return;
-            
-            onReact?.Invoke(conductor.ElementType);
-            onReactUnityEvent?.Invoke(conductor.ElementType);
+            React(conductor.ElementType);
         }
 
         public void TryReactWithGameObject(GameObject other)
