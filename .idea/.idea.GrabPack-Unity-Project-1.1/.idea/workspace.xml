@@ -6,60 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="17116273-0ca8-4720-8e20-e14000d3ac2e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GrabPack-Unity-Project-1.1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GrabPack-Unity-Project-1.1/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/ScannerReadyBlue.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/ScannerReadyBlue.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/ScannerReadyRed.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/ScannerReadyRed.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/ScannerScanningBlue.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/ScannerScanningBlue.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/ScannerScanningRed.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/ScannerScanningRed.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/ScannerVerified.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/ScannerVerified.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/Scanningline 1.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/Scanningline 1.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/Scanningline 2.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/Scanningline 2.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/Scanningline.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/Scanningline.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/Smile1.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/Smile1.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/T_HandScanner2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/T_HandScanner2.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/handprint 1.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/handprint 1.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/handprint 2.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/handprint 2.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/handprint.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/handprint.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/scanningbackground1 1.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/scanningbackground1 1.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/scanningbackground1.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/scanningbackground1.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/screen 1.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/screen 1.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/screen 2.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/screen 2.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/screen 3.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/screen 3.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/screen.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/screen.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Hand Scanner.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Hand Scanner.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Blue Hand Scanner.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Blue Hand Scanner.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Hand Scanner.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Hand Scanner.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Red Hand Scanner.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Red Hand Scanner.prefab.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/TestScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/TestScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Door.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Door.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/HandScanner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/HandScanner.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Hands/Interactables/HandInteractable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Hands/Interactables/HandInteractable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Hands/Interactables/PowerGrabPack.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Hands/Interactables/PowerGrabPack.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MaterialOffsetScroller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MaterialOffsetScroller.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Powerable/PowerableBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Powerable/PowerableBehaviour.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/T_Scanning.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/T_Scanning.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/scanningbackground1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/scanningbackground1.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/scanningline2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/scanningline2.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/verified2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/verified2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Powerable/ElectricalReciever.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Powerable/ElectricalReciever.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -200,7 +155,7 @@
       <workItem from="1773204370202" duration="2974000" />
       <workItem from="1773210261460" duration="3861000" />
       <workItem from="1773214137049" duration="7314000" />
-      <workItem from="1773257088365" duration="12408000" />
+      <workItem from="1773257088365" duration="13209000" />
     </task>
     <servers />
   </component>

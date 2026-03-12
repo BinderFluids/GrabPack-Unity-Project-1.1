@@ -9,8 +9,6 @@ public class ElectricalReciever : PowerableBehaviour
     [SerializeField] private List<InterfaceReference<IPowerable>> powerablesOnComplete = new();
     private bool allPowered => 
         requiredPowerables.All(powerable => powerable.Value.IsPowered);
-    
-    public AudioSource GlobalAudio;
     public AudioClip puzzlecomplete;
     
     private void Start()
@@ -33,7 +31,7 @@ public class ElectricalReciever : PowerableBehaviour
         powerablesOnComplete.
             ForEach(powerable => powerable.Value.PowerOn());
             
-        GlobalAudio.PlayOneShot(puzzlecomplete, 1.0f);
+        GlobalAudio.Instance.PlayOneShot(puzzlecomplete, 1.0f);
         handInteractable.RetractAllHands();
     }
     

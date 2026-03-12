@@ -11,6 +11,9 @@ public class HandInteractable : MonoBehaviour
         Grip,
         None
     }
+
+    [Tooltip("Optional - If set, the hand will be attached to this transform")]
+    [SerializeField] private Transform handAnchor; 
     
     [Tooltip("Optional - If set, only interactable by this hand")]
     [SerializeField] private HandType targetHandType;
@@ -35,16 +38,21 @@ public class HandInteractable : MonoBehaviour
 
 
     [SerializeField, Range(1, 2)] private int maxHands = 2;
-    
-    
+
+    private void Awake()
+    {
+        if (_transform == null) _transform = transform;
+    }
+
     public bool Grab(BaseHandBehaviour hand)
     {
         if (hands.Count >= maxHands) return false;
         if (!canInteract) return false;
         if (targetHandType != null && hand.HandType != targetHandType) return false;
         
-        hands.Add(hand); 
-        hand.SetParent(transform);
+        hands.Add(hand);
+        hand.SetParent(_transform, true);
+        if (handAnchor != null) hand.transform.position = handAnchor.position;
         
         OnGrab(hand);
         OnGrabWrapper.Raise(hand);
