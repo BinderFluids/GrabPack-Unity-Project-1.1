@@ -8,8 +8,7 @@ public class PowerPole : PowerableBehaviour
     public GameObject glow;
     public float glowcounter = 0.1f;
     public ElectricalSource source;
-
-    public AudioSource GlobalAudio;
+    
     public AudioClip connect;
     public AudioClip disconnect;
 
@@ -23,12 +22,12 @@ public class PowerPole : PowerableBehaviour
     {
         Debug.Log("Powered On");
         StartGlow();
-        GlobalAudio.PlayOneShot(connect, 0.7f);
+        GlobalAudio.Instance.PlayOneShot(connect, 0.7f);
     }
 
     protected override void OnPoweredOff()
     {
-        GlobalAudio.PlayOneShot(disconnect, 0.7f);
+        GlobalAudio.Instance.PlayOneShot(disconnect, 0.7f);
     }
 
     void Update()

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SwingHandle : MonoBehaviour
@@ -11,7 +12,6 @@ public class SwingHandle : MonoBehaviour
     public bool isgrabbingRight;
     public bool grabbed = false;
 
-    public AudioSource globalaudio;
     public AudioClip swingsfx;
 
     void FixedUpdate()
@@ -67,7 +67,7 @@ public class SwingHandle : MonoBehaviour
 
         if (!grabbed)
         {
-            globalaudio.PlayOneShot(swingsfx, 1.0f);
+            GlobalAudio.Instance.PlayOneShot(swingsfx, 1.0f);
             grabbed = true;
         }
     }

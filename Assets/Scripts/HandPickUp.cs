@@ -7,8 +7,6 @@ public class HandPickUp : MonoBehaviour, IInteractable
     public RigidboyPlayerController player;
 
     public HandType handToGive;
-
-    public AudioSource globalaudio;
     public AudioClip pickupsx;
 
 
@@ -17,7 +15,7 @@ public class HandPickUp : MonoBehaviour, IInteractable
     {
         if (!inventory.TryAdd(handToGive)) return;
         
-        globalaudio.PlayOneShot(pickupsx);
+        GlobalAudio.Instance.PlayOneShot(pickupsx);
         onInteract?.Invoke();
         gameObject.SetActive(false);
     }
