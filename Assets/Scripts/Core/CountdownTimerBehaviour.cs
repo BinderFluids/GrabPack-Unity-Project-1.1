@@ -46,10 +46,4 @@ public class CountdownTimerBehaviour : MonoBehaviour
 
     public void StopTimer() =>
         timer.Stop();
-    
-
-    private void Update()
-    {
-        timer.Tick();
-    }
 }

@@ -23,6 +23,8 @@ public class RigidboyPlayerController : MonoBehaviour
     public Transform playerCamera;
 
     private Rigidbody rb;
+    public Rigidbody Rigidbody => rb; 
+    
     private float currentMoveSpeed;
     private float targetMoveSpeed;
     private float rotationX = 0f;

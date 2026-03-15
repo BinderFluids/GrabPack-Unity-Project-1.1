@@ -7,6 +7,7 @@ public class Conductor : MonoBehaviour
     [SerializeField] private ElementType elementType;
     public ElementType ElementType => elementType;
     
+    [SerializeField] private EventWrapper<Reactant> OnReactionConductedWrapper = new();
     
     public void SetElementType(ElementType type)
     {
@@ -15,6 +16,6 @@ public class Conductor : MonoBehaviour
 
     public void Conduct(Reactant reactant)
     {
-        
+        OnReactionConductedWrapper.Raise(reactant);
     }
 }

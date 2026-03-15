@@ -27,8 +27,8 @@ public class PowerPole : PowerableBehaviour
 
     protected override void OnPoweredOff()
     {
-        if (!IsPowered)
-            GlobalAudio.Instance.PlayOneShot(disconnect, 0.7f);
+        Debug.Log("Power Off");
+        GlobalAudio.Instance.PlayOneShot(disconnect, 0.7f);
     }
 
     void Update()

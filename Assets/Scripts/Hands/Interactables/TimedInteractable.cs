@@ -34,6 +34,11 @@ public class TimedInteractable : HandInteractable
         if (resetOnRelease) timeHeld = 0f; 
     }
 
+    protected override void OnRetract(BaseHandBehaviour hand)
+    {
+        isInteracting = false; 
+    }
+
     private void Update()
     {
         if (timerType != TimerType.Hold) return;

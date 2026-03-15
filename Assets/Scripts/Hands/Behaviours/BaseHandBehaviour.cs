@@ -166,8 +166,15 @@ public class BaseHandBehaviour : MonoBehaviour
         HandInteractable hitInteractable = null;
         if (hit.collider != null)
         {
+            Debug.Log(hit.collider.gameObject.name);
             if (hit.collider.TryGetComponent(out HandInteractable foundInteractable))
                 hitInteractable = foundInteractable;
+            else if (hit.collider.GetComponentInParent<HandInteractable>() != null)
+                hitInteractable = hit.collider.GetComponentInParent<HandInteractable>();
+            else if (hit.collider.GetComponentInChildren<HandInteractable>() != null)
+                hitInteractable = hit.collider.GetComponentInChildren<HandInteractable>();
+            else
+                Debug.Log("No interactable found");
         }
 
         onFire?.Invoke(this);
@@ -192,7 +199,9 @@ public class BaseHandBehaviour : MonoBehaviour
     {
         if (!gameObject.activeSelf) return;
         if (lockRetract) return;
-
+        if (!pickupable)
+            handgrabbing.SetBool("grabbing", false);
+        
         StartCoroutine(ReturnHand());
         OnRetract();
         onRetract?.Invoke(this); 

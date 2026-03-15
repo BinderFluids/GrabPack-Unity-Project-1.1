@@ -35,6 +35,8 @@ public class HandInteractable : MonoBehaviour
     [SerializeField] private UnityEvent onRetractUnityEvent;
     public EventWrapper<BaseHandBehaviour> OnGrabWrapper = new();
     public EventWrapper<BaseHandBehaviour> OnRetractWrapper = new();
+    public EventWrapper<GameObject> OnGrabGameObjectWrapper = new();
+    public EventWrapper<GameObject> OnRetractGameObjectWrapper = new();
 
 
     [SerializeField, Range(1, 2)] private int maxHands = 2;
@@ -56,6 +58,7 @@ public class HandInteractable : MonoBehaviour
         
         OnGrab(hand);
         OnGrabWrapper.Raise(hand);
+        OnGrabGameObjectWrapper.Raise(hand.gameObject);
 
         return true;
     }
@@ -67,6 +70,7 @@ public class HandInteractable : MonoBehaviour
         
         OnRetract(hand);
         OnRetractWrapper.Raise(hand);
+        OnRetractGameObjectWrapper.Raise(hand.gameObject);
     }
     protected virtual void OnRetract(BaseHandBehaviour hand) { }
 

@@ -3,8 +3,8 @@ using UnityEngine;
 public class GrabPackManager : MonoBehaviour
 {
     [Header("Behaviours")] 
-    [SerializeField] private Rigidbody playerRigidbody; 
-    public Rigidbody PlayerRigidbody => playerRigidbody;
+    [SerializeField] private RigidboyPlayerController playerController;
+    public RigidboyPlayerController PlayerController => playerController;
     
     [SerializeField] private PowerableBehaviour powerableBehaviour;
     public PowerableBehaviour PowerableBehaviour => powerableBehaviour;

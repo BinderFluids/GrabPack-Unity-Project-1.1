@@ -26,9 +26,9 @@ public class JumpPad : MonoBehaviour
 
     public void LaunchPlayer(BaseHandBehaviour hand)
     {
-        Rigidbody rb = hand.GrabPack.PlayerRigidbody;
+        Rigidbody rb = hand.GrabPack.PlayerController.Rigidbody;
         
-        float baseForce = player.isGrounded ? jumpForce : jumpForce / 2f;
+        float baseForce = hand.GrabPack.PlayerController.isGrounded ? jumpForce : jumpForce / 2f;
 
         float distance = Vector3.Distance(rb.transform.position, transform.position);
 

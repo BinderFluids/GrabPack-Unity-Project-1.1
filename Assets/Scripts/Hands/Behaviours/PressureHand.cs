@@ -1,29 +1,36 @@
+using System.Diagnostics.Contracts;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.ProBuilder.MeshOperations;
 using UnityEngine.UI;
 
 public class PressureHand : BaseHandBehaviour
 {
-    
-    private float pressureHoldTimer = 0f;
-    private bool pressureBuilding = false;
-    
-    
-    [Header("Pressure Hand")]
-    public GameObject pressurebuild;
-    public AudioClip pressureRelease;
-    public float pressure = 0;
+    private float currentPresssure = 0;
 
-    public GameObject SMOKE;
 
-    public GameObject gauge;
-    public Image guageUI;
-    public ParticleSystem impact;
-    public GameObject Crosshair;
+    [Header("Pressure Hand")] 
+    [Header("Settings")] 
+    [SerializeField] private float pressureBuildSpeed = 4f; 
+    [SerializeField] private float minimumPressure = 1f; 
+    [SerializeField] private float maxPressure = 10f;
+    
+    [Header("Audio")]
+    [SerializeField] private AudioSource pressureBuildAudioSource;
+    [SerializeField] private AudioClip pressureReleaseAudioClip;
+
+    [Header("Particles")]
+    [SerializeField] private GameObject smokeParticlesContainer;
+    [SerializeField] private ParticleSystem impactParticleSystem;
+
+    [Header("UI")]
+    [SerializeField] private GameObject gaugeCrosshair;
+    [SerializeField] private Image guageImage;
+    [SerializeField] private GameObject Crosshair;
     
     protected override void StartPull()
     {
-        pressure = 0f; 
+        currentPresssure = 0f; 
     }
     
     protected override void UpdatePull()
@@ -31,42 +38,55 @@ public class PressureHand : BaseHandBehaviour
         if (Interactable == null) return;
         if (Interactable is not IPressureHandInteractable)
         {
-            Interactable.UpdatePull(this);
-            return;
+            if (!Interactable.TryGetComponent(out IPressureHandInteractable iphi))
+            {
+                Interactable.UpdatePull(this); 
+                return;
+            }
         }
-
-        pressure += Time.deltaTime; 
-        SMOKE.SetActive(true);
-        pressurebuild.SetActive(true);
-        gauge.SetActive(true);
-        Crosshair.SetActive(false);
         
-        if (pressure < 10f)
-        {
-            pressure += Time.deltaTime * 4f;
-            pressure = Mathf.Min(pressure, 10f);
-            guageUI.fillAmount = pressure / 10f;
-        }
+        currentPresssure += Time.deltaTime * pressureBuildSpeed;
+        SetActive(true); 
+        
+        //Crosshair.SetActive(false);
+        
+        currentPresssure += Time.deltaTime;
+        currentPresssure = Mathf.Min(currentPresssure, maxPressure);
+        guageImage.fillAmount = currentPresssure / maxPressure;
     }
 
     protected override void OnRetract()
     {
         if (Interactable == null) return;
-        if (Interactable is not IPressureHandInteractable pressureHandInteractable) return;
+
+        IPressureHandInteractable pressureHandInteractable;
+        if (Interactable is not IPressureHandInteractable ip)
+            Interactable.TryGetComponent(out pressureHandInteractable);
+        else
+            pressureHandInteractable = ip; 
         
-        SMOKE.SetActive(false);
-        gauge.SetActive(false);
-        if (pressure >= 1f)
+        SetActive(false); 
+        
+        if (pressureHandInteractable == null) return;
+        
+        
+        if (currentPresssure >= minimumPressure)
         {
-            //globalAudio.PlayOneShot(pressureRelease, 2.0f);
+            GlobalAudio.Instance.PlayOneShot(pressureReleaseAudioClip, 2.0f);
+            impactParticleSystem.Play();
         }
-        pressureHandInteractable.ReleasePressure(this, pressure);
-        pressure = 0f;
-        pressurebuild.SetActive(false);
-        Crosshair.SetActive(true);
         
+        pressureHandInteractable.ReleasePressure(this, currentPresssure);
+        //Crosshair.SetActive(true);
     }
 
+    void SetActive(bool active)
+    {
+        smokeParticlesContainer.SetActive(active);
+        pressureBuildAudioSource.gameObject.SetActive(active);
+        gaugeCrosshair.SetActive(active);
+    }
+    
     //     if ((leftReleased || rightReleased) && isPressureHand)
     // {
     //

@@ -109,8 +109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PowerableBehaviour
   <IsPowered>k__BackingField: 1
-  powerSourceReferences:
-  - underlyingValue: {fileID: 0}
+  powerSourceReferences: []
   onPoweredOnUnityEvent:
     m_PersistentCalls:
       m_Calls: []
